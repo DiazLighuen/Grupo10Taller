@@ -115,7 +115,7 @@ class LoginController
     {
         $view = new LoginView();
 
-        $hospitalName = ConfigurationController::getInstance()->getHospitalName();
+        $hospitalName = 'TresVagos';
 
         $view->show($hospitalName);
     }
