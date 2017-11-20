@@ -1,0 +1,56 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 center-horizontal">
+                <!--Form with header-->
+                <div class="card">
+
+                    <!--Header-->
+                    <div class="header pt-3 grey lighten-2">
+
+                        <div class="row d-flex justify-content-start">
+                            <h3 class="deep-grey-text mt-1 mb-2 pb-1 mx-5">Login</h3>
+                        </div>
+
+                    </div>
+                    <!--Header-->
+
+                    <div class="card-body mx-4 mt-4">
+                        <!--Body-->
+                        <form id="loginForm">
+                            <div class="md-form">
+                                <input type="text" id="username" name="username" class="form-control" autofocus>
+                                <label for="Form-email4">Usuario</label>
+                            </div>
+
+                            <div class="md-form pb-3">
+                                <input type="password" id="password" name="password" class="form-control">
+                                <label for="Form-pass4">Contraseña</label>
+                            </div>
+
+                            <div class="text-center mb-4">
+                                <button class="btn btn-primary btn-block z-depth-2" aria-label="Ingresar al sistema">Log in</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <!--/Form with header-->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script src="./js/login.js"></script>
+
+{% endblock %}

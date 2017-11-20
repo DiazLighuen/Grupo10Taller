@@ -1,0 +1,16 @@
+{
+  "dir": "ltr",
+  "lang": "es",
+  "name": "Hospital Gutierrez",
+  "scope": "/",
+  "display": "standalone",
+  "start_url": "https://grupo40.proyecto2017.linti.unlp.edu.ar/",
+  "short_name": "HG",
+  "theme_color": "#009688",
+  "description": "El hospital atiende chicos enfermos y los cura",
+  "orientation": "any",
+  "background_color": "#009688",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "icons": []
+}

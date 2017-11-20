@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title> {% block title %} Bienvenido {% endblock %} | {{ hospitalName }}</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- Material Design Bootstrap -->
+    <link href="./css/mdb.min.css" rel="stylesheet" type="text/css">
+    <!-- Your custom styles (optional) -->
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
+
+    <link href="./css/toastr-2.1.3.css" rel="stylesheet" type="text/css">
+
+    <link href="./css/pace-theme-minimal.css" rel="stylesheet" type="text/css">
+
+    <link href="./css/input/forms.css" rel="stylesheet" type="text/css">
+
+    <link rel="manifest" href="manifest.json">
+
+    {#<link href="./css/animate.css" rel="stylesheet" type="text/css">#}
+
+    {#<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/stefangabos/Zebra_Datepicker/dist/css/default/zebra_datepicker.min.css">#}
+
+
+</head>
+
+<body>
+
+{{ include('navigation.html.twig') }}
+<div>
+{{ flashMessages() }}
+</div>
+
+{% block content %}
+
+{% endblock %}
+
+{{ include('footer.html.twig') }}
+
+</body>
+<!-- SCRIPTS -->
+
+<!-- Service workers -->
+<script type="text/javascript" src="js/serviceWorkers/pwabuilder-sw-register.js"></script>
+<!-- JQuery -->
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
+
+<script type="text/javascript" src="js/toastr-2.1.3.min.js"></script>
+
+<script type="text/javascript" src="js/toastr-settings.js"></script>
+
+<script type="text/javascript" src="js/pace-settings.js"></script>
+
+<script type="text/javascript" src="js/pace.min.js"></script>
+
+<script type="text/javascript" src="js/material-selectbox.min.js"></script>
+
+<script type="text/javascript" src="js/material-datepicker.js"></script>
+
+{#<script src="https://cdn.jsdelivr.net/gh/stefangabos/Zebra_Datepicker/dist/zebra_datepicker.min.js"></script>#}
+
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>#}
+
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js"></script>#}
+
+
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+{% block scripts %}
+
+{% endblock %}
+
+</html>

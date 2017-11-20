@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="container">
+            <div class="col-sm-12 pt-5">
+                <div class="jumbotron">
+                    <h1 class="h1-responsive">Bienvenido al sitio del {{ hospitalData.name }}</h1>
+                    <p class="lead">{{ hospitalData.description }}</p>
+                    <hr class="my-2">
+                    <p>Contacto: {{ hospitalData.contactEmail }}
+                    </p>
+                    <a class="btn btn-primary btn-lg" role="button" aria-label="Obtener mas informacion">M&aacute;s informaci&oacute;n</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
