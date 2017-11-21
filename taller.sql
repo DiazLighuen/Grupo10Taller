@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2017 a las 02:44:14
+-- Tiempo de generación: 21-11-2017 a las 21:25:02
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -32,6 +32,13 @@ CREATE TABLE `airline` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `airline`
+--
+
+INSERT INTO `airline` (`user_id`) VALUES
+(3);
+
 -- --------------------------------------------------------
 
 --
@@ -42,6 +49,15 @@ CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `cart`
+--
+
+INSERT INTO `cart` (`id`, `date`) VALUES
+(1, '2017-11-14'),
+(2, '2017-11-22'),
+(3, '2017-10-20');
 
 -- --------------------------------------------------------
 
@@ -56,6 +72,15 @@ CREATE TABLE `city` (
   `state_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `city`
+--
+
+INSERT INTO `city` (`id`, `name`, `country_id`, `state_id`) VALUES
+(1, 'Barcelona', 205, 3315),
+(2, 'Ezeiza', 10, 208),
+(3, 'Milan', 107, 1848);
+
 -- --------------------------------------------------------
 
 --
@@ -65,6 +90,13 @@ CREATE TABLE `city` (
 CREATE TABLE `concessionaire` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `concessionaire`
+--
+
+INSERT INTO `concessionaire` (`user_id`) VALUES
+(5);
 
 -- --------------------------------------------------------
 
@@ -348,6 +380,15 @@ CREATE TABLE `flight` (
   `seats` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `flight`
+--
+
+INSERT INTO `flight` (`id`, `airline_id`, `origin_id`, `destiny_id`, `origin_date`, `origin_destiny`, `status`, `seats`) VALUES
+(1, 3, 1, 2, '2017-12-24', '2017-12-25', 'OnTime', 50),
+(2, 3, 2, 1, '2017-12-24', '2017-12-25', 'OnTime', 100),
+(3, 3, 3, 1, '2017-11-22', '2017-11-22', 'Delayed', 200);
+
 -- --------------------------------------------------------
 
 --
@@ -358,6 +399,14 @@ CREATE TABLE `history` (
   `user_consumer_id` int(11) NOT NULL,
   `cart_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `history`
+--
+
+INSERT INTO `history` (`user_consumer_id`, `cart_id`) VALUES
+(2, 2),
+(2, 3);
 
 -- --------------------------------------------------------
 
@@ -375,6 +424,13 @@ CREATE TABLE `hotel` (
   `quality` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `hotel`
+--
+
+INSERT INTO `hotel` (`id`, `hotel_company_id`, `address`, `city_id`, `country_id`, `state_id`, `quality`) VALUES
+(1, 4, 'Cañuelas, 1806 Tristan Suárez, Buenos Aires', 2, 10, 208, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -384,6 +440,13 @@ CREATE TABLE `hotel` (
 CREATE TABLE `hotel_company` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `hotel_company`
+--
+
+INSERT INTO `hotel_company` (`user_id`) VALUES
+(4);
 
 -- --------------------------------------------------------
 
@@ -400,6 +463,76 @@ CREATE TABLE `room` (
   `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `room`
+--
+
+INSERT INTO `room` (`id`, `hotel_id`, `number`, `beds`, `description`, `price`) VALUES
+(1, 1, 1, 2, 'Habitacion familiar', 1200),
+(2, 1, 2, 2, 'Habitacion familiar', 1200),
+(3, 1, 3, 2, 'Habitacion familiar', 1200),
+(4, 1, 4, 2, 'Habitacion familiar', 1200),
+(5, 1, 5, 2, 'Habitacion familiar', 1200),
+(6, 1, 6, 2, 'Habitacion familiar', 1200),
+(7, 1, 7, 2, 'Habitacion familiar', 1200),
+(8, 1, 8, 2, 'Habitacion familiar', 1200),
+(9, 1, 9, 2, 'Habitacion familiar', 1200),
+(10, 1, 10, 2, 'Habitacion familiar', 1200),
+(11, 1, 11, 2, 'Habitacion familiar', 1200),
+(12, 1, 12, 2, 'Habitacion familiar', 1200),
+(13, 1, 13, 2, 'Habitacion familiar', 1200),
+(14, 1, 14, 2, 'Habitacion familiar', 1200),
+(15, 1, 15, 2, 'Habitacion familiar', 1200),
+(16, 1, 16, 2, 'Habitacion familiar', 1200),
+(17, 1, 17, 2, 'Habitacion familiar', 1200),
+(18, 1, 18, 2, 'Habitacion familiar', 1200),
+(19, 1, 19, 2, 'Habitacion familiar', 1200),
+(20, 1, 20, 2, 'Habitacion familiar', 1200),
+(21, 1, 21, 2, 'Habitacion familiar', 1200),
+(22, 1, 22, 2, 'Habitacion familiar', 1200),
+(23, 1, 23, 2, 'Habitacion familiar', 1200),
+(24, 1, 24, 2, 'Habitacion familiar', 1200),
+(25, 1, 25, 2, 'Habitacion familiar', 1200),
+(26, 1, 26, 2, 'Habitacion familiar', 1200),
+(27, 1, 27, 2, 'Habitacion familiar', 1200),
+(28, 1, 28, 2, 'Habitacion familiar', 1200),
+(29, 1, 29, 2, 'Habitacion familiar', 1200),
+(30, 1, 30, 2, 'Habitacion familiar', 1200),
+(31, 1, 31, 2, 'Habitacion familiar', 1200),
+(32, 1, 32, 2, 'Habitacion familiar', 1200),
+(33, 1, 33, 1, 'Habitacion para parejas', 800),
+(34, 1, 34, 1, 'Habitacion para parejas', 800),
+(35, 1, 35, 1, 'Habitacion para parejas', 800),
+(36, 1, 36, 1, 'Habitacion para parejas', 800),
+(37, 1, 37, 1, 'Habitacion para parejas', 800),
+(38, 1, 38, 1, 'Habitacion para parejas', 800),
+(39, 1, 39, 1, 'Habitacion para parejas', 800),
+(40, 1, 40, 1, 'Habitacion para parejas', 800),
+(41, 1, 41, 1, 'Habitacion para parejas', 800),
+(42, 1, 42, 1, 'Habitacion para parejas', 800),
+(43, 1, 43, 1, 'Habitacion para parejas', 800),
+(44, 1, 44, 1, 'Habitacion para parejas', 800),
+(45, 1, 45, 1, 'Habitacion para parejas', 800),
+(46, 1, 46, 1, 'Habitacion para parejas', 800),
+(47, 1, 47, 1, 'Habitacion para parejas', 800),
+(48, 1, 48, 1, 'Habitacion para parejas', 800),
+(49, 1, 49, 1, 'Habitacion para parejas', 800),
+(50, 1, 50, 1, 'Habitacion para parejas', 800),
+(51, 1, 51, 1, 'Habitacion para parejas', 800),
+(52, 1, 52, 1, 'Habitacion para parejas', 800),
+(53, 1, 53, 1, 'Habitacion para parejas', 800),
+(54, 1, 54, 1, 'Habitacion para parejas', 800),
+(55, 1, 55, 1, 'Habitacion para parejas', 800),
+(56, 1, 56, 1, 'Habitacion para parejas', 800),
+(57, 1, 57, 1, 'Habitacion para parejas', 800),
+(58, 1, 58, 1, 'Habitacion para parejas', 800),
+(59, 1, 59, 1, 'Habitacion para parejas', 800),
+(60, 1, 60, 1, 'Habitacion para parejas', 800),
+(61, 1, 61, 1, 'Habitacion para parejas', 800),
+(62, 1, 62, 1, 'Habitacion para parejas', 800),
+(63, 1, 63, 1, 'Habitacion para parejas', 800),
+(64, 1, 64, 1, 'Habitacion para parejas', 800);
+
 -- --------------------------------------------------------
 
 --
@@ -413,6 +546,362 @@ CREATE TABLE `seat` (
   `class` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `seat`
+--
+
+INSERT INTO `seat` (`id`, `flight_id`, `number`, `class`, `price`) VALUES
+(11, 2, 1, 'business', 25000),
+(12, 2, 2, 'business', 25000),
+(13, 2, 3, 'business', 25000),
+(14, 2, 4, 'business', 25000),
+(15, 2, 5, 'business', 25000),
+(16, 2, 6, 'business', 25000),
+(17, 2, 7, 'business', 25000),
+(18, 2, 8, 'business', 25000),
+(19, 2, 9, 'business', 25000),
+(20, 2, 10, 'business', 25000),
+(21, 2, 11, 'business', 25000),
+(22, 2, 12, 'business', 25000),
+(23, 2, 13, 'business', 25000),
+(24, 2, 14, 'business', 25000),
+(25, 2, 15, 'business', 25000),
+(26, 2, 16, 'business', 25000),
+(27, 2, 17, 'business', 25000),
+(28, 2, 18, 'business', 25000),
+(29, 2, 19, 'business', 25000),
+(30, 2, 20, 'business', 25000),
+(31, 2, 21, 'business', 15000),
+(32, 2, 22, 'business', 15000),
+(33, 2, 23, 'business', 15000),
+(34, 2, 24, 'business', 15000),
+(35, 2, 25, 'business', 15000),
+(36, 2, 26, 'business', 15000),
+(37, 2, 27, 'business', 15000),
+(38, 2, 28, 'business', 15000),
+(39, 2, 29, 'business', 15000),
+(40, 2, 30, 'business', 15000),
+(41, 2, 31, 'business', 15000),
+(42, 2, 32, 'business', 15000),
+(43, 2, 33, 'business', 15000),
+(44, 2, 34, 'business', 15000),
+(45, 2, 35, 'business', 15000),
+(46, 2, 36, 'business', 15000),
+(47, 2, 37, 'business', 15000),
+(48, 2, 38, 'business', 15000),
+(49, 2, 39, 'business', 15000),
+(50, 2, 40, 'business', 15000),
+(51, 2, 41, 'business', 15000),
+(52, 2, 42, 'business', 15000),
+(53, 2, 43, 'business', 15000),
+(54, 2, 44, 'business', 15000),
+(55, 2, 45, 'business', 15000),
+(56, 2, 46, 'business', 15000),
+(57, 2, 47, 'business', 15000),
+(58, 2, 48, 'business', 15000),
+(59, 2, 49, 'business', 15000),
+(60, 2, 50, 'business', 15000),
+(61, 2, 51, 'business', 15000),
+(62, 2, 52, 'business', 15000),
+(63, 2, 53, 'business', 15000),
+(64, 2, 54, 'business', 15000),
+(65, 2, 55, 'business', 15000),
+(66, 2, 56, 'business', 15000),
+(67, 2, 57, 'business', 15000),
+(68, 2, 58, 'business', 15000),
+(69, 2, 59, 'business', 15000),
+(70, 2, 60, 'business', 15000),
+(71, 2, 61, 'business', 15000),
+(72, 2, 62, 'business', 15000),
+(73, 2, 63, 'business', 15000),
+(74, 2, 64, 'business', 15000),
+(75, 2, 65, 'business', 15000),
+(76, 2, 66, 'business', 15000),
+(77, 2, 67, 'business', 15000),
+(78, 2, 68, 'business', 15000),
+(79, 2, 69, 'business', 15000),
+(80, 2, 70, 'business', 15000),
+(81, 2, 71, 'business', 15000),
+(82, 2, 72, 'business', 15000),
+(83, 2, 73, 'business', 15000),
+(84, 2, 74, 'business', 15000),
+(85, 2, 75, 'business', 15000),
+(86, 2, 76, 'business', 15000),
+(87, 2, 77, 'business', 15000),
+(88, 2, 78, 'business', 15000),
+(89, 2, 79, 'business', 15000),
+(90, 2, 80, 'business', 15000),
+(91, 2, 81, 'business', 15000),
+(92, 2, 82, 'business', 15000),
+(93, 2, 83, 'business', 15000),
+(94, 2, 84, 'business', 15000),
+(95, 2, 85, 'business', 15000),
+(96, 2, 86, 'business', 15000),
+(97, 2, 87, 'business', 15000),
+(98, 2, 88, 'business', 15000),
+(99, 2, 89, 'business', 15000),
+(100, 2, 90, 'business', 15000),
+(101, 2, 91, 'business', 15000),
+(102, 2, 92, 'business', 15000),
+(103, 2, 93, 'business', 15000),
+(104, 2, 94, 'business', 15000),
+(105, 2, 95, 'business', 15000),
+(106, 2, 96, 'business', 15000),
+(107, 2, 97, 'business', 15000),
+(108, 2, 98, 'business', 15000),
+(109, 2, 99, 'business', 15000),
+(110, 2, 100, 'business', 15000),
+(111, 1, 1, 'business', 23000),
+(112, 1, 2, 'business', 23000),
+(113, 1, 3, 'business', 23000),
+(114, 1, 4, 'business', 23000),
+(115, 1, 5, 'business', 23000),
+(116, 1, 6, 'business', 23000),
+(117, 1, 7, 'business', 23000),
+(118, 1, 8, 'business', 23000),
+(119, 1, 9, 'business', 23000),
+(120, 1, 10, 'business', 23000),
+(121, 1, 11, 'business', 13000),
+(122, 1, 12, 'business', 13000),
+(123, 1, 13, 'business', 13000),
+(124, 1, 14, 'business', 13000),
+(125, 1, 15, 'business', 13000),
+(126, 1, 16, 'business', 13000),
+(127, 1, 17, 'business', 13000),
+(128, 1, 18, 'business', 13000),
+(129, 1, 19, 'business', 13000),
+(130, 1, 20, 'business', 13000),
+(131, 1, 21, 'business', 13000),
+(132, 1, 22, 'business', 13000),
+(133, 1, 23, 'business', 13000),
+(134, 1, 24, 'business', 13000),
+(135, 1, 25, 'business', 13000),
+(136, 1, 26, 'business', 13000),
+(137, 1, 27, 'business', 13000),
+(138, 1, 28, 'business', 13000),
+(139, 1, 29, 'business', 13000),
+(140, 1, 30, 'business', 13000),
+(141, 1, 31, 'business', 13000),
+(142, 1, 32, 'business', 13000),
+(143, 1, 33, 'business', 13000),
+(144, 1, 34, 'business', 13000),
+(145, 1, 35, 'business', 13000),
+(146, 1, 36, 'business', 13000),
+(147, 1, 37, 'business', 13000),
+(148, 1, 38, 'business', 13000),
+(149, 1, 39, 'business', 13000),
+(150, 1, 40, 'business', 13000),
+(151, 1, 41, 'business', 13000),
+(152, 1, 42, 'business', 13000),
+(153, 1, 43, 'business', 13000),
+(154, 1, 44, 'business', 13000),
+(155, 1, 45, 'business', 13000),
+(156, 1, 46, 'business', 13000),
+(157, 1, 47, 'business', 13000),
+(158, 1, 48, 'business', 13000),
+(159, 1, 49, 'business', 13000),
+(160, 1, 50, 'business', 13000),
+(161, 3, 1, 'business', 15000),
+(162, 3, 2, 'business', 15000),
+(163, 3, 3, 'business', 15000),
+(164, 3, 4, 'business', 15000),
+(165, 3, 5, 'business', 15000),
+(166, 3, 6, 'business', 15000),
+(167, 3, 7, 'business', 15000),
+(168, 3, 8, 'business', 15000),
+(169, 3, 9, 'business', 15000),
+(170, 3, 10, 'business', 15000),
+(171, 3, 11, 'business', 15000),
+(172, 3, 12, 'business', 15000),
+(173, 3, 13, 'business', 15000),
+(174, 3, 14, 'business', 15000),
+(175, 3, 15, 'business', 15000),
+(176, 3, 16, 'business', 15000),
+(177, 3, 17, 'business', 15000),
+(178, 3, 18, 'business', 15000),
+(179, 3, 19, 'business', 15000),
+(180, 3, 20, 'business', 15000),
+(181, 3, 21, 'business', 15000),
+(182, 3, 22, 'business', 15000),
+(183, 3, 23, 'business', 15000),
+(184, 3, 24, 'business', 15000),
+(185, 3, 25, 'business', 15000),
+(186, 3, 26, 'business', 15000),
+(187, 3, 27, 'business', 15000),
+(188, 3, 28, 'business', 15000),
+(189, 3, 29, 'business', 15000),
+(190, 3, 30, 'business', 15000),
+(191, 3, 31, 'business', 15000),
+(192, 3, 32, 'business', 15000),
+(193, 3, 33, 'business', 15000),
+(194, 3, 34, 'business', 15000),
+(195, 3, 35, 'business', 15000),
+(196, 3, 36, 'business', 15000),
+(197, 3, 37, 'business', 15000),
+(198, 3, 38, 'business', 15000),
+(199, 3, 39, 'business', 15000),
+(200, 3, 40, 'business', 15000),
+(201, 3, 41, 'business', 9000),
+(202, 3, 42, 'business', 9000),
+(203, 3, 43, 'business', 9000),
+(204, 3, 44, 'business', 9000),
+(205, 3, 45, 'business', 9000),
+(206, 3, 46, 'business', 9000),
+(207, 3, 47, 'business', 9000),
+(208, 3, 48, 'business', 9000),
+(209, 3, 49, 'business', 9000),
+(210, 3, 50, 'business', 9000),
+(211, 3, 51, 'business', 9000),
+(212, 3, 52, 'business', 9000),
+(213, 3, 53, 'business', 9000),
+(214, 3, 54, 'business', 9000),
+(215, 3, 55, 'business', 9000),
+(216, 3, 56, 'business', 9000),
+(217, 3, 57, 'business', 9000),
+(218, 3, 58, 'business', 9000),
+(219, 3, 59, 'business', 9000),
+(220, 3, 60, 'business', 9000),
+(221, 3, 61, 'business', 9000),
+(222, 3, 62, 'business', 9000),
+(223, 3, 63, 'business', 9000),
+(224, 3, 64, 'business', 9000),
+(225, 3, 65, 'business', 9000),
+(226, 3, 66, 'business', 9000),
+(227, 3, 67, 'business', 9000),
+(228, 3, 68, 'business', 9000),
+(229, 3, 69, 'business', 9000),
+(230, 3, 70, 'business', 9000),
+(231, 3, 71, 'business', 9000),
+(232, 3, 72, 'business', 9000),
+(233, 3, 73, 'business', 9000),
+(234, 3, 74, 'business', 9000),
+(235, 3, 75, 'business', 9000),
+(236, 3, 76, 'business', 9000),
+(237, 3, 77, 'business', 9000),
+(238, 3, 78, 'business', 9000),
+(239, 3, 79, 'business', 9000),
+(240, 3, 80, 'business', 9000),
+(241, 3, 81, 'business', 9000),
+(242, 3, 82, 'business', 9000),
+(243, 3, 83, 'business', 9000),
+(244, 3, 84, 'business', 9000),
+(245, 3, 85, 'business', 9000),
+(246, 3, 86, 'business', 9000),
+(247, 3, 87, 'business', 9000),
+(248, 3, 88, 'business', 9000),
+(249, 3, 89, 'business', 9000),
+(250, 3, 90, 'business', 9000),
+(251, 3, 91, 'business', 9000),
+(252, 3, 92, 'business', 9000),
+(253, 3, 93, 'business', 9000),
+(254, 3, 94, 'business', 9000),
+(255, 3, 95, 'business', 9000),
+(256, 3, 96, 'business', 9000),
+(257, 3, 97, 'business', 9000),
+(258, 3, 98, 'business', 9000),
+(259, 3, 99, 'business', 9000),
+(260, 3, 100, 'business', 9000),
+(261, 3, 101, 'business', 9000),
+(262, 3, 102, 'business', 9000),
+(263, 3, 103, 'business', 9000),
+(264, 3, 104, 'business', 9000),
+(265, 3, 105, 'business', 9000),
+(266, 3, 106, 'business', 9000),
+(267, 3, 107, 'business', 9000),
+(268, 3, 108, 'business', 9000),
+(269, 3, 109, 'business', 9000),
+(270, 3, 110, 'business', 9000),
+(271, 3, 111, 'business', 9000),
+(272, 3, 112, 'business', 9000),
+(273, 3, 113, 'business', 9000),
+(274, 3, 114, 'business', 9000),
+(275, 3, 115, 'business', 9000),
+(276, 3, 116, 'business', 9000),
+(277, 3, 117, 'business', 9000),
+(278, 3, 118, 'business', 9000),
+(279, 3, 119, 'business', 9000),
+(280, 3, 120, 'business', 9000),
+(281, 3, 121, 'business', 9000),
+(282, 3, 122, 'business', 9000),
+(283, 3, 123, 'business', 9000),
+(284, 3, 124, 'business', 9000),
+(285, 3, 125, 'business', 9000),
+(286, 3, 126, 'business', 9000),
+(287, 3, 127, 'business', 9000),
+(288, 3, 128, 'business', 9000),
+(289, 3, 129, 'business', 9000),
+(290, 3, 130, 'business', 9000),
+(291, 3, 131, 'business', 9000),
+(292, 3, 132, 'business', 9000),
+(293, 3, 133, 'business', 9000),
+(294, 3, 134, 'business', 9000),
+(295, 3, 135, 'business', 9000),
+(296, 3, 136, 'business', 9000),
+(297, 3, 137, 'business', 9000),
+(298, 3, 138, 'business', 9000),
+(299, 3, 139, 'business', 9000),
+(300, 3, 140, 'business', 9000),
+(301, 3, 141, 'business', 9000),
+(302, 3, 142, 'business', 9000),
+(303, 3, 143, 'business', 9000),
+(304, 3, 144, 'business', 9000),
+(305, 3, 145, 'business', 9000),
+(306, 3, 146, 'business', 9000),
+(307, 3, 147, 'business', 9000),
+(308, 3, 148, 'business', 9000),
+(309, 3, 149, 'business', 9000),
+(310, 3, 150, 'business', 9000),
+(311, 3, 151, 'business', 9000),
+(312, 3, 152, 'business', 9000),
+(313, 3, 153, 'business', 9000),
+(314, 3, 154, 'business', 9000),
+(315, 3, 155, 'business', 9000),
+(316, 3, 156, 'business', 9000),
+(317, 3, 157, 'business', 9000),
+(318, 3, 158, 'business', 9000),
+(319, 3, 159, 'business', 9000),
+(320, 3, 160, 'business', 9000),
+(321, 3, 161, 'business', 9000),
+(322, 3, 162, 'business', 9000),
+(323, 3, 163, 'business', 9000),
+(324, 3, 164, 'business', 9000),
+(325, 3, 165, 'business', 9000),
+(326, 3, 166, 'business', 9000),
+(327, 3, 167, 'business', 9000),
+(328, 3, 168, 'business', 9000),
+(329, 3, 169, 'business', 9000),
+(330, 3, 170, 'business', 9000),
+(331, 3, 171, 'business', 9000),
+(332, 3, 172, 'business', 9000),
+(333, 3, 173, 'business', 9000),
+(334, 3, 174, 'business', 9000),
+(335, 3, 175, 'business', 9000),
+(336, 3, 176, 'business', 9000),
+(337, 3, 177, 'business', 9000),
+(338, 3, 178, 'business', 9000),
+(339, 3, 179, 'business', 9000),
+(340, 3, 180, 'business', 9000),
+(341, 3, 181, 'business', 9000),
+(342, 3, 182, 'business', 9000),
+(343, 3, 183, 'business', 9000),
+(344, 3, 184, 'business', 9000),
+(345, 3, 185, 'business', 9000),
+(346, 3, 186, 'business', 9000),
+(347, 3, 187, 'business', 9000),
+(348, 3, 188, 'business', 9000),
+(349, 3, 189, 'business', 9000),
+(350, 3, 190, 'business', 9000),
+(351, 3, 191, 'business', 9000),
+(352, 3, 192, 'business', 9000),
+(353, 3, 193, 'business', 9000),
+(354, 3, 194, 'business', 9000),
+(355, 3, 195, 'business', 9000),
+(356, 3, 196, 'business', 9000),
+(357, 3, 197, 'business', 9000),
+(358, 3, 198, 'business', 9000),
+(359, 3, 199, 'business', 9000),
+(360, 3, 200, 'business', 9000);
 
 -- --------------------------------------------------------
 
@@ -4576,8 +5065,20 @@ CREATE TABLE `user` (
   `username` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
-  `name` varchar(25) COLLATE utf8_spanish_ci NOT NULL
+  `name` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  `permisions` varchar(25) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `status`, `name`, `permisions`) VALUES
+(1, 'lighuen.diaz', '1234', 1, 'Diaz Lighuen', 'admin'),
+(2, 'pdluna', '1234', 1, 'Pablo Luna', 'user'),
+(3, 'na.galiano', '1234', 1, 'Natalia Galiano', 'provider'),
+(4, 'hoteleria', '1234', 1, 'Howard Johnson', 'provider'),
+(5, 'Concesionaria ', '1234', 1, 'Zíngaro', 'provider');
 
 -- --------------------------------------------------------
 
@@ -4589,6 +5090,13 @@ CREATE TABLE `user_consumer` (
   `user_id` int(11) NOT NULL,
   `cart_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `user_consumer`
+--
+
+INSERT INTO `user_consumer` (`user_id`, `cart_id`) VALUES
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -4607,6 +5115,212 @@ CREATE TABLE `vehicle` (
   `country_id` int(11) NOT NULL,
   `state_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `vehicle`
+--
+
+INSERT INTO `vehicle` (`id`, `concessionaire_id`, `slots`, `fuel`, `description`, `price`, `city_id`, `country_id`, `state_id`) VALUES
+(1, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(2, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(3, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(4, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(5, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(6, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(7, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(8, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(9, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(10, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(11, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(12, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(13, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(14, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(15, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(16, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(17, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(18, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(19, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(20, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(21, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(22, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(23, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(24, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(25, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(26, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(27, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(28, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(29, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(30, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(31, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(32, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(33, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(34, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(35, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(36, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(37, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(38, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(39, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(40, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(41, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(42, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(43, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(44, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(45, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(46, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(47, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(48, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(49, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(50, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(51, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(52, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(53, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(54, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(55, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(56, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(57, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(58, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(59, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(60, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(61, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(62, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(63, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(64, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(65, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(66, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(67, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(68, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(69, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(70, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(71, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(72, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(73, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(74, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(75, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(76, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(77, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(78, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(79, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(80, 5, 4, 'diesel', 'Auto para familas', 300, 2, 10, 208),
+(81, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(82, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(83, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(84, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(85, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(86, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(87, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(88, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(89, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(90, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(91, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(92, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(93, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(94, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(95, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(96, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(97, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(98, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(99, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(100, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(101, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(102, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(103, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(104, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(105, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(106, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(107, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(108, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(109, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(110, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(111, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(112, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(113, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(114, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(115, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(116, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(117, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(118, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(119, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(120, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(121, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(122, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(123, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(124, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(125, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(126, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(127, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(128, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(129, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(130, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(131, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(132, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(133, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(134, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(135, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(136, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(137, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(138, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(139, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(140, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(141, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(142, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(143, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(144, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(145, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(146, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(147, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(148, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(149, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(150, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(151, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(152, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(153, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(154, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(155, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(156, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(157, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(158, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(159, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(160, 5, 2, 'gasoline', 'Auto para parejas', 200, 2, 10, 208),
+(161, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(162, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(163, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(164, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(165, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(166, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(167, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(168, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(169, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(170, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(171, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(172, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(173, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(174, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(175, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(176, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(177, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(178, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(179, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(180, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(181, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(182, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(183, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(184, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(185, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(186, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(187, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(188, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(189, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(190, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(191, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(192, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(193, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(194, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(195, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(196, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(197, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(198, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(199, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
+(200, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208);
 
 --
 -- Índices para tablas volcadas
@@ -4738,43 +5452,43 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT de la tabla `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `city`
 --
 ALTER TABLE `city`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `country`
 --
 ALTER TABLE `country`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=249;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
 
 --
 -- AUTO_INCREMENT de la tabla `flight`
 --
 ALTER TABLE `flight`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `hotel`
 --
 ALTER TABLE `hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT de la tabla `seat`
 --
 ALTER TABLE `seat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=361;
 
 --
 -- AUTO_INCREMENT de la tabla `state`
@@ -4786,13 +5500,13 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `vehicle`
 --
 ALTER TABLE `vehicle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
 -- Restricciones para tablas volcadas
