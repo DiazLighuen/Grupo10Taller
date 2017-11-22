@@ -1,0 +1,42 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Inicio
+{% endblock %}
+
+{% block content %}
+
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 center-horizontal">
+                <!--Form with header-->
+                <div class="card">
+
+                <section><h2>Servicios</h2>
+                  <article  id="articulo1">
+                    <h2>Buscar Hoteles</h2>
+                    <p>TresVagos te permite buscar el hotel para tus próximas vacaciones</p>
+                    <a href="index.php?action=buscar_hotel">Buscar Hotel >> </a>
+                  </article>
+                  <article id="articulo2">
+                    <h2>Vuelos</h2>
+                    <p>TresVagos te permite buscar los vuelos disponibles para tus próximas vacaciones.</p>
+                    <a href="index.php?action=buscar_vuelo">Buscar Vuelo >> </a>
+                  </article>
+                  <article id="articulo3">
+                    <h2>Automóviles</h2>
+                    <p>TresVagos te permite buscar el automóvil para tus próximas vacaciones.</p>
+                    <a href="index.php?action=buscar_automovil">Buscar Automóvil >> </a>
+                  </article>
+                </section>
+
+                </div>
+                <!--/Form with header-->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

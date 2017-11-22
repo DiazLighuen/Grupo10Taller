@@ -1,7 +1,7 @@
 <?php
 
-class ResourceController {
-    
+class ResourceController extends BaseController{
+
     private static $instance;
 
     public static function getInstance() {
@@ -10,13 +10,13 @@ class ResourceController {
         }
         return self::$instance;
     }
-    
-    private function __construct() { 
+
+    private function __construct() {
     }
 
     public function home(){
         $view = new HomeView();
         $view->show();
     }
-    
+
 }

@@ -1,0 +1,73 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Buscar Vuelo
+{% endblock %}
+
+{% block content %}
+
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 center-horizontal">
+                <!--Form with header-->
+
+                <form method="post" action="">
+
+                  <h3>Buscar Vuelo</h3>
+
+                  <label for="ciudad">Ciudad Origen: </label>
+                  <select name="ciudad_origen" size = "1" id="ciudad_origen">
+                  <option></option>
+                  {% for ciudad in ciudades %}
+                    <option value="{{ ciudad.name }}" {% if ciudad.name == ciudad_origen_seleccionada %} selected {% endif %}>{{ ciudad.name}}</option>
+                  {% endfor %}
+                  </select>
+
+                  <label for="ciudad">Ciudad Destino: </label>
+                  <select name="ciudad_destino" size = "1" id="ciudad_destino">
+                  <option></option>
+                  {% for ciudad in ciudades %}
+                    <option value="{{ ciudad.name }}" {% if ciudad.name == ciudad_destino_seleccionada %} selected {% endif %}>{{ ciudad.name}}</option>
+                  {% endfor %}
+                  </select>
+
+                  <p><label for="nombre">Fecha Desde</label>
+                  <input id="fecha_desde" name="fecha_desde" type="date" value="{{ fecha_desde }}">
+
+                  <p><label for="fecha_hasta">Fecha Hasta</label>
+                  <input id="fecha_hasta" name="fecha_hasta" type="date" value="{{ fecha_hasta }}">
+
+                  <input class="btn btn-xs" type="submit" value="Buscar"></p>
+
+                  <h3>Listado de Vuelos</h3>
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Seats</th>
+                          <th>Status</th>
+                          <th>Ciudad Destino</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for  vuelo in vuelos %}
+                        <tr>
+                          <td id="aerolinea">{{ vuelo.seats }}</td>
+                          <td id="ciudad_origen">{{ vuelo.status }}</td>
+                          <td id="ciudad_destino">{{ vuelo.ciudad_destino }}</td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </form>
+
+                <!--/Form with header-->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

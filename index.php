@@ -9,19 +9,49 @@ require_once('utils/FlashMessages.php');
 
 /*Model Files*/
 require_once('model/PDORepository.php');
+require_once('model/BaseRepository.php');
+require_once('model/HotelRepository.php');
+require_once('model/VueloRepository.php');
 
 /*Controller Files*/
+require_once('controller/BaseController.php');
 require_once('controller/LoginController.php');
+require_once('controller/InicioController.php');
 require_once('controller/UserController.php');
+require_once('controller/HotelController.php');
+require_once('controller/VueloController.php');
 
 /*View Files*/
 require_once('view/TwigView.php');
 require_once('view/LoginView.php');
 require_once('view/Home.php');
+require_once('view/InicioView.php');
+require_once('view/HotelView.php');
+require_once('view/VueloView.php');
 
 session_start();
 
 if(!isset($_GET["action"])){
-    LoginController::getInstance()->show();
+  InicioController::getInstance()->inicio();
 }
-
+else{
+  if(isset($_GET["action"])){
+    switch($_GET['action']){
+      case 'login' : LoginController::getInstance()->show();
+      break;
+      case 'home' : InicioController::getInstance()->inicio();
+      break;
+      case 'buscar_hotel' : HotelController::getInstance()->buscar_hotel();
+      break;
+      case 'buscar_vuelo' : VueloController::getInstance()->buscar_vuelo();
+      break;
+      /*
+      case 'buscar_automovil' : AutomovilController::getInstance()->buscar_automovil();
+      break;
+      */
+      default:
+        InicioController::getInstance()->inicio();
+      break;
+    }
+  }
+}
