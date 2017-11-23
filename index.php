@@ -12,6 +12,7 @@ require_once('model/PDORepository.php');
 require_once('model/BaseRepository.php');
 require_once('model/HotelRepository.php');
 require_once('model/VueloRepository.php');
+require_once('model/AutomovilRepository.php');
 
 /*Controller Files*/
 require_once('controller/BaseController.php');
@@ -20,6 +21,7 @@ require_once('controller/InicioController.php');
 require_once('controller/UserController.php');
 require_once('controller/HotelController.php');
 require_once('controller/VueloController.php');
+require_once('controller/AutomovilController.php');
 
 /*View Files*/
 require_once('view/TwigView.php');
@@ -28,6 +30,7 @@ require_once('view/Home.php');
 require_once('view/InicioView.php');
 require_once('view/HotelView.php');
 require_once('view/VueloView.php');
+require_once('view/AutomovilView.php');
 
 session_start();
 
@@ -45,10 +48,8 @@ else{
       break;
       case 'buscar_vuelo' : VueloController::getInstance()->buscar_vuelo();
       break;
-      /*
       case 'buscar_automovil' : AutomovilController::getInstance()->buscar_automovil();
       break;
-      */
       default:
         InicioController::getInstance()->inicio();
       break;

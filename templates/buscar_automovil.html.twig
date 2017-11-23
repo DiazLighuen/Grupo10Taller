@@ -1,0 +1,81 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Buscar Automóvil
+{% endblock %}
+
+{% block content %}
+
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 center-horizontal">
+                <!--Form with header-->
+
+                <form method="post" action="">
+
+                  <h3>Buscar Automóvil</h3>
+
+                  <label for="ciudad">Ciudad: </label>
+                  <select name="ciudad" size = "1" id="ciudad">
+                  <option></option>
+                  {% for ciudad in ciudades %}
+                    <option value="{{ ciudad.name }}" {% if ciudad.name == ciudad_seleccionada %} selected {% endif %}>{{ ciudad.name}}</option>
+                  {% endfor %}
+                  </select>
+
+                  <label for="tipo_automovil">Tipo Automóvil: </label>
+                  <select name="tipo_automovil" size = "1" id="tipo_automovil">
+                  <option></option>
+                  {% for tipo_automovil in tipos_automoviles %}
+                    <option value="{{ tipo_automovil.description }}" {% if tipo_automovil.description == tipo_automovil_seleccionado %} selected {% endif %}>{{ tipo_automovil.description }}</option>
+                  {% endfor %}
+                  </select>
+
+                  <label for="precio">Precio: </label>
+                  <select name="precio" size = "1" id="precio">
+                  <option></option>
+                  {% for precio in precios %}
+                    <option value="{{ precio.price }}" {% if precio.price == precio_seleccionado %} selected {% endif %}>{{ precio.price }}</option>
+                  {% endfor %}
+                  </select>
+
+                  <p><label for="nombre">Fecha Desde</label>
+                  <input id="fecha_desde" name="fecha_desde" type="date" value="{{ fecha_desde }}">
+
+                  <p><label for="fecha_hasta">Fecha Hasta</label>
+                  <input id="fecha_hasta" name="fecha_hasta" type="date" value="{{ fecha_hasta }}">
+
+                  <input class="btn btn-xs" type="submit" value="Buscar"></p>
+
+                  <h3>Listado de Automóviles</h3>
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Fuel</th>
+                          <th>Descipción</th>
+                          <th>Precio</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for  automovil in automoviles %}
+                        <tr>
+                          <td id="fuel">{{ automovil.fuel }}</td>
+                          <td id="escription">{{ automovil.description }}</td>
+                          <td id="price">{{ automovil.price }}</td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </form>
+
+                <!--/Form with header-->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
