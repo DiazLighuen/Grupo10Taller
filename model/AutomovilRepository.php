@@ -20,31 +20,24 @@ class AutomovilRepository extends PDORepository{
 
     }
 
-    public function buscar_automovil($fecha_desde,$fecha_hasta,$ciudad,$tipo_automovil,$precio){
-      // para probar, tengo que hacer la consulta adecuada
-      $con = $this->getConnection ();
-      $sql = 'SELECT * FROM vehicle v, city c where v.city_id = c.id and (description = :description or :description = "")
-      and (price = :price or :price = "") and (c.name = :city or :city = "") ORDER BY v.id DESC';
+    public function buscar_automovil($fecha_desde,$fecha_hasta,$ciudad,$precio){
+    
+		$con = $this->getConnection ();
+		$sql = 'SELECT slots, fuel, description, price, c.name AS ciudad_name, con.name AS concessionaire_name FROM vehicle v, city c, concessionaire con WHERE city_id = c.id and con.concessionaire_id = v.concessionaire_id and price = :price and c.name = :city and v.id in  (SELECT id_vehicle FROM vehicle_reserve WHERE (:fecha_desde > date_out or :fecha_desde < date_in) and (:fecha_hasta > date_out or :fecha_hasta < date_in))';  
+		$stmt = $con->prepare ( $sql );
+		$stmt->bindParam (':city', $city, PDO::PARAM_STR );
+		$stmt->bindParam (':price', $precio, PDO::PARAM_INT );
+		$stmt->bindParam (':fecha_desde', $fecha_desde, PDO::PARAM_INT );
+		$stmt->bindParam (':fecha_hasta', $fecha_hasta, PDO::PARAM_INT );
 
-      $stmt = $con->prepare ( $sql );
-      $stmt->bindParam (':description', $description, PDO::PARAM_STR );
-      $stmt->bindParam (':city', $city, PDO::PARAM_STR );
-      $stmt->bindParam (':price', $price, PDO::PARAM_INT );
-
-      $description = filter_var(trim($tipo_automovil), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-      $city = filter_var(trim($ciudad), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-      $price = $precio;
-      if (((int)$precio)>0){
-          $price = (int) $precio;
-      }
-
-      $stmt->execute ();
-      $vehiculos = $stmt->fetchAll ();
-      return $vehiculos;
+		$city = filter_var(trim($ciudad), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		
+		$stmt->execute ();
+		$vehiculos = $stmt->fetchAll ();
+		return $vehiculos;
     }
 
     public function listar_tipos_automoviles(){
-      // para probar, tengo que hacer la consulta adecuada
       $con = $this->getConnection ();
       $sql = 'SELECT DISTINCT (description) FROM vehicle ORDER BY description ASC';
       $stmt = $con->prepare ( $sql );
@@ -54,7 +47,6 @@ class AutomovilRepository extends PDORepository{
     }
 
     public function listar_precios(){
-      // para probar, tengo que hacer la consulta adecuada
       $con = $this->getConnection ();
       $sql = 'SELECT DISTINCT (price) FROM vehicle ORDER BY price ASC';
       $stmt = $con->prepare ( $sql );
