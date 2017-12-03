@@ -2,8 +2,8 @@
 
 abstract class PDORepository extends PDO{
 
-    const USERNAME = "root";
-    const PASSWORD = "";
+    const USERNAME = "grupo60";
+    const PASSWORD = "Yzg2Y2FjMmMzNmIy";
 	  const HOST ="localhost";
 	  const DB = "taller";
 

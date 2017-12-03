@@ -32,6 +32,7 @@ require_once('view/HotelView.php');
 require_once('view/HotelListarView.php');
 require_once('view/VueloView.php');
 require_once('view/AutomovilView.php');
+require_once('view/AutomovilListarView.php');
 
 session_start();
 
@@ -58,6 +59,9 @@ if (!isset($_GET["action"])) {
             case 'buscar_automovil' :
                 AutomovilController::getInstance()->buscar_automovil();
                 break;
+			case 'listar_automoviles' :
+                AutomovilController::getInstance()->listar_automoviles($_POST);
+                break;	
             default:
                 InicioController::getInstance()->inicio();
                 break;

@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.5.0.2
+-- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2017 a las 22:36:49
--- Versión del servidor: 10.1.26-MariaDB
--- Versión de PHP: 7.1.9
+-- Host: localhost
+-- Generation Time: Dec 03, 2017 at 07:30 PM
+-- Server version: 5.6.33-log
+-- PHP Version: 5.6.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `taller`
+-- Database: `taller`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `airline`
+-- Table structure for table `airline`
 --
 
 CREATE TABLE `airline` (
@@ -33,7 +31,7 @@ CREATE TABLE `airline` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `airline`
+-- Dumping data for table `airline`
 --
 
 INSERT INTO `airline` (`user_id`) VALUES
@@ -42,28 +40,27 @@ INSERT INTO `airline` (`user_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cart`
+-- Table structure for table `cart`
 --
 
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `price` int(6) NOT NULL
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `cart`
+-- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`id`, `date`, `price`) VALUES
-(1, '2017-11-14', 350),
-(2, '2017-11-22', 400),
-(3, '2017-10-20', 500);
+INSERT INTO `cart` (`id`, `date`) VALUES
+(1, '2017-11-14'),
+(2, '2017-11-22'),
+(3, '2017-10-20');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `city`
+-- Table structure for table `city`
 --
 
 CREATE TABLE `city` (
@@ -74,7 +71,7 @@ CREATE TABLE `city` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `city`
+-- Dumping data for table `city`
 --
 
 INSERT INTO `city` (`id`, `name`, `country_id`, `state_id`) VALUES
@@ -85,24 +82,25 @@ INSERT INTO `city` (`id`, `name`, `country_id`, `state_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `concessionaire`
+-- Table structure for table `concessionaire`
 --
 
 CREATE TABLE `concessionaire` (
-  `user_id` int(11) NOT NULL
+  `concessionaire_id` int(11) NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `concessionaire`
+-- Dumping data for table `concessionaire`
 --
 
-INSERT INTO `concessionaire` (`user_id`) VALUES
-(5);
+INSERT INTO `concessionaire` (`concessionaire_id`, `name`) VALUES
+(5, 'Peugeot');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `country`
+-- Table structure for table `country`
 --
 
 CREATE TABLE `country` (
@@ -113,7 +111,7 @@ CREATE TABLE `country` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `country`
+-- Dumping data for table `country`
 --
 
 INSERT INTO `country` (`id`, `sortname`, `name`, `phonecode`) VALUES
@@ -169,7 +167,7 @@ INSERT INTO `country` (`id`, `sortname`, `name`, `phonecode`) VALUES
 (50, 'CD', 'Democratic Republic Of The Congo', 242),
 (51, 'CK', 'Cook Islands', 682),
 (52, 'CR', 'Costa Rica', 506),
-(53, 'CI', 'Cote D\'Ivoire (Ivory Coast)', 225),
+(53, 'CI', 'Cote D''Ivoire (Ivory Coast)', 225),
 (54, 'HR', 'Croatia (Hrvatska)', 385),
 (55, 'CU', 'Cuba', 53),
 (56, 'CY', 'Cyprus', 357),
@@ -367,7 +365,7 @@ INSERT INTO `country` (`id`, `sortname`, `name`, `phonecode`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `flight`
+-- Table structure for table `flight`
 --
 
 CREATE TABLE `flight` (
@@ -382,7 +380,7 @@ CREATE TABLE `flight` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `flight`
+-- Dumping data for table `flight`
 --
 
 INSERT INTO `flight` (`id`, `airline_id`, `origin_id`, `destiny_id`, `origin_date`, `origin_destiny`, `status`, `seats`) VALUES
@@ -393,7 +391,7 @@ INSERT INTO `flight` (`id`, `airline_id`, `origin_id`, `destiny_id`, `origin_dat
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `history`
+-- Table structure for table `history`
 --
 
 CREATE TABLE `history` (
@@ -402,7 +400,7 @@ CREATE TABLE `history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `history`
+-- Dumping data for table `history`
 --
 
 INSERT INTO `history` (`user_consumer_id`, `cart_id`) VALUES
@@ -412,7 +410,7 @@ INSERT INTO `history` (`user_consumer_id`, `cart_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hotel`
+-- Table structure for table `hotel`
 --
 
 CREATE TABLE `hotel` (
@@ -426,7 +424,7 @@ CREATE TABLE `hotel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `hotel`
+-- Dumping data for table `hotel`
 --
 
 INSERT INTO `hotel` (`id`, `hotel_company_id`, `address`, `city_id`, `country_id`, `state_id`, `quality`) VALUES
@@ -435,7 +433,7 @@ INSERT INTO `hotel` (`id`, `hotel_company_id`, `address`, `city_id`, `country_id
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hotel_company`
+-- Table structure for table `hotel_company`
 --
 
 CREATE TABLE `hotel_company` (
@@ -443,7 +441,7 @@ CREATE TABLE `hotel_company` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `hotel_company`
+-- Dumping data for table `hotel_company`
 --
 
 INSERT INTO `hotel_company` (`user_id`) VALUES
@@ -452,7 +450,7 @@ INSERT INTO `hotel_company` (`user_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `room`
+-- Table structure for table `room`
 --
 
 CREATE TABLE `room` (
@@ -465,7 +463,7 @@ CREATE TABLE `room` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `room`
+-- Dumping data for table `room`
 --
 
 INSERT INTO `room` (`id`, `hotel_id`, `number`, `beds`, `description`, `price`) VALUES
@@ -537,7 +535,7 @@ INSERT INTO `room` (`id`, `hotel_id`, `number`, `beds`, `description`, `price`) 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `room_reserve`
+-- Table structure for table `room_reserve`
 --
 
 CREATE TABLE `room_reserve` (
@@ -551,7 +549,7 @@ CREATE TABLE `room_reserve` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `seat`
+-- Table structure for table `seat`
 --
 
 CREATE TABLE `seat` (
@@ -563,7 +561,7 @@ CREATE TABLE `seat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `seat`
+-- Dumping data for table `seat`
 --
 
 INSERT INTO `seat` (`id`, `flight_id`, `number`, `class`, `price`) VALUES
@@ -921,7 +919,7 @@ INSERT INTO `seat` (`id`, `flight_id`, `number`, `class`, `price`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `services`
+-- Table structure for table `services`
 --
 
 CREATE TABLE `services` (
@@ -933,7 +931,7 @@ CREATE TABLE `services` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `state`
+-- Table structure for table `state`
 --
 
 CREATE TABLE `state` (
@@ -943,7 +941,7 @@ CREATE TABLE `state` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `state`
+-- Dumping data for table `state`
 --
 
 INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
@@ -1056,8 +1054,8 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (107, 'Tirane', 2),
 (108, 'Tropoje', 2),
 (109, 'Vlore', 2),
-(110, '\'Ayn Daflah', 3),
-(111, '\'Ayn Tamushanat', 3),
+(110, '''Ayn Daflah', 3),
+(111, '''Ayn Tamushanat', 3),
 (112, 'Adrar', 3),
 (113, 'Algiers', 3),
 (114, 'Annabah', 3),
@@ -1087,8 +1085,8 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (138, 'Qustantinah', 3),
 (139, 'Sakikdah', 3),
 (140, 'Satif', 3),
-(141, 'Sayda\'', 3),
-(142, 'Sidi ban-al-\'Abbas', 3),
+(141, 'Sayda''', 3),
+(142, 'Sidi ban-al-''Abbas', 3),
 (143, 'Suq Ahras', 3),
 (144, 'Tamanghasat', 3),
 (145, 'Tibazah', 3),
@@ -1106,12 +1104,12 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (157, 'Wilaya de Constantine', 3),
 (158, 'al-Aghwat', 3),
 (159, 'al-Bayadh', 3),
-(160, 'al-Jaza\'ir', 3),
+(160, 'al-Jaza''ir', 3),
 (161, 'al-Wad', 3),
 (162, 'ash-Shalif', 3),
 (163, 'at-Tarif', 3),
 (164, 'Eastern', 4),
-(165, 'Manu\'a', 4),
+(165, 'Manu''a', 4),
 (166, 'Swains Island', 4),
 (167, 'Western', 4),
 (168, 'Andorra la Vella', 5),
@@ -1273,7 +1271,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (324, 'Ragged Island', 16),
 (325, 'Rum Cay', 16),
 (326, 'San Salvador', 16),
-(327, '\'Isa', 17),
+(327, '''Isa', 17),
 (328, 'Badiyah', 17),
 (329, 'Hidd', 17),
 (330, 'Jidd Hafs', 17),
@@ -1282,7 +1280,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (333, 'Sitrah', 17),
 (334, 'al-Manamah', 17),
 (335, 'al-Muharraq', 17),
-(336, 'ar-Rifa\'a', 17),
+(336, 'ar-Rifa''a', 17),
 (337, 'Bagar Hat', 18),
 (338, 'Bandarban', 18),
 (339, 'Barguna', 18),
@@ -1360,12 +1358,12 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (411, 'Saint Philip', 19),
 (412, 'Saint Thomas', 19),
 (413, 'Brest', 20),
-(414, 'Homjel\'', 20),
+(414, 'Homjel''', 20),
 (415, 'Hrodna', 20),
 (416, 'Mahiljow', 20),
 (417, 'Mahilyowskaya Voblasts', 20),
 (418, 'Minsk', 20),
-(419, 'Minskaja Voblasts\'', 20),
+(419, 'Minskaja Voblasts''', 20),
 (420, 'Petrik', 20),
 (421, 'Vicebsk', 20),
 (422, 'Antwerpen', 21),
@@ -1669,7 +1667,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (720, 'Atacama', 43),
 (721, 'Bio Bio', 43),
 (722, 'Coquimbo', 43),
-(723, 'Libertador General Bernardo O\'', 43),
+(723, 'Libertador General Bernardo O''', 43),
 (724, 'Los Lagos', 43),
 (725, 'Magellanes', 43),
 (726, 'Maule', 43),
@@ -1808,7 +1806,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (859, 'Marahoue', 53),
 (860, 'Moyen-Cavally', 53),
 (861, 'Moyen-Comoe', 53),
-(862, 'N\'zi-Comoe', 53),
+(862, 'N''zi-Comoe', 53),
 (863, 'Sassandra', 53),
 (864, 'Savanes', 53),
 (865, 'Sud-Bandama', 53),
@@ -1910,7 +1908,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (961, 'Vejle', 58),
 (962, 'Vestsjalland', 58),
 (963, 'Viborg', 58),
-(964, '\'Ali Sabih', 59),
+(964, '''Ali Sabih', 59),
 (965, 'Dikhil', 59),
 (966, 'Jibuti', 59),
 (967, 'Tajurah', 59),
@@ -1993,7 +1991,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (1044, 'Aswan', 64),
 (1045, 'Asyut', 64),
 (1046, 'Bani Suwayf', 64),
-(1047, 'Bur Sa\'id', 64),
+(1047, 'Bur Sa''id', 64),
 (1048, 'Cairo', 64),
 (1049, 'Dumyat', 64),
 (1050, 'Kafr-ash-Shaykh', 64),
@@ -2159,8 +2157,8 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (1210, 'Cher', 75),
 (1211, 'Correze', 75),
 (1212, 'Corse-du-Sud', 75),
-(1213, 'Cote-d\'Or', 75),
-(1214, 'Cotes-d\'Armor', 75),
+(1213, 'Cote-d''Or', 75),
+(1214, 'Cotes-d''Armor', 75),
 (1215, 'Creuse', 75),
 (1216, 'Crolles', 75),
 (1217, 'Deux-Sevres', 75),
@@ -2251,7 +2249,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (1302, 'Territoire de Belfort', 75),
 (1303, 'Treignac', 75),
 (1304, 'Upper Normandy', 75),
-(1305, 'Val-d\'Oise', 75),
+(1305, 'Val-d''Oise', 75),
 (1306, 'Val-de-Marne', 75),
 (1307, 'Var', 75),
 (1308, 'Vaucluse', 75),
@@ -2442,7 +2440,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (1493, 'Carriacou-Petite Martinique', 87),
 (1494, 'Saint Andrew', 87),
 (1495, 'Saint Davids', 87),
-(1496, 'Saint George\'s', 87),
+(1496, 'Saint George''s', 87),
 (1497, 'Saint John', 87),
 (1498, 'Saint Mark', 87),
 (1499, 'Saint Patrick', 87),
@@ -2555,7 +2553,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (1606, 'Upper Takutu-Upper Essequibo', 94),
 (1607, 'Artibonite', 95),
 (1608, 'Centre', 95),
-(1609, 'Grand\'Anse', 95),
+(1609, 'Grand''Anse', 95),
 (1610, 'Nord', 95),
 (1611, 'Nord-Est', 95),
 (1612, 'Nord-Ouest', 95),
@@ -2694,7 +2692,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (1745, 'al-Qadisiyah', 104),
 (1746, 'an-Najaf', 104),
 (1747, 'as-Sulaymaniyah', 104),
-(1748, 'at-Ta\'mim', 104),
+(1748, 'at-Ta''mim', 104),
 (1749, 'Armagh', 105),
 (1750, 'Carlow', 105),
 (1751, 'Cavan', 105),
@@ -2786,7 +2784,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (1837, 'Frosinone', 107),
 (1838, 'Genoa', 107),
 (1839, 'Gorizia', 107),
-(1840, 'L\'Aquila', 107),
+(1840, 'L''Aquila', 107),
 (1841, 'Lazio', 107),
 (1842, 'Lecce', 107),
 (1843, 'Lecco', 107),
@@ -2840,7 +2838,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (1891, 'Treviso', 107),
 (1892, 'Udine', 107),
 (1893, 'Umbria', 107),
-(1894, 'Valle d\'Aosta', 107),
+(1894, 'Valle d''Aosta', 107),
 (1895, 'Varese', 107),
 (1896, 'Veneto', 107),
 (1897, 'Venezia', 107),
@@ -2923,18 +2921,18 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (1974, 'Saint Peter', 110),
 (1975, 'Saint Saviour', 110),
 (1976, 'Trinity', 110),
-(1977, '\'Ajlun', 111),
+(1977, '''Ajlun', 111),
 (1978, 'Amman', 111),
 (1979, 'Irbid', 111),
 (1980, 'Jarash', 111),
-(1981, 'Ma\'an', 111),
+(1981, 'Ma''an', 111),
 (1982, 'Madaba', 111),
-(1983, 'al-\'Aqabah', 111),
-(1984, 'al-Balqa\'', 111),
+(1983, 'al-''Aqabah', 111),
+(1984, 'al-Balqa''', 111),
 (1985, 'al-Karak', 111),
 (1986, 'al-Mafraq', 111),
 (1987, 'at-Tafilah', 111),
-(1988, 'az-Zarqa\'', 111),
+(1988, 'az-Zarqa''', 111),
 (1989, 'Akmecet', 112),
 (1990, 'Akmola', 112),
 (1991, 'Aktobe', 112),
@@ -3110,9 +3108,9 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (2161, 'Leribe', 122),
 (2162, 'Mafeteng', 122),
 (2163, 'Maseru', 122),
-(2164, 'Mohale\'s Hoek', 122),
+(2164, 'Mohale''s Hoek', 122),
 (2165, 'Mokhotlong', 122),
-(2166, 'Qacha\'s Nek', 122),
+(2166, 'Qacha''s Nek', 122),
 (2167, 'Quthing', 122),
 (2168, 'Thaba-Tseka', 122),
 (2169, 'Bomi', 123),
@@ -3145,14 +3143,14 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (2195, 'Tubruq', 124),
 (2196, 'Yafran', 124),
 (2197, 'Zlitan', 124),
-(2198, 'al-\'Aziziyah', 124),
+(2198, 'al-''Aziziyah', 124),
 (2199, 'al-Fatih', 124),
 (2200, 'al-Jabal al Akhdar', 124),
 (2201, 'al-Jufrah', 124),
 (2202, 'al-Khums', 124),
 (2203, 'al-Kufrah', 124),
 (2204, 'an-Nuqat al-Khams', 124),
-(2205, 'ash-Shati\'', 124),
+(2205, 'ash-Shati''', 124),
 (2206, 'az-Zawiyah', 124),
 (2207, 'Balzers', 125),
 (2208, 'Eschen', 125),
@@ -3556,7 +3554,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (2606, 'Canterbury', 157),
 (2607, 'Christchurch', 157),
 (2608, 'Gisborne', 157),
-(2609, 'Hawke\'s Bay', 157),
+(2609, 'Hawke''s Bay', 157),
 (2610, 'Manawatu-Wanganui', 157),
 (2611, 'Marlborough', 157),
 (2612, 'Nelson', 157),
@@ -4067,16 +4065,16 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (3117, 'Saint David', 187),
 (3118, 'Saint George', 187),
 (3119, 'Saint Patrick', 187),
-(3120, 'A\'ana', 188),
+(3120, 'A''ana', 188),
 (3121, 'Aiga-i-le-Tai', 188),
 (3122, 'Atua', 188),
-(3123, 'Fa\'asaleleaga', 188),
-(3124, 'Gaga\'emauga', 188),
+(3123, 'Fa''asaleleaga', 188),
+(3124, 'Gaga''emauga', 188),
 (3125, 'Gagaifomauga', 188),
 (3126, 'Palauli', 188),
-(3127, 'Satupa\'itea', 188),
+(3127, 'Satupa''itea', 188),
 (3128, 'Tuamasaga', 188),
-(3129, 'Va\'a-o-Fonoti', 188),
+(3129, 'Va''a-o-Fonoti', 188),
 (3130, 'Vaisigano', 188),
 (3131, 'Acquaviva', 189),
 (3132, 'Borgo Maggiore', 189),
@@ -4099,7 +4097,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (3149, 'Asir', 191),
 (3150, 'Central Province', 191),
 (3151, 'Eastern Province', 191),
-(3152, 'Ha\'il', 191),
+(3152, 'Ha''il', 191),
 (3153, 'Jawf', 191),
 (3154, 'Jizan', 191),
 (3155, 'Makkah', 191),
@@ -4300,13 +4298,13 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (3350, 'Western Province', 206),
 (3351, 'Yapanaya', 206),
 (3352, 'kadawatha', 206),
-(3353, 'A\'ali-an-Nil', 207),
+(3353, 'A''ali-an-Nil', 207),
 (3354, 'Bahr-al-Jabal', 207),
 (3355, 'Central Equatoria', 207),
 (3356, 'Gharb Bahr-al-Ghazal', 207),
 (3357, 'Gharb Darfur', 207),
 (3358, 'Gharb Kurdufan', 207),
-(3359, 'Gharb-al-Istiwa\'iyah', 207),
+(3359, 'Gharb-al-Istiwa''iyah', 207),
 (3360, 'Janub Darfur', 207),
 (3361, 'Janub Kurdufan', 207),
 (3362, 'Junqali', 207),
@@ -4315,7 +4313,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (3365, 'Shamal Bahr-al-Ghazal', 207),
 (3366, 'Shamal Darfur', 207),
 (3367, 'Shamal Kurdufan', 207),
-(3368, 'Sharq-al-Istiwa\'iyah', 207),
+(3368, 'Sharq-al-Istiwa''iyah', 207),
 (3369, 'Sinnar', 207),
 (3370, 'Warab', 207),
 (3371, 'Wilayat al Khartum', 207),
@@ -4404,7 +4402,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (3454, 'Zug', 212),
 (3455, 'Zurich', 212),
 (3456, 'Aleppo', 213),
-(3457, 'Dar\'a', 213),
+(3457, 'Dar''a', 213),
 (3458, 'Dayr-az-Zawr', 213),
 (3459, 'Dimashq', 213),
 (3460, 'Halab', 213),
@@ -4560,10 +4558,10 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (3610, 'Fakaofo', 219),
 (3611, 'Nukunonu', 219),
 (3612, 'Eua', 220),
-(3613, 'Ha\'apai', 220),
+(3613, 'Ha''apai', 220),
 (3614, 'Niuas', 220),
 (3615, 'Tongatapu', 220),
-(3616, 'Vava\'u', 220),
+(3616, 'Vava''u', 220),
 (3617, 'Arima-Tunapuna-Piarco', 221),
 (3618, 'Caroni', 221),
 (3619, 'Chaguanas', 221),
@@ -4582,7 +4580,7 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (3632, 'Tobago', 221),
 (3633, 'Aryanah', 222),
 (3634, 'Bajah', 222),
-(3635, 'Bin \'Arus', 222),
+(3635, 'Bin ''Arus', 222),
 (3636, 'Binzart', 222),
 (3637, 'Gouvernorat de Ariana', 222),
 (3638, 'Gouvernorat de Nabeul', 222),
@@ -4713,36 +4711,36 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (3763, 'Eastern', 227),
 (3764, 'Northern', 227),
 (3765, 'Western', 227),
-(3766, 'Cherkas\'ka', 228),
-(3767, 'Chernihivs\'ka', 228),
-(3768, 'Chernivets\'ka', 228),
+(3766, 'Cherkas''ka', 228),
+(3767, 'Chernihivs''ka', 228),
+(3768, 'Chernivets''ka', 228),
 (3769, 'Crimea', 228),
 (3770, 'Dnipropetrovska', 228),
-(3771, 'Donets\'ka', 228),
-(3772, 'Ivano-Frankivs\'ka', 228),
+(3771, 'Donets''ka', 228),
+(3772, 'Ivano-Frankivs''ka', 228),
 (3773, 'Kharkiv', 228),
 (3774, 'Kharkov', 228),
 (3775, 'Khersonska', 228),
-(3776, 'Khmel\'nyts\'ka', 228),
+(3776, 'Khmel''nyts''ka', 228),
 (3777, 'Kirovohrad', 228),
 (3778, 'Krym', 228),
 (3779, 'Kyyiv', 228),
-(3780, 'Kyyivs\'ka', 228),
-(3781, 'L\'vivs\'ka', 228),
-(3782, 'Luhans\'ka', 228),
-(3783, 'Mykolayivs\'ka', 228),
-(3784, 'Odes\'ka', 228),
+(3780, 'Kyyivs''ka', 228),
+(3781, 'L''vivs''ka', 228),
+(3782, 'Luhans''ka', 228),
+(3783, 'Mykolayivs''ka', 228),
+(3784, 'Odes''ka', 228),
 (3785, 'Odessa', 228),
-(3786, 'Poltavs\'ka', 228),
-(3787, 'Rivnens\'ka', 228),
-(3788, 'Sevastopol\'', 228),
-(3789, 'Sums\'ka', 228),
-(3790, 'Ternopil\'s\'ka', 228),
-(3791, 'Volyns\'ka', 228),
-(3792, 'Vynnyts\'ka', 228),
-(3793, 'Zakarpats\'ka', 228),
+(3786, 'Poltavs''ka', 228),
+(3787, 'Rivnens''ka', 228),
+(3788, 'Sevastopol''', 228),
+(3789, 'Sums''ka', 228),
+(3790, 'Ternopil''s''ka', 228),
+(3791, 'Volyns''ka', 228),
+(3792, 'Vynnyts''ka', 228),
+(3793, 'Zakarpats''ka', 228),
 (3794, 'Zaporizhia', 228),
-(3795, 'Zhytomyrs\'ka', 228),
+(3795, 'Zhytomyrs''ka', 228),
 (3796, 'Abu Zabi', 229),
 (3797, 'Ajman', 229),
 (3798, 'Dubai', 229),
@@ -5022,9 +5020,9 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (4072, 'Wallis', 241),
 (4073, 'Bu Jaydur', 242),
 (4074, 'Wad-adh-Dhahab', 242),
-(4075, 'al-\'Ayun', 242),
+(4075, 'al-''Ayun', 242),
 (4076, 'as-Samarah', 242),
-(4077, '\'Adan', 243),
+(4077, '''Adan', 243),
 (4078, 'Abyan', 243),
 (4079, 'Dhamar', 243),
 (4080, 'Hadramaut', 243),
@@ -5032,12 +5030,12 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 (4082, 'Hudaydah', 243),
 (4083, 'Ibb', 243),
 (4084, 'Lahij', 243),
-(4085, 'Ma\'rib', 243),
-(4086, 'Madinat San\'a', 243),
-(4087, 'Sa\'dah', 243),
+(4085, 'Ma''rib', 243),
+(4086, 'Madinat San''a', 243),
+(4087, 'Sa''dah', 243),
 (4088, 'Sana', 243),
 (4089, 'Shabwah', 243),
-(4090, 'Ta\'izz', 243),
+(4090, 'Ta''izz', 243),
 (4091, 'al-Bayda', 243),
 (4092, 'al-Hudaydah', 243),
 (4093, 'al-Jawf', 243),
@@ -5072,28 +5070,10 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL,
-  `cart_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `user`
---
-
-INSERT INTO `user` (`user_id`, `cart_id`) VALUES
-(2, 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `user_registered`
---
-
-CREATE TABLE `user_registered` (
   `id` int(11) NOT NULL,
   `username` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
@@ -5103,10 +5083,10 @@ CREATE TABLE `user_registered` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `user_registered`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `user_registered` (`id`, `username`, `password`, `status`, `name`, `permisions`) VALUES
+INSERT INTO `user` (`id`, `username`, `password`, `status`, `name`, `permisions`) VALUES
 (1, 'lighuen.diaz', '1234', 1, 'Diaz Lighuen', 'admin'),
 (2, 'pdluna', '1234', 1, 'Pablo Luna', 'user'),
 (3, 'na.galiano', '1234', 1, 'Natalia Galiano', 'provider'),
@@ -5116,7 +5096,25 @@ INSERT INTO `user_registered` (`id`, `username`, `password`, `status`, `name`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `vehicle`
+-- Table structure for table `user_consumer`
+--
+
+CREATE TABLE `user_consumer` (
+  `user_id` int(11) NOT NULL,
+  `cart_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Dumping data for table `user_consumer`
+--
+
+INSERT INTO `user_consumer` (`user_id`, `cart_id`) VALUES
+(2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle`
 --
 
 CREATE TABLE `vehicle` (
@@ -5132,12 +5130,12 @@ CREATE TABLE `vehicle` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `vehicle`
+-- Dumping data for table `vehicle`
 --
 
 INSERT INTO `vehicle` (`id`, `concessionaire_id`, `slots`, `fuel`, `description`, `price`, `city_id`, `country_id`, `state_id`) VALUES
-(1, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
-(2, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
+(1, 5, 4, 'gasoline', 'Auto para familas', 100, 2, 10, 208),
+(2, 5, 4, 'gasoline', 'Auto para familas', 100, 2, 10, 208),
 (3, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
 (4, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
 (5, 5, 4, 'gasoline', 'Auto para familas', 250, 2, 10, 208),
@@ -5340,7 +5338,7 @@ INSERT INTO `vehicle` (`id`, `concessionaire_id`, `slots`, `fuel`, `description`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `vehicle_reserve`
+-- Table structure for table `vehicle_reserve`
 --
 
 CREATE TABLE `vehicle_reserve` (
@@ -5352,23 +5350,31 @@ CREATE TABLE `vehicle_reserve` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Índices para tablas volcadas
+-- Dumping data for table `vehicle_reserve`
+--
+
+INSERT INTO `vehicle_reserve` (`id`, `id_vehicle`, `id_user`, `date_in`, `date_out`) VALUES
+(1, 1, 2, '2017-12-01', '2017-12-07'),
+(2, 2, 1, '2017-11-29', '2017-12-07');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `airline`
+-- Indexes for table `airline`
 --
 ALTER TABLE `airline`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indices de la tabla `cart`
+-- Indexes for table `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `city`
+-- Indexes for table `city`
 --
 ALTER TABLE `city`
   ADD PRIMARY KEY (`id`),
@@ -5376,19 +5382,19 @@ ALTER TABLE `city`
   ADD KEY `state_id` (`state_id`);
 
 --
--- Indices de la tabla `concessionaire`
+-- Indexes for table `concessionaire`
 --
 ALTER TABLE `concessionaire`
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`concessionaire_id`);
 
 --
--- Indices de la tabla `country`
+-- Indexes for table `country`
 --
 ALTER TABLE `country`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `flight`
+-- Indexes for table `flight`
 --
 ALTER TABLE `flight`
   ADD PRIMARY KEY (`id`),
@@ -5397,14 +5403,14 @@ ALTER TABLE `flight`
   ADD KEY `destiny_id` (`destiny_id`);
 
 --
--- Indices de la tabla `history`
+-- Indexes for table `history`
 --
 ALTER TABLE `history`
   ADD KEY `user_consumer_id` (`user_consumer_id`),
   ADD KEY `cart_id` (`cart_id`);
 
 --
--- Indices de la tabla `hotel`
+-- Indexes for table `hotel`
 --
 ALTER TABLE `hotel`
   ADD PRIMARY KEY (`id`),
@@ -5415,13 +5421,13 @@ ALTER TABLE `hotel`
   ADD KEY `hotel_company_id` (`hotel_company_id`);
 
 --
--- Indices de la tabla `hotel_company`
+-- Indexes for table `hotel_company`
 --
 ALTER TABLE `hotel_company`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indices de la tabla `room`
+-- Indexes for table `room`
 --
 ALTER TABLE `room`
   ADD PRIMARY KEY (`id`),
@@ -5429,7 +5435,7 @@ ALTER TABLE `room`
   ADD KEY `beds` (`beds`);
 
 --
--- Indices de la tabla `room_reserve`
+-- Indexes for table `room_reserve`
 --
 ALTER TABLE `room_reserve`
   ADD PRIMARY KEY (`id`),
@@ -5437,41 +5443,41 @@ ALTER TABLE `room_reserve`
   ADD KEY `id_room` (`id_room`) USING BTREE;
 
 --
--- Indices de la tabla `seat`
+-- Indexes for table `seat`
 --
 ALTER TABLE `seat`
   ADD PRIMARY KEY (`id`),
   ADD KEY `flight_id` (`flight_id`);
 
 --
--- Indices de la tabla `services`
+-- Indexes for table `services`
 --
 ALTER TABLE `services`
   ADD KEY `cart_id` (`cart_id`),
   ADD KEY `service_id` (`service_id`);
 
 --
--- Indices de la tabla `state`
+-- Indexes for table `state`
 --
 ALTER TABLE `state`
   ADD PRIMARY KEY (`id`),
   ADD KEY `country_id` (`country_id`);
 
 --
--- Indices de la tabla `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_consumer`
+--
+ALTER TABLE `user_consumer`
   ADD KEY `id_user` (`user_id`),
   ADD KEY `cart` (`cart_id`);
 
 --
--- Indices de la tabla `user_registered`
---
-ALTER TABLE `user_registered`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `vehicle`
+-- Indexes for table `vehicle`
 --
 ALTER TABLE `vehicle`
   ADD PRIMARY KEY (`id`),
@@ -5482,7 +5488,7 @@ ALTER TABLE `vehicle`
   ADD KEY `state_id` (`state_id`);
 
 --
--- Indices de la tabla `vehicle_reserve`
+-- Indexes for table `vehicle_reserve`
 --
 ALTER TABLE `vehicle_reserve`
   ADD PRIMARY KEY (`id`),
@@ -5490,106 +5496,94 @@ ALTER TABLE `vehicle_reserve`
   ADD KEY `id_user` (`id_user`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `cart`
+-- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
--- AUTO_INCREMENT de la tabla `city`
+-- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
--- AUTO_INCREMENT de la tabla `country`
+-- AUTO_INCREMENT for table `country`
 --
 ALTER TABLE `country`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
-
 --
--- AUTO_INCREMENT de la tabla `flight`
+-- AUTO_INCREMENT for table `flight`
 --
 ALTER TABLE `flight`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
--- AUTO_INCREMENT de la tabla `hotel`
+-- AUTO_INCREMENT for table `hotel`
 --
 ALTER TABLE `hotel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
--- AUTO_INCREMENT de la tabla `room`
+-- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
-
 --
--- AUTO_INCREMENT de la tabla `room_reserve`
+-- AUTO_INCREMENT for table `room_reserve`
 --
 ALTER TABLE `room_reserve`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT de la tabla `seat`
+-- AUTO_INCREMENT for table `seat`
 --
 ALTER TABLE `seat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=361;
-
 --
--- AUTO_INCREMENT de la tabla `state`
+-- AUTO_INCREMENT for table `state`
 --
 ALTER TABLE `state`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4121;
-
 --
--- AUTO_INCREMENT de la tabla `user_registered`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `user_registered`
+ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
--- AUTO_INCREMENT de la tabla `vehicle`
+-- AUTO_INCREMENT for table `vehicle`
 --
 ALTER TABLE `vehicle`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
-
 --
--- AUTO_INCREMENT de la tabla `vehicle_reserve`
+-- AUTO_INCREMENT for table `vehicle_reserve`
 --
 ALTER TABLE `vehicle_reserve`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- Constraints for dumped tables
+--
 
 --
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `airline`
+-- Constraints for table `airline`
 --
 ALTER TABLE `airline`
-  ADD CONSTRAINT `airline_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_registered` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `airline_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `city`
+-- Constraints for table `city`
 --
 ALTER TABLE `city`
   ADD CONSTRAINT `city_ibfk_1` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `city_ibfk_2` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `concessionaire`
+-- Constraints for table `concessionaire`
 --
 ALTER TABLE `concessionaire`
-  ADD CONSTRAINT `concessionaire_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_registered` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `concessionaire_ibfk_1` FOREIGN KEY (`concessionaire_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `flight`
+-- Constraints for table `flight`
 --
 ALTER TABLE `flight`
   ADD CONSTRAINT `flight_ibfk_1` FOREIGN KEY (`airline_id`) REFERENCES `airline` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -5597,14 +5591,14 @@ ALTER TABLE `flight`
   ADD CONSTRAINT `flight_ibfk_3` FOREIGN KEY (`destiny_id`) REFERENCES `city` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `history`
+-- Constraints for table `history`
 --
 ALTER TABLE `history`
-  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`user_consumer_id`) REFERENCES `user` (`user_id`),
+  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`user_consumer_id`) REFERENCES `user_consumer` (`user_id`),
   ADD CONSTRAINT `history_ibfk_2` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `hotel`
+-- Constraints for table `hotel`
 --
 ALTER TABLE `hotel`
   ADD CONSTRAINT `hotel_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -5613,65 +5607,50 @@ ALTER TABLE `hotel`
   ADD CONSTRAINT `hotel_ibfk_4` FOREIGN KEY (`hotel_company_id`) REFERENCES `hotel_company` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `hotel_company`
+-- Constraints for table `hotel_company`
 --
 ALTER TABLE `hotel_company`
-  ADD CONSTRAINT `hotel_company_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_registered` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `hotel_company_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `room`
+-- Constraints for table `room`
 --
 ALTER TABLE `room`
   ADD CONSTRAINT `room_ibfk_1` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `room_reserve`
---
-ALTER TABLE `room_reserve`
-  ADD CONSTRAINT `room_reserve_ibfk_1` FOREIGN KEY (`id_room`) REFERENCES `room` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `room_reserve_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user_registered` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `seat`
+-- Constraints for table `seat`
 --
 ALTER TABLE `seat`
   ADD CONSTRAINT `seat_ibfk_1` FOREIGN KEY (`flight_id`) REFERENCES `flight` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `services`
+-- Constraints for table `services`
 --
 ALTER TABLE `services`
   ADD CONSTRAINT `services_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `state`
+-- Constraints for table `state`
 --
 ALTER TABLE `state`
   ADD CONSTRAINT `state_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `user`
+-- Constraints for table `user_consumer`
 --
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_registered` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `user_consumer`
+  ADD CONSTRAINT `user_consumer_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_consumer_ibfk_2` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `vehicle`
+-- Constraints for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  ADD CONSTRAINT `vehicle_ibfk_1` FOREIGN KEY (`concessionaire_id`) REFERENCES `concessionaire` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `vehicle_ibfk_1` FOREIGN KEY (`concessionaire_id`) REFERENCES `concessionaire` (`concessionaire_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `vehicle_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `vehicle_ibfk_3` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `vehicle_ibfk_4` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `vehicle_reserve`
---
-ALTER TABLE `vehicle_reserve`
-  ADD CONSTRAINT `vehicle_reserve_ibfk_1` FOREIGN KEY (`id_vehicle`) REFERENCES `vehicle` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `vehicle_reserve_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user_registered` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
