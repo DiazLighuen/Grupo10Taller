@@ -1,9 +1,9 @@
 <?php
 
-class VueloView extends TwigView{
+class AutomovilView extends TwigView{
 
-    public function buscar_vuelo($params){
-      $template = $this->getTwig()->loadTemplate("buscar_vuelo.html.twig");
+    public function buscar_automovil($params){
+      $template = $this->getTwig()->loadTemplate("buscar_automovil.html.twig");
       $template->display($params);
     }
 }
