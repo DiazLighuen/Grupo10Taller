@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2017 a las 21:25:02
+-- Tiempo de generación: 03-12-2017 a las 20:34:35
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -532,6 +532,20 @@ INSERT INTO `room` (`id`, `hotel_id`, `number`, `beds`, `description`, `price`) 
 (62, 1, 62, 1, 'Habitacion para parejas', 800),
 (63, 1, 63, 1, 'Habitacion para parejas', 800),
 (64, 1, 64, 1, 'Habitacion para parejas', 800);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `room_reserve`
+--
+
+CREATE TABLE `room_reserve` (
+  `id` int(11) NOT NULL,
+  `id_room` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `date_in` date NOT NULL,
+  `date_out` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -5322,6 +5336,20 @@ INSERT INTO `vehicle` (`id`, `concessionaire_id`, `slots`, `fuel`, `description`
 (199, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208),
 (200, 5, 2, 'diesel', 'Auto de lujo', 500, 2, 10, 208);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vehicle_reserve`
+--
+
+CREATE TABLE `vehicle_reserve` (
+  `id` int(11) NOT NULL,
+  `id_vehicle` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `date_in` date NOT NULL,
+  `date_out` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -5400,6 +5428,14 @@ ALTER TABLE `room`
   ADD KEY `beds` (`beds`);
 
 --
+-- Indices de la tabla `room_reserve`
+--
+ALTER TABLE `room_reserve`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_room` (`id_room`) USING BTREE;
+
+--
 -- Indices de la tabla `seat`
 --
 ALTER TABLE `seat`
@@ -5445,6 +5481,14 @@ ALTER TABLE `vehicle`
   ADD KEY `state_id` (`state_id`);
 
 --
+-- Indices de la tabla `vehicle_reserve`
+--
+ALTER TABLE `vehicle_reserve`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_vehicle` (`id_vehicle`),
+  ADD KEY `id_user` (`id_user`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -5485,6 +5529,12 @@ ALTER TABLE `room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
+-- AUTO_INCREMENT de la tabla `room_reserve`
+--
+ALTER TABLE `room_reserve`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `seat`
 --
 ALTER TABLE `seat`
@@ -5507,6 +5557,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `vehicle`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
+
+--
+-- AUTO_INCREMENT de la tabla `vehicle_reserve`
+--
+ALTER TABLE `vehicle_reserve`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
