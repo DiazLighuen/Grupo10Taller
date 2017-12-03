@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2017 a las 20:34:35
+-- Tiempo de generación: 03-12-2017 a las 22:36:49
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -47,17 +47,18 @@ INSERT INTO `airline` (`user_id`) VALUES
 
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
-  `date` date NOT NULL
+  `date` date NOT NULL,
+  `price` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `cart`
 --
 
-INSERT INTO `cart` (`id`, `date`) VALUES
-(1, '2017-11-14'),
-(2, '2017-11-22'),
-(3, '2017-10-20');
+INSERT INTO `cart` (`id`, `date`, `price`) VALUES
+(1, '2017-11-14', 350),
+(2, '2017-11-22', 400),
+(3, '2017-10-20', 500);
 
 -- --------------------------------------------------------
 
@@ -5075,6 +5076,24 @@ INSERT INTO `state` (`id`, `name`, `country_id`) VALUES
 --
 
 CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL,
+  `cart_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`user_id`, `cart_id`) VALUES
+(2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user_registered`
+--
+
+CREATE TABLE `user_registered` (
   `id` int(11) NOT NULL,
   `username` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
@@ -5084,33 +5103,15 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `user`
+-- Volcado de datos para la tabla `user_registered`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `status`, `name`, `permisions`) VALUES
+INSERT INTO `user_registered` (`id`, `username`, `password`, `status`, `name`, `permisions`) VALUES
 (1, 'lighuen.diaz', '1234', 1, 'Diaz Lighuen', 'admin'),
 (2, 'pdluna', '1234', 1, 'Pablo Luna', 'user'),
 (3, 'na.galiano', '1234', 1, 'Natalia Galiano', 'provider'),
 (4, 'hoteleria', '1234', 1, 'Howard Johnson', 'provider'),
 (5, 'Concesionaria ', '1234', 1, 'Zíngaro', 'provider');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `user_consumer`
---
-
-CREATE TABLE `user_consumer` (
-  `user_id` int(11) NOT NULL,
-  `cart_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `user_consumer`
---
-
-INSERT INTO `user_consumer` (`user_id`, `cart_id`) VALUES
-(2, 1);
 
 -- --------------------------------------------------------
 
@@ -5460,14 +5461,14 @@ ALTER TABLE `state`
 -- Indices de la tabla `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `user_consumer`
---
-ALTER TABLE `user_consumer`
   ADD KEY `id_user` (`user_id`),
   ADD KEY `cart` (`cart_id`);
+
+--
+-- Indices de la tabla `user_registered`
+--
+ALTER TABLE `user_registered`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `vehicle`
@@ -5547,9 +5548,9 @@ ALTER TABLE `state`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4121;
 
 --
--- AUTO_INCREMENT de la tabla `user`
+-- AUTO_INCREMENT de la tabla `user_registered`
 --
-ALTER TABLE `user`
+ALTER TABLE `user_registered`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
@@ -5572,7 +5573,7 @@ ALTER TABLE `vehicle_reserve`
 -- Filtros para la tabla `airline`
 --
 ALTER TABLE `airline`
-  ADD CONSTRAINT `airline_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `airline_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_registered` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `city`
@@ -5585,7 +5586,7 @@ ALTER TABLE `city`
 -- Filtros para la tabla `concessionaire`
 --
 ALTER TABLE `concessionaire`
-  ADD CONSTRAINT `concessionaire_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `concessionaire_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_registered` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `flight`
@@ -5599,7 +5600,7 @@ ALTER TABLE `flight`
 -- Filtros para la tabla `history`
 --
 ALTER TABLE `history`
-  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`user_consumer_id`) REFERENCES `user_consumer` (`user_id`),
+  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`user_consumer_id`) REFERENCES `user` (`user_id`),
   ADD CONSTRAINT `history_ibfk_2` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -5615,13 +5616,20 @@ ALTER TABLE `hotel`
 -- Filtros para la tabla `hotel_company`
 --
 ALTER TABLE `hotel_company`
-  ADD CONSTRAINT `hotel_company_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `hotel_company_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_registered` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `room`
 --
 ALTER TABLE `room`
   ADD CONSTRAINT `room_ibfk_1` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `room_reserve`
+--
+ALTER TABLE `room_reserve`
+  ADD CONSTRAINT `room_reserve_ibfk_1` FOREIGN KEY (`id_room`) REFERENCES `room` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `room_reserve_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user_registered` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `seat`
@@ -5642,11 +5650,11 @@ ALTER TABLE `state`
   ADD CONSTRAINT `state_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `user_consumer`
+-- Filtros para la tabla `user`
 --
-ALTER TABLE `user_consumer`
-  ADD CONSTRAINT `user_consumer_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `user_consumer_ibfk_2` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_registered` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `vehicle`
@@ -5656,6 +5664,13 @@ ALTER TABLE `vehicle`
   ADD CONSTRAINT `vehicle_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `vehicle_ibfk_3` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `vehicle_ibfk_4` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `vehicle_reserve`
+--
+ALTER TABLE `vehicle_reserve`
+  ADD CONSTRAINT `vehicle_reserve_ibfk_1` FOREIGN KEY (`id_vehicle`) REFERENCES `vehicle` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `vehicle_reserve_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user_registered` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
