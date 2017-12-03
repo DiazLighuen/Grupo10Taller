@@ -1,0 +1,64 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Listar Hoteles
+{% endblock %}
+
+{% block content %}
+    <div class="card card-cascade narrower">
+        <h4 class="d-flex justify-content-center mt-3 mb-3"> Listado de Habitaciones </h4>
+    </div>
+    <div class="table-wrapper table-responsive">
+        <!--Table-->
+        <table class="table table-hover mb-0">
+
+            <!--Table head-->
+            <thead>
+            <tr>
+                <th class="th-lg">Nombre <i class="ml-1"></i></th>
+                <th class="th-lg">Dirección<i class="ml-1"></i></th>
+                <th class="th-lg">Calidad<i class="ml-1"></i></th>
+                <th class="th-lg">Numero de Habitacion<i class="ml-1"></i></th>
+                <th class="th-lg">Cantidad de Camas<i class="ml-1"></i></th>
+                <th class="th-lg">Descripcion<i class="ml-1"></i></th>
+                <th class="text-center">Mas informacion<i class="ml-1"></i></th>
+            </tr>
+            </thead>
+            <!--Table head-->
+
+            <!--Table body-->
+            <tbody>
+            {% for hotel in hoteles %}
+                <tr>
+                    <td id="nombre">{{ hotel.name }}</td>
+                    <td id="address">{{ hotel.address }}</td>
+                    <td id="calidad">{{ hotel.quality }}</td>
+                    <td id="number"> # </td>
+                    <td id="beds"> # </td>
+                    <td id="description"> # </td>
+                    <td>
+                        <div class="d-flex justify-content-center">
+                            <form method="POST" action="?action=hotel_show" class="d-inline">
+                                <input type="hidden" name="id" value="{{ hotel.id }}">
+                                <button type="submit"
+                                        class="btn btn-primary btn-sm px-2 waves-effect waves-light btn-action"
+                                        title="Ver información del hotel"
+                                        id="toggleButton"
+                                        value="{{ hotel.id }}">
+                                    <i class="fa fa-info mt-0"></i>
+                                </button>
+                            </form>
+
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <!--Table body-->
+        </table>
+        <!--Table-->
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
