@@ -55,7 +55,10 @@
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="./?action=login">Login</a>
-                    </li>
+						{% if (session.username == '') %}
+							<a class="nav-link" href="./?action=carrito">Carrito</a>
+						{% endif %}
+                   </li>
                 {% endif %}
 
             </ul>

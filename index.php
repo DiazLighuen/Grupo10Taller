@@ -13,6 +13,7 @@ require_once('model/BaseRepository.php');
 require_once('model/HotelRepository.php');
 require_once('model/VueloRepository.php');
 require_once('model/AutomovilRepository.php');
+require_once('model/CarritoRepository.php');
 
 /*Controller Files*/
 require_once('controller/BaseController.php');
@@ -22,6 +23,7 @@ require_once('controller/UserController.php');
 require_once('controller/HotelController.php');
 require_once('controller/VueloController.php');
 require_once('controller/AutomovilController.php');
+require_once('controller/CarritoController.php');
 
 /*View Files*/
 require_once('view/TwigView.php');
@@ -33,6 +35,7 @@ require_once('view/HotelListarView.php');
 require_once('view/VueloView.php');
 require_once('view/AutomovilView.php');
 require_once('view/AutomovilListarView.php');
+require_once('view/CarritoView.php');
 
 session_start();
 
@@ -62,6 +65,9 @@ if (!isset($_GET["action"])) {
 			case 'listar_automoviles' :
                 AutomovilController::getInstance()->listar_automoviles($_POST);
                 break;	
+            case 'carrito' :
+                CarritoController::getInstance()->listar_carrito();
+                break;
             default:
                 InicioController::getInstance()->inicio();
                 break;

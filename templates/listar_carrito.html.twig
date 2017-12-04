@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Buscar Automóvil
+{% endblock %}
+
+{% block content %}
+
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 center-horizontal">
+                <!--Form with header-->
+
+                <form method="post" action="">
+
+                  <h3>Carrito de Compras</h3>
+
+
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Descipción</th>
+                          <th>Precio Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for  detalle in carrito %}
+                        <tr>
+                          <td id="description">{{ detalle.description }}</td>
+                          <td id="price">{{ detalle.total }}</td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                  <input class="btn btn-xs" type="submit" value="Pagar"></p>
+                </form>
+
+                <!--/Form with header-->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
