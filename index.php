@@ -10,9 +10,11 @@ require_once('utils/FlashMessages.php');
 /*Model Files*/
 require_once('model/PDORepository.php');
 require_once('model/BaseRepository.php');
+require_once('model/LoginRepository.php');
 require_once('model/HotelRepository.php');
 require_once('model/VueloRepository.php');
 require_once('model/AutomovilRepository.php');
+require_once('model/UserModel.php');
 
 /*Controller Files*/
 require_once('controller/BaseController.php');
@@ -44,6 +46,12 @@ if (!isset($_GET["action"])) {
             case 'login' :
                 LoginController::getInstance()->show();
                 break;
+            case 'login_check' :
+                LoginController::getInstance()->loginCheck($_POST);
+                break;
+            case 'logout' :
+                LoginController::getInstance()->logout();
+                break;
             case 'home' :
                 InicioController::getInstance()->inicio();
                 break;
@@ -64,6 +72,7 @@ if (!isset($_GET["action"])) {
                 break;	
             default:
                 InicioController::getInstance()->inicio();
+
                 break;
         }
     }

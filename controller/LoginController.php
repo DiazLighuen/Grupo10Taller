@@ -29,12 +29,12 @@ class LoginController
      */
     public function loginCheck($loginData)
     {
-
         /* Check for required fields */
         if (!isset($loginData['username']) || !isset($loginData['password'])) {
             $this->show();
             return;
         }
+
 
         /* Sanitize loginData and check for empty fields */
         $loginDataSafe = Utils::getInstance()->sanitizeArray($loginData);
@@ -51,39 +51,29 @@ class LoginController
         $validUser = (isset($userData['user'])) ? true : false;
         $allowedUser = (isset($userData['status']) && $userData['status'] == 1) ? true : false;
 
-        if ((ConfigurationModel::getInstance()->getWebsiteStatus() == 'offline') & !UserRepository::getInstance()->isAdmin($userData)) {
-            $validUser = false;
-        }
 
         if ($validUser && $allowedUser) {
             $_SESSION['id'] = $userData['user']->getId();
-            $_SESSION['email'] = $userData['user']->getEmail();
             $_SESSION['username'] = $userData['user']->getUsername();
             $_SESSION['status'] = $userData['user']->getStatus();
-            $_SESSION['modify'] = $userData['user']->getModify();
-            $_SESSION['create'] = $userData['user']->getCreate();
-            $_SESSION['first_name'] = $userData['user']->getFirstName();
-            $_SESSION['last_name'] = $userData['user']->getLastName();
-            $_SESSION['rol'] = $userData['user']->getRol();
-            $_SESSION['permissions'] = $userData['user']->getPermissions();
+            $_SESSION['name'] = $userData['user']->getName();
+            $_SESSION['permisions'] = $userData['user']->getPermisions();
             $_SESSION['logged'] = true;
 
+
             http_response_code(200);
-            $response = ['message' => 'Bienvenido a Hospital Gutierrez'];
+            $response = ['message' => 'Bienvenido a TresVagos'];
             echo json_encode($response);
 
         } else {
-            if ((ConfigurationModel::getInstance()->getWebsiteStatus() == 'offline')) {
-                $response = ['message' => 'El sitio no esta disponible en este momento, intente mas tarde'];
-            } elseif (!$validUser) {
+            if (!$validUser) {
                 $response = ['message' => 'El usuario o contraseña ingresados son invalidos'];
-            } elseif (!$allowedUser) {
-                $response = ['message' => 'El usuario se encuentra actualmente bloqueado'];
+
+
+                http_response_code(400);
+
+                echo json_encode($response);
             }
-
-            http_response_code(400);
-
-            echo json_encode($response);
         }
     }
 
@@ -103,9 +93,9 @@ class LoginController
      */
     public function logout()
     {
+        session_unset();
         session_destroy();
-        $_SESSION = array();
-        HomeController::getInstance()->show();
+        InicioController::getInstance()->inicio();
     }
 
     /**
