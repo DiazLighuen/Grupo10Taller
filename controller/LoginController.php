@@ -60,6 +60,8 @@ class LoginController
             $_SESSION['permisions'] = $userData['user']->getPermisions();
             $_SESSION['logged'] = true;
 
+			echo 'qqqqqqq';
+			echo $_SESSION['id'];
 
             http_response_code(200);
             $response = ['message' => 'Bienvenido a TresVagos'];

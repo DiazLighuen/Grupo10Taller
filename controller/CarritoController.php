@@ -28,15 +28,20 @@ class CarritoController extends BaseController{
       }
 	  else {
 		$servicios = CarritoRepository::getInstance()->obtener_servicios_carrito();
+		//var_dump($servicios);
 		$carrito = array();
         foreach ($servicios as $servicio) {
-				$servicio_detalle = CarritoRepository::getInstance()->obtener_servicio_detalle($servicio->cart_id,$servicio->type,$servicio->service_id);
-				array_push($carrito, $servicio_detalle);
+			//var_dump($servicio);
+			//var_dump($servicio[1]);
+			//$servicio_detalle = CarritoRepository::getInstance()->obtener_servicio_detalle($servicio->cart_id, $servicio->type, $servicio->service_id);
+			$servicio_detalle = CarritoRepository::getInstance()->obtener_servicio_detalle($servicio[0], $servicio[1], $servicio[2]);
+			array_push($carrito, $servicio_detalle);
         }
 		$params['carrito'] = $carrito;
-		$hospitalName = 'TresVagos';
-		$params['hospitalName'] = $hospitalName;
+		//$hospitalName = 'TresVagos';
+		//$params['hospitalName'] = $hospitalName;
 		$view = new CarritoView();
+		//	var_dump($carrito);
 		$view->listar_carrito($params);
 		}	
     }
