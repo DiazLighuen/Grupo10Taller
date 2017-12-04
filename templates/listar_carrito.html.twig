@@ -12,6 +12,7 @@
                     <table class="table table-bordered">
                       <thead>
                         <tr>
+                          <th>Servicio</th>
                           <th>Descipción</th>
                           <th>Precio Total</th>
                           <th>Eliminar</th>
@@ -20,6 +21,7 @@
                       <tbody>
                       {% for  detalle in carrito %}
                         <tr>
+                          <td id="servicio">{{ detalle[0].tipo }}</td>
                           <td id="description">{{ detalle[0].descripcion }}</td>
                           <td id="price">{{ detalle[0].total }}</td>
 						  <td><a href="index.php?action=eliminar_servicio_carrito&tipo={{ detalle[0].tipo }}&&id={{detalle[0].id}}">Eliminar</a></td>

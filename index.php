@@ -68,6 +68,9 @@ if (!isset($_GET["action"])) {
             case 'carrito' :
                 CarritoController::getInstance()->listar_carrito();
                 break;
+            case 'eliminar_servicio_carrito' :
+                CarritoController::getInstance()->eliminar_servicio_carrito();
+                break;
             default:
                 InicioController::getInstance()->inicio();
                 break;
