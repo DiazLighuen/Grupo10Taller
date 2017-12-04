@@ -6,63 +6,62 @@
 
 {% block content %}
 
-    <div class="container pt-5">
+    <div class="container pt-5 pb-5">
         <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 center-horizontal">
-                <!--Form with header-->
+            <div class="col-md-7 col-sm-8 col-lg-5 center-horizontal">
+                <!--Header-->
+                <div class="header pt-3 grey lighten-2">
 
-                <form method="post" action="">
+                    <div class="row d-flex justify-content-start">
+                        <h5 class="deep-grey-text mt-1 mb-2 pb-1 mx-5"> Buscar Vuelo </h5>
+                    </div>
 
-                  <h3>Buscar Vuelo</h3>
+                </div>
+                <!--Header-->
 
-                  <label for="ciudad">Ciudad Origen: </label>
-                  <select name="ciudad_origen" size = "1" id="ciudad_origen">
-                  <option></option>
-                  {% for ciudad in ciudades %}
-                    <option value="{{ ciudad.name }}" {% if ciudad.name == ciudad_origen_seleccionada %} selected {% endif %}>{{ ciudad.name}}</option>
-                  {% endfor %}
-                  </select>
+                <div class="card card-body">
+                    <form id="patientSaveForm" method="POST" action="?action=listar_vuelos">
 
-                  <label for="ciudad">Ciudad Destino: </label>
-                  <select name="ciudad_destino" size = "1" id="ciudad_destino">
-                  <option></option>
-                  {% for ciudad in ciudades %}
-                    <option value="{{ ciudad.name }}" {% if ciudad.name == ciudad_destino_seleccionada %} selected {% endif %}>{{ ciudad.name}}</option>
-                  {% endfor %}
-                  </select>
+                        <div class="md-form">
+                            <i class="fa fa-indent prefix grey-text"></i>
+                            <select class="search-select" name="ciudad_origen" id="ciudad_origen" required>
+                                {% for ciudad in ciudades %}
+                                    <option value="{{ ciudad.id }}" {% if ciudad.name == ciudad_seleccionada %} selected {% endif %}>{{ ciudad.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="ciudad_origen" class="active"> Ciudad Origen </label>
+                        </div>
+						
+						<div class="md-form">
+                            <i class="fa fa-indent prefix grey-text"></i>
+                            <select class="search-select" name="ciudad_destino" id="ciudad_destino" required>
+                                {% for ciudad in ciudades %}
+                                    <option value="{{ ciudad.id }}" {% if ciudad.name == ciudad_seleccionada %} selected {% endif %}>{{ ciudad.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="ciudad_destino" class="active"> Ciudad Destino </label>
+                        </div>
 
-                  <p><label for="nombre">Fecha Desde</label>
-                  <input id="fecha_desde" name="fecha_desde" type="date" value="{{ fecha_desde }}">
+                        <div class="md-form">
+                            <i class="fa fa-calendar-plus-o prefix grey-text"></i>
+                            <input name="fecha_desde" type="date" id="fecha_desde" class="form-control"
+                                   value="{{ fecha_desde }}" required>
+                            <label for="fecha_desde" class="active">Fecha Desde </label>
+                        </div>
 
-                  <p><label for="fecha_hasta">Fecha Hasta</label>
-                  <input id="fecha_hasta" name="fecha_hasta" type="date" value="{{ fecha_hasta }}">
+                        <div class="md-form">
+                            <i class="fa fa-calendar-plus-o prefix grey-text"></i>
+                            <input name="fecha_hasta" type="date" id="fecha_hasta" class="form-control"
+                                   value="{{ fecha_hasta }}" required>
+                            <label for="fecha_hasta" class="active">Fecha Hasta </label>
+                        </div>
 
-                  <input class="btn btn-xs" type="submit" value="Buscar"></p>
+                        <div class="text-center">
+                            <button class="btn btn-primary"> Buscar</button>
+                        </div>
 
-                  <h3>Listado de Vuelos</h3>
-                  <div class="table-responsive">
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Seats</th>
-                          <th>Status</th>
-                          <th>Ciudad Destino</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                      {% for  vuelo in vuelos %}
-                        <tr>
-                          <td id="aerolinea">{{ vuelo.seats }}</td>
-                          <td id="ciudad_origen">{{ vuelo.status }}</td>
-                          <td id="ciudad_destino">{{ vuelo.ciudad_destino }}</td>
-                        </tr>
-                      {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-                </form>
-
-                <!--/Form with header-->
+                    </form>
+                </div>
             </div>
         </div>
     </div>

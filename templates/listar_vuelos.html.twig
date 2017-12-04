@@ -1,12 +1,12 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}
-    Listar Automóviles
+    Listar Vuelos
 {% endblock %}
 
 {% block content %}
     <div class="card card-cascade narrower">
-        <h4 class="d-flex justify-content-center mt-3 mb-3"> Listado de Automóviles </h4>
+        <h4 class="d-flex justify-content-center mt-3 mb-3"> Listado de Asientos </h4>
     </div>
     <div class="table-wrapper table-responsive">
         <!--Table-->
@@ -15,12 +15,12 @@
             <!--Table head-->
             <thead>
             <tr>
-                <th class="th-lg">Fuel<i class="ml-1"></i></th>
-                <th class="th-lg">Descipción<i class="ml-1"></i></th>
+                <th class="th-lg">Número <i class="ml-1"></i></th>
+                <th class="th-lg">Clase<i class="ml-1"></i></th>
                 <th class="th-lg">Precio<i class="ml-1"></i></th>
-                <th class="th-lg">Slots<i class="ml-1"></i></th>
-                <th class="th-lg">Ciudad<i class="ml-1"></i></th>
-                <th class="th-lg">Concesionaria<i class="ml-1"></i></th>
+				<th class="th-lg">Fecha Salida<i class="ml-1"></i></th>
+				<th class="th-lg">Fecha Llegada<i class="ml-1"></i></th>
+                <th class="th-lg">Aerolínea<i class="ml-1"></i></th>
                 <th class="text-center">Mas informacion<i class="ml-1"></i></th>
             </tr>
             </thead>
@@ -28,24 +28,23 @@
 
             <!--Table body-->
             <tbody>
-            {% for automovil in automoviles %}
+            {% for vuelo in vuelos %}
                 <tr>
-                    <td id="fuel">{{ automovil.fuel }}</td>
-                    <td id="description">{{ automovil.description }}</td>
-                    <td id="price">{{ automovil.price }}</td>
-                    <td id="slots">{{ automovil.slots }}</td>
-                    <td id="ciudad_name">{{ automovil.ciudad_name }}</td>
-                    <td id="concessionaire_name">{{ automovil.concessionaire_name }}</td>
+                    <td id="number">{{ vuelo.number }}</td>
+                    <td id="class">{{ vuelo.class }}</td>
+                    <td id="price">{{ vuelo.price }}</td>
+					<td id="origin_date">{{ vuelo.origin_date | date("d/m/Y") }}</td>
+					<td id="destiny_date">{{ vuelo.destiny_date | date("d/m/Y") }}</td>
+                    <td id="nombre_aerolinea">{{ vuelo.nombre_aerolinea }}</td>
                     <td>
                         <div class="d-flex justify-content-center">
-                            <form method="POST" action="?action=agregar_a_carrito" class="d-inline">
-                                <input type="hidden" name="id" value="{{ automovil.id }}">
-								<input type="hidden" name="type" value="{{ 'vehicle' }}">
+                            <form method="POST" action="?action=asiento_show" class="d-inline">
+                                <input type="hidden" name="id" value="{{ asiento.id }}">
                                 <button type="submit"
                                         class="btn btn-primary btn-sm px-2 waves-effect waves-light btn-action"
-                                        title="Ver información del automóvil"
+                                        title="Ver información del Pasaje"
                                         id="toggleButton"
-                                        value="{{ automovil.id }}">
+                                        value="{{ asiento.id }}">
                                     <i class="fa fa-info mt-0"></i>
                                 </button>
                             </form>

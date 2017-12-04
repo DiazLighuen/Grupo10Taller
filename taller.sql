@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-12-2017 a las 00:55:25
+-- Tiempo de generación: 04-12-2017 a las 02:51:01
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -89,16 +89,15 @@ INSERT INTO `city` (`id`, `name`, `country_id`, `state_id`) VALUES
 --
 
 CREATE TABLE `concessionaire` (
-  `concessionaire_id` int(11) NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL
+  `concessionaire_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `concessionaire`
 --
 
-INSERT INTO `concessionaire` (`concessionaire_id`, `name`) VALUES
-(5, 'Peugeot');
+INSERT INTO `concessionaire` (`concessionaire_id`) VALUES
+(5);
 
 -- --------------------------------------------------------
 
@@ -5095,7 +5094,8 @@ INSERT INTO `user` (`id`, `username`, `password`, `status`, `name`, `permisions`
 (2, 'pdluna', '1234', 1, 'Pablo Luna', 'user'),
 (3, 'na.galiano', '1234', 1, 'Natalia Galiano', 'provider'),
 (4, 'hoteleria', '1234', 1, 'Howard Johnson', 'provider'),
-(5, 'Concesionaria ', '1234', 1, 'Zíngaro', 'provider');
+(5, 'Concesionaria ', '1234', 1, 'Zíngaro', 'provider'),
+(6, 'Aerolinea', '1234', 1, 'Iberia', 'provider');
 
 -- --------------------------------------------------------
 
@@ -5561,7 +5561,7 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `vehicle`

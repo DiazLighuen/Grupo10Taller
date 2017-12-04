@@ -8,38 +8,24 @@ class UserModel
 {
 
     public $id;
-    public $email;
     public $username;
     public $status;
-    public $modify;
-    public $created;
-    public $first_name;
-    public $last_name;
-    public $rol;
-    public $permissions;
+    public $name;
+    public $permisions;
 
-    public function __construct($id, $email, $username, $status, $modify, $created, $first_name, $last_name, $rol, $permissions)
+    public function __construct($id, $username, $status, $name, $permisions)
     {
         $this->id = $id;
-        $this->email = $email;
         $this->username = $username;
         $this->status = $status;
-        $this->modify = $modify;
-        $this->created = $created;
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
-        $this->rol = $rol;
-        $this->permissions = $permissions;
+        $this->name = $name;
+        $this->permisions = $permisions;
     }
+
 
     public function getId()
     {
         return $this->id;
-    }
-
-    public function getEmail()
-    {
-        return $this->email;
     }
 
     public function getUsername()
@@ -52,34 +38,14 @@ class UserModel
         return $this->status;
     }
 
-    public function getModify()
+    public function getName()
     {
-        return $this->modify;
+        return $this->name;
     }
 
-    public function getCreate()
+    public function getPermisions()
     {
-        return $this->created;
-    }
-
-    public function getFirstName()
-    {
-        return $this->first_name;
-    }
-
-    public function getLastName()
-    {
-        return $this->last_name;
-    }
-
-    public function getRol()
-    {
-        return $this->rol;
-    }
-
-    public function getPermissions()
-    {
-        return $this->permissions;
+        return $this->permisions;
     }
 
 }
