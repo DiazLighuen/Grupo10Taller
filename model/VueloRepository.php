@@ -20,23 +20,18 @@ class VueloRepository extends PDORepository{
 
     }
 
-    public function buscar_vuelo($fecha_desde,$fecha_hasta,$ciudad_origen,$ciudad_destino){
-      // para probar, tengo que hacer la consulta adecuada
+    public function buscar_vuelo($fecha_desde,$fecha_hasta,$ciudad_origen_id,$ciudad_destino_id){
       $con = $this->getConnection ();
-      $sql = 'SELECT * FROM flight where origin_id = 1 ORDER BY id DESC';
-      /*
-      $sql = 'SELECT usu.username, usu.first_name, usu.last_name, usu.email, usu.activo FROM usuario usu where (usu.username = :nombre
-        or :nombre = "") and (usu.activo = :activo or :activo = "") ORDER BY usu.id DESC LIMIT :empezar_desde, :cantidad_resultados_por_pagina';
-        */
+      $sql = 'SELECT s.number, s.class, s.price, u.username as nombre_aerolinea, f.origin_date, f.destiny_date FROM seat s, flight f, user u where s.flight_id = f.id and u.id = f.airline_id and s.sell = 0 and f.origin_id = :ciudad_origen_id and f.destiny_id = :ciudad_destino_id and (:fecha_desde BETWEEN origin_date and destiny_date or :fecha_hasta BETWEEN origin_date and destiny_date)';
       $stmt = $con->prepare ( $sql );
-      /*
-      $stmt->bindParam (':nombre', $nombre_usuario, PDO::PARAM_STR );
-      $stmt->bindParam (':activo', $estado);
-      $stmt->bindParam ( ':empezar_desde', $empezar_desde, PDO::PARAM_INT );
-      */
+      $stmt->bindParam (':ciudad_origen_id', $ciudad_origen_id, PDO::PARAM_INT);
+	  $stmt->bindParam (':ciudad_destino_id', $ciudad_destino_id, PDO::PARAM_INT);
+	  $stmt->bindParam (':fecha_desde', $fecha_desde, PDO::PARAM_INT );
+	  $stmt->bindParam (':fecha_hasta', $fecha_hasta, PDO::PARAM_INT );
+
       $stmt->execute ();
-      $hoteles = $stmt->fetchAll ();
-      return $hoteles;
+      $vuelos = $stmt->fetchAll ();
+      return $vuelos;
     }
 
 
