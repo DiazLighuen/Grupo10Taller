@@ -20,7 +20,7 @@ class AutomovilRepository extends PDORepository{
     public function buscar_automovil($fecha_desde,$fecha_hasta,$ciudad,$precio){
     
 		$con = $this->getConnection ();
-		$sql= 'SELECT slots, fuel, description, price, c.name AS ciudad_name, u.name AS concessionaire_name FROM vehicle v, city c, user u WHERE city_id = c.id and u.id = v.concessionaire_id and price = :price and c.name = :city and v.id not in (SELECT id_vehicle FROM vehicle_reserve WHERE (:fecha_desde BETWEEN date_in and date_out ) or (:fecha_hasta BETWEEN date_in and date_out))';
+		$sql= 'SELECT v.id, slots, fuel, description, price, c.name AS ciudad_name, u.name AS concessionaire_name FROM vehicle v, city c, user u WHERE city_id = c.id and u.id = v.concessionaire_id and price = :price and c.name = :city and v.id not in (SELECT id_vehicle FROM vehicle_reserve WHERE (:fecha_desde BETWEEN date_in and date_out ) or (:fecha_hasta BETWEEN date_in and date_out))';
 		
 		$stmt = $con->prepare ( $sql );
 		$stmt->bindParam (':city', $city, PDO::PARAM_STR );

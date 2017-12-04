@@ -15,6 +15,7 @@ require_once('model/HotelRepository.php');
 require_once('model/VueloRepository.php');
 require_once('model/AutomovilRepository.php');
 require_once('model/UserModel.php');
+require_once('model/CarritoRepository.php');
 
 /*Controller Files*/
 require_once('controller/BaseController.php');
@@ -24,6 +25,7 @@ require_once('controller/UserController.php');
 require_once('controller/HotelController.php');
 require_once('controller/VueloController.php');
 require_once('controller/AutomovilController.php');
+require_once('controller/CarritoController.php');
 
 /*View Files*/
 require_once('view/TwigView.php');
@@ -47,12 +49,12 @@ if (!isset($_GET["action"])) {
             case 'login' :
                 LoginController::getInstance()->show();
                 break;
-            case 'login_check' :
+			case 'login_check' :
                 LoginController::getInstance()->loginCheck($_POST);
                 break;
             case 'logout' :
                 LoginController::getInstance()->logout();
-                break;
+                break;	
             case 'home' :
                 InicioController::getInstance()->inicio();
                 break;
@@ -74,9 +76,11 @@ if (!isset($_GET["action"])) {
 			case 'listar_automoviles' :
                 AutomovilController::getInstance()->listar_automoviles($_POST);
                 break;	
+			case 'agregar_a_carrito' :
+                CarritoController::getInstance()->agregar_a_carrito($_POST);
+                break;		
             default:
                 InicioController::getInstance()->inicio();
-
                 break;
         }
     }
