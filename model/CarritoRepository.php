@@ -34,7 +34,7 @@ class CarritoRepository extends PDORepository{
       return $stmt->fetchColumn();
     }	
 	
-	public function agregar_a_carrito_y_reservar($service_id, $type, $cart_id){
+	public function agregar_a_carrito_y_reservar($service_id, $type,$cart_id,$usuario_id,$fecha_desde,$fecha_hasta){
 		
 		try{
 			// agrego el servicio para el carrito del usuario logueado
@@ -48,7 +48,7 @@ class CarritoRepository extends PDORepository{
 			$cart_id = (int) $cart_id;
 			$stmt->execute ();
 			// genero la reserva para el servicio segun el tipo
-			$id_reserva = $this->generar_reserva($service_id, $type);
+			$id_reserva = $this->generar_reserva($service_id, $type,$usuario_id,$fecha_desde,$fecha_hasta);
 			return $id_reserva;
 		}
 		catch(Execption $e){
@@ -57,10 +57,7 @@ class CarritoRepository extends PDORepository{
 		}
 	}
 	
-	public function generar_reserva($service_id, $type){
-		$usuario_id = $_SESSION['id'];
-		$fecha_desde = $_SESSION['fecha_desde'];
-		$fecha_hasta = $_SESSION['fecha_hasta'];
+	public function generar_reserva($service_id, $type,$usuario_id,$fecha_desde,$fecha_hasta){
 		$resultado;
 		switch ($type){
 			case 'vehicle' :
@@ -118,7 +115,7 @@ class CarritoRepository extends PDORepository{
     public function obtener_servicio_detalle($cart_id, $type, $service_id){
 	  $con = $this->getConnection ();
 	  if ($type == 'flight') {
-		$sql = "SELECT :cart_id as cart_id, 'flight' as type, se.id, 
+		$sql = "SELECT :cart_id as cart_id, 'flight' as type, se.id as id_servicio, 
 				concat(us.name, ' ', se.flight_id, ' ', se.number, ' ', co.name, ' ', cd.name, ' ', fl.origin_date, ' ', 
 				se.class  ) as descripcion, price as total
 				FROM seat se
@@ -131,7 +128,7 @@ class CarritoRepository extends PDORepository{
 	  }
   	  else
 		if ($type == 'hotel') {
-				$sql = "SELECT :cart_id as cart_id, 'hotel' as type, rr.id, concat(u.name) as descripcion, price as total 
+				$sql = "SELECT :cart_id as cart_id, r.id as id_servicio, 'hotel' as type, rr.id, concat(u.name) as descripcion, price as total 
 				FROM room_reserve rr
 				inner join room r on rr.id_room = r.id
 				inner join hotel h on r.hotel_id = h.id
@@ -141,7 +138,7 @@ class CarritoRepository extends PDORepository{
 		}
 		else
 			if ($type == 'vehicle') {
-				$sql = "SELECT :cart_id as cart_id, 'vehicle' as type, vr.id, 
+				$sql = "SELECT :cart_id as cart_id, 'vehicle' as type, vr.id, vi.id as id_servicio,
 				concat(u.name , ' ' , vi.slots , ' ' , vi.fuel ,' ' , vi.description, ' $', vi.price, ' ', ci.name, ' ', vr.date_in,' ',
 				vr.date_out, ' ', DATEDIFF( vr.date_out, vr.date_in )) as descripcion, 
 				vi.price * DATEDIFF( vr.date_out, vr.date_in ) as total
@@ -152,15 +149,13 @@ class CarritoRepository extends PDORepository{
 				inner join city ci on vi.city_id = ci.id
 				where vi.id = :service_id";
 			}
-			//else 
-			//	$sql = "SELECT '' as type, o as id, ' '  as descripcion, 0 as total";
       $stmt = $con->prepare ( $sql );
       $c_id         = filter_var(trim($cart_id),         FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	  $stmt->bindParam ( ':cart_id', $c_id, PDO::PARAM_STR );
       $s_id         = filter_var(trim($service_id),         FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	  $stmt->bindParam ( ':service_id', $s_id, PDO::PARAM_STR );
       $stmt->execute ();
-      $servicio_detalle = $stmt->fetchAll ();
+      $servicio_detalle = $stmt->fetch ();
       return $servicio_detalle;
     }
 	
@@ -176,14 +171,11 @@ class CarritoRepository extends PDORepository{
 	  $stmt->bindParam (':type', $type, PDO::PARAM_STR );
 	  $service_id = (int) $service_id;
 	  $cart_id = (int) $cart_id;
-	  //var_dump($sql);
       $stmt->execute();
       return ;
     }	
 
     public function pagar_carrito($cart_id){
-		//var_dump($cart_id);
-		//var_dump($_SESSION['id']);
 		$con = $this->getConnection ();
 		$sql = 'insert into history (user_consumer_id, cart_id) values (:user_id, :cart_i)';
 		$stmti = $con->prepare ( $sql );

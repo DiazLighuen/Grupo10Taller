@@ -21,16 +21,16 @@
                       <tbody>
                       {% for  detalle in carrito %}
                         <tr>
-                          <td id="servicio">{{ detalle[0].type }}</td>
-                          <td id="description">{{ detalle[0].descripcion }}</td>
-                          <td id="price">{{ detalle[0].total }}</td>
-						  <td><a href="index.php?action=eliminar_servicio_carrito&cart_id={{detalle[0].cart_id}}&type={{ detalle[0].type }}&id={{detalle[0].id}}">Eliminar</a></td>
+                          <td id="servicio">{{ detalle.type }}</td>
+                          <td id="description">{{ detalle.descripcion }}</td>
+                          <td id="price">{{ detalle.total }}</td>
+						  <td><a href="index.php?action=eliminar_servicio_carrito&cart_id={{detalle.cart_id}}&type={{ detalle.type }}&id_servicio={{detalle.id_servicio}}">Eliminar</a></td>
 					    </tr>
                       {% endfor %}
                       </tbody>
                     </table>
                   </div>
-				  <td><a href="index.php?action=pagar_carrito&cart_id={{carrito.cart_id}}">CHECK OUT ***</a></td>
+				  <td><a href="index.php?action=pagar_carrito&cart_id={{ cart_id }}">CHECK OUT ***</a></td>
 				  <td> Items : {{ items }}</td>
                   <td> Importe Total a Pagar $ : {{ imp_total }}</td>
 				  </p>
