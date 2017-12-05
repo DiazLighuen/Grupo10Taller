@@ -7,7 +7,6 @@ abstract class PDORepository extends PDO{
 	  const HOST ="localhost";
 	  const DB = "taller";
 
-    private $connection;
 
     public function getConnection(){
 
@@ -18,5 +17,13 @@ abstract class PDORepository extends PDO{
         $connection = new PDO ("mysql:dbname=$db;host=$host;names='utf8'", $u, $p);
 
         return $connection;
+    }
+	
+    protected function queryList($sql, $args)
+    {
+        $connection = $this->getConnection();
+        $stmt = $connection->prepare($sql);
+        $stmt->execute($args);
+        return $stmt->fetchAll();
     }
 }
