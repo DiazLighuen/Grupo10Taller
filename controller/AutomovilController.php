@@ -60,7 +60,7 @@ class AutomovilController extends BaseController{
 
 	public function automovil_show($data){
 		
-		$automovil = AutomovilRepository::getInstance()->automovil_show($data['id_vehicle']);
+		$automovil = AutomovilRepository::getInstance()->automovil_show($data['id_servicio']);
 		$hospitalName = 'TresVagos';
 		$params['hospitalName'] = $hospitalName;
 		$params['automovil'] = $automovil;

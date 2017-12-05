@@ -57,7 +57,7 @@ class VueloController extends BaseController{
 
 	public function vuelo_show($data){
 		
-		$vuelo = VueloRepository::getInstance()->vuelo_show($data['id_seat']);
+		$vuelo = VueloRepository::getInstance()->vuelo_show($data['id_servicio']);
 		$hospitalName = 'TresVagos';
 		$params['hospitalName'] = $hospitalName;
 		$params['vuelo'] = $vuelo;

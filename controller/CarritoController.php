@@ -20,20 +20,8 @@ class CarritoController extends BaseController{
 
     public function agregar_a_carrito($data){
 		// busco el carrito del usuario logueado
-		$carrito_id = CarritoRepository::getInstance()->buscar_carrito($_SESSION['id']);
-        // agregamos el servicio al carrito, service puede ser automovil, hospedaje o pasaje de avion
-		if(isset($data['id_vehicle'])){
-			$service_id = $data['id_vehicle'];
-		}
-		else{
-			if(isset($data['id_seat'])){
-				$service_id = $data['id_seat'];
-			}
-			else{
-				// tiene que venir id_room
-				$service_id = $data['id_room'];
-			}
-		}	
+		$carrito_id = CarritoRepository::getInstance()->buscar_carrito($_SESSION['id']);	
+		$service_id = $data['id_servicio'];
 		$type = $data['type'];
 		$service_id_nuevo = CarritoRepository::getInstance()->agregar_a_carrito_y_reservar($service_id,$type,$carrito_id);
 		if ($service_id_nuevo){

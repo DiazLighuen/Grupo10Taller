@@ -24,6 +24,7 @@ class CarritoRepository extends PDORepository{
       $stmt->execute ();
       return $con->lastInsertId();
     }
+	
     public function buscar_carrito($usuario_id){
       $con = $this->getConnection ();
       $sql = 'SELECT cart_id FROM user_consumer where user_id = :usuario_id';
@@ -32,7 +33,7 @@ class CarritoRepository extends PDORepository{
       $stmt->execute ();
       return $stmt->fetchColumn();
     }	
-
+	
 	public function agregar_a_carrito_y_reservar($service_id, $type, $cart_id){
 		
 		try{
@@ -82,7 +83,15 @@ class CarritoRepository extends PDORepository{
 				$resultado = true;
 			break;
 			case 'hotel' :
-			
+				$con = $this->getConnection ();
+				$sql = 'INSERT INTO room_reserve (id_room, id_user, date_in, date_out) VALUES (:id_room, :id_user, :date_in, :date_out)';
+				$stmt = $con->prepare ( $sql );
+				$stmt->bindParam (':id_room', $service_id, PDO::PARAM_INT );
+				$stmt->bindParam (':id_user', $usuario_id, PDO::PARAM_INT );
+				$stmt->bindParam (':date_in', $fecha_desde);
+				$stmt->bindParam (':date_out', $fecha_hasta);
+				$stmt->execute ();
+				$resultado = $con->lastInsertId();
 			break;
 			default:
 			//
@@ -91,8 +100,8 @@ class CarritoRepository extends PDORepository{
 		
 		return $resultado;
 	}
-		
-    public function obtener_servicios_carrito(){
+	
+     public function obtener_servicios_carrito(){
       // para probar, tengo que hacer la consulta adecuada
       $con = $this->getConnection ();
       $sql = 'SELECT s.* FROM user_consumer uc
