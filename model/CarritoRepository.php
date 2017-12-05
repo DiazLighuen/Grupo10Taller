@@ -181,6 +181,7 @@ class CarritoRepository extends PDORepository{
 
     public function pagar_carrito($cart_id){
 		//var_dump($cart_id);
+		//var_dump($_SESSION['id']);
 		$con = $this->getConnection ();
 		$sql = 'insert into history (user_consumer_id, cart_id) values (:user_id, :cart_i)';
 		$stmti = $con->prepare ( $sql );
