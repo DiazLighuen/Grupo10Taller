@@ -36,8 +36,10 @@ require_once('view/HotelView.php');
 require_once('view/HotelListarView.php');
 require_once('view/VueloView.php');
 require_once('view/VueloListarView.php');
+require_once('view/VueloShowView.php');
 require_once('view/AutomovilView.php');
 require_once('view/AutomovilListarView.php');
+require_once('view/AutomovilShowView.php');
 require_once('view/CarritoView.php');
 
 session_start();
@@ -50,12 +52,12 @@ if (!isset($_GET["action"])) {
             case 'login' :
                 LoginController::getInstance()->show();
                 break;
-            case 'login_check' :
+			case 'login_check' :
                 LoginController::getInstance()->loginCheck($_POST);
                 break;
-            case 'logout' :
+			case 'logout' :
                 LoginController::getInstance()->logout();
-                break;
+                break;	
             case 'home' :
                 InicioController::getInstance()->inicio();
                 break;
@@ -68,17 +70,23 @@ if (!isset($_GET["action"])) {
             case 'buscar_vuelo' :
                 VueloController::getInstance()->buscar_vuelo();
                 break;
-            case 'listar_vuelos' :
+			case 'listar_vuelos' :
                 VueloController::getInstance()->listar_vuelos($_POST);
-                break;
+                break;	
+			case 'vuelo_show' :
+				VueloController::getInstance()->vuelo_show($_POST);
+                break;	
             case 'buscar_automovil' :
                 AutomovilController::getInstance()->buscar_automovil();
                 break;
-            case 'listar_automoviles' :
+			case 'listar_automoviles' :
                 AutomovilController::getInstance()->listar_automoviles($_POST);
                 break;
-            case 'agregar_a_carrito' :
-                CarritoController::getInstance()->agregar_a_carrito($_POST);
+			case 'automovil_show' :
+				AutomovilController::getInstance()->automovil_show($_POST);
+                break;
+			case 'agregar_a_carrito' :
+				CarritoController::getInstance()->agregar_a_carrito($_POST);
                 break;
             case 'carrito' :
                 CarritoController::getInstance()->listar_carrito();
@@ -86,9 +94,9 @@ if (!isset($_GET["action"])) {
             case 'eliminar_servicio_carrito' :
                 CarritoController::getInstance()->eliminar_servicio_carrito();
                 break;
-            case 'pagar_carrito' :
+			case 'pagar_carrito' :
                 CarritoController::getInstance()->pagar_carrito();
-                break;
+                break;	
             default:
                 InicioController::getInstance()->inicio();
                 break;
