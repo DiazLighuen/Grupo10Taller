@@ -24,6 +24,73 @@ class CarritoRepository extends PDORepository{
       $stmt->execute ();
       return $con->lastInsertId();
     }
+    public function buscar_carrito($usuario_id){
+      $con = $this->getConnection ();
+      $sql = 'SELECT cart_id FROM user_consumer where user_id = :usuario_id';
+	  $stmt = $con->prepare ( $sql ); 
+	  $stmt->bindParam (':usuario_id', $usuario_id, PDO::PARAM_INT );
+      $stmt->execute ();
+      return $stmt->fetchColumn();
+    }	
+	
+	public function agregar_a_carrito_y_reservar($service_id, $type, $cart_id){
+		
+		try{
+			// agrego el servicio para el carrito del usuario logueado
+			$con = $this->getConnection ();
+			$sql = 'INSERT INTO services (cart_id, service_id, type) VALUES (:cart_id, :service_id, :type)';
+			$stmt = $con->prepare ( $sql );
+			$stmt->bindParam (':cart_id', $cart_id, PDO::PARAM_INT );
+			$stmt->bindParam (':service_id', $service_id, PDO::PARAM_INT );
+			$stmt->bindParam (':type', $type, PDO::PARAM_STR );
+			$service_id = (int) $service_id;
+			$cart_id = (int) $cart_id;
+			$stmt->execute ();
+			// genero la reserva para el servicio segun el tipo
+			$id_reserva = $this->generar_reserva($service_id, $type);
+			return $id_reserva;
+		}
+		catch(Execption $e){
+			$con->rollBack();
+			return false;
+		}
+	}
+	
+	public function generar_reserva($service_id, $type){
+		$usuario_id = $_SESSION['id'];
+		$fecha_desde = $_SESSION['fecha_desde'];
+		$fecha_hasta = $_SESSION['fecha_hasta'];
+		$resultado;
+		switch ($type){
+			case 'vehicle' :
+				$con = $this->getConnection ();
+				$sql = 'INSERT INTO vehicle_reserve (id_vehicle, id_user, date_in, date_out) VALUES (:id_vehicle, :id_user, :date_in, :date_out)';
+				$stmt = $con->prepare ( $sql );
+				$stmt->bindParam (':id_vehicle', $service_id, PDO::PARAM_INT );
+				$stmt->bindParam (':id_user', $usuario_id, PDO::PARAM_INT );
+				$stmt->bindParam (':date_in', $fecha_desde, PDO::PARAM_STR );
+				$stmt->bindParam (':date_out', $fecha_hasta, PDO::PARAM_STR );
+				$stmt->execute ();
+				$resultado = $con->lastInsertId();
+			break;
+			case 'flight' :
+				$con = $this->getConnection ();
+				$sql = 'UPDATE seat SET sell = 1 where id = :id_seat ';
+				$stmt = $con->prepare ( $sql );
+				$stmt->bindParam (':id_seat', $service_id, PDO::PARAM_INT );
+				$stmt->execute ();
+				$resultado = true;
+			break;
+			case 'hotel' :
+			
+			break;
+			default:
+			//
+			break;
+		}
+		
+		return $resultado;
+	}
 	
 	public function agregar_a_carrito($service_id, $type, $cart_id){
 	  $con = $this->getConnection ();
@@ -46,6 +113,7 @@ class CarritoRepository extends PDORepository{
       // para probar, tengo que hacer la consulta adecuada
       $con = $this->getConnection ();
       $sql = 'SELECT s.* FROM user_consumer uc
+				inner join cart ca on uc.cart_id = ca.id
 				inner join services s on uc.cart_id = s.cart_id
 				where user_id = :user_id';
       $stmt = $con->prepare ( $sql );
@@ -115,8 +183,28 @@ class CarritoRepository extends PDORepository{
 	  $service_id = (int) $service_id;
 	  $cart_id = (int) $cart_id;
 	  //var_dump($sql);
-      $stmt->execute ();
+      $stmt->execute();
       return ;
+    }	
+
+    public function pagar_carrito($cart_id){
+		//var_dump($cart_id);
+		$con = $this->getConnection ();
+		$sql = 'insert into history (user_consumer_id, cart_id) values (:user_id, :cart_i)';
+		$stmti = $con->prepare ( $sql );
+		$stmti->bindParam (':cart_id', $cart_id,        PDO::PARAM_INT );
+		$stmti->bindParam (':user_id', $_SESSION['id'], PDO::PARAM_INT );
+		$stmti->execute();
+	   	
+		$carrito_id = $this->crear_carrito();
+	  
+		$sql = 'update user_consumer set cart_id = :carrito_id where user_id = :user_id';
+		$stmtu = $con->prepare ( $sql );
+		$stmtu->bindParam (':user_id',    $_SESSION['id'], PDO::PARAM_INT );
+		$stmtu->bindParam (':carrito_id', $carrito_id,     PDO::PARAM_INT );
+		$stmtu->execute();
+
+		return ;
     }	
 
 }
