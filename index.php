@@ -77,6 +77,9 @@ if (!isset($_GET["action"])) {
             case 'listar_automoviles' :
                 AutomovilController::getInstance()->listar_automoviles($_POST);
                 break;
+            case 'agregar_a_carrito' :
+                CarritoController::getInstance()->agregar_a_carrito($_POST);
+                break;
             case 'carrito' :
                 CarritoController::getInstance()->listar_carrito();
                 break;
@@ -85,7 +88,6 @@ if (!isset($_GET["action"])) {
                 break;
             default:
                 InicioController::getInstance()->inicio();
-
                 break;
         }
     }
