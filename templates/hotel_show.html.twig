@@ -1,12 +1,12 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}
-    Detalle del Asiento
+    Detalle de la Habitación
 {% endblock %}
 
 {% block content %}
     <div class="card card-cascade narrower">
-        <h4 class="d-flex justify-content-center mt-3 mb-3"> Detalle del Asiento </h4>
+        <h4 class="d-flex justify-content-center mt-3 mb-3"> Detalle de la Habitación </h4>
     </div>
     <div class="table-wrapper table-responsive">
         <!--Table-->
@@ -15,12 +15,14 @@
             <!--Table head-->
             <thead>
             <tr>
-                <th class="th-lg">Número <i class="ml-1"></i></th>
-                <th class="th-lg">Clase<i class="ml-1"></i></th>
-                <th class="th-lg">Precio<i class="ml-1"></i></th>
-				<th class="th-lg">Fecha Salida<i class="ml-1"></i></th>
-				<th class="th-lg">Fecha Llegada<i class="ml-1"></i></th>
-                <th class="th-lg">Aerolínea<i class="ml-1"></i></th>
+			    <th class="th-lg">Numero de Habitación<i class="ml-1"></i></th>
+                <th class="th-lg">Cantidad de Camas<i class="ml-1"></i></th>
+                <th class="th-lg">Dirección<i class="ml-1"></i></th>
+				<th class="th-lg">Ciudad <i class="ml-1"></i></th>
+                <th class="th-lg">Calidad<i class="ml-1"></i></th>
+                <th class="th-lg">Descripcion<i class="ml-1"></i></th>
+                <th class="th-lg">País<i class="ml-1"></i></th>
+                <th class="th-lg">Hotel<i class="ml-1"></i></th>
                 <th class="text-center">Agregar al Carrito<i class="ml-1"></i></th>
             </tr>
             </thead>
@@ -29,22 +31,24 @@
             <!--Table body-->
             <tbody>
                 <tr>
-                    <td id="number">{{ vuelo.number }}</td>
-                    <td id="class">{{ vuelo.class }}</td>
-                    <td id="price">{{ vuelo.price }}</td>
-					<td id="origin_date">{{ vuelo.origin_date | date("d/m/Y") }}</td>
-					<td id="destiny_date">{{ vuelo.destiny_date | date("d/m/Y") }}</td>
-                    <td id="nombre_aerolinea">{{ vuelo.nombre_aerolinea }}</td>
+				    <td id="number">{{ hotel.number }}</td>
+					<td id="beds">{{ hotel.beds }}</td>
+                    <td id="address">{{ hotel.address }}</td>
+                    <td id="nombre_ciudad">{{ hotel.nombre_ciudad }}</td>	
+                    <td id="quality">{{ hotel.quality }}</td>
+                    <td id="description">{{ hotel.description }}</td>
+                    <td id="nombre_pais">{{ hotel.nombre_pais }}</td>
+                    <td id="nombre_usuario">{{ hotel.nombre_usuario }}</td>
                     <td>
                         <div class="d-flex justify-content-center">
                             <form method="POST" action="?action=agregar_a_carrito" class="d-inline">
-                                <input type="hidden" name="id_servicio" value="{{ vuelo.id_seat }}">
-								<input type="hidden" name="type" value="{{ 'flight' }}">
+                                <input type="hidden" name="id_servicio" value="{{ hotel.id_room }}">
+								<input type="hidden" name="type" value="{{ 'hotel' }}">
                                 <button type="submit"
                                         class="btn btn-primary btn-sm px-2 waves-effect waves-light btn-action"
                                         title="Agregar al Carrito"
                                         id="toggleButton"
-                                        value="{{ automovil.id }}">
+                                        value="{{ hotel.id_room }}">
                                     <i class="fa fa-info mt-0"></i>
                                 </button>
                             </form>

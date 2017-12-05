@@ -15,12 +15,11 @@
             <!--Table head-->
             <thead>
             <tr>
-                <th class="th-lg">Nombre <i class="ml-1"></i></th>
+			    <th class="th-lg">Numero de Habitación<i class="ml-1"></i></th>
                 <th class="th-lg">Dirección<i class="ml-1"></i></th>
-                <th class="th-lg">Calidad<i class="ml-1"></i></th>
-                <th class="th-lg">Numero de Habitacion<i class="ml-1"></i></th>
-                <th class="th-lg">Cantidad de Camas<i class="ml-1"></i></th>
-                <th class="th-lg">Descripcion<i class="ml-1"></i></th>
+				<th class="th-lg">Ciudad <i class="ml-1"></i></th>
+                <th class="th-lg">País<i class="ml-1"></i></th>
+                <th class="th-lg">Hotel<i class="ml-1"></i></th>
                 <th class="text-center">Mas informacion<i class="ml-1"></i></th>
             </tr>
             </thead>
@@ -30,21 +29,20 @@
             <tbody>
             {% for hotel in hoteles %}
                 <tr>
-                    <td id="nombre">{{ hotel.name }}</td>
+				    <td id="number">{{ hotel.number }}</td>
                     <td id="address">{{ hotel.address }}</td>
-                    <td id="calidad">{{ hotel.quality }}</td>
-                    <td id="number"> # </td>
-                    <td id="beds"> # </td>
-                    <td id="description"> # </td>
+                    <td id="nombre_ciudad">{{ hotel.nombre_ciudad }}</td>	
+                    <td id="nombre_pais">{{ hotel.nombre_pais }}</td>
+                    <td id="nombre_usuario">{{ hotel.nombre_usuario }}</td>
                     <td>
                         <div class="d-flex justify-content-center">
                             <form method="POST" action="?action=hotel_show" class="d-inline">
-                                <input type="hidden" name="id" value="{{ hotel.id }}">
+                                <input type="hidden" name="id_servicio" value="{{ hotel.id_room }}">
                                 <button type="submit"
                                         class="btn btn-primary btn-sm px-2 waves-effect waves-light btn-action"
                                         title="Ver información del hotel"
                                         id="toggleButton"
-                                        value="{{ hotel.id }}">
+                                        value="{{ hotel.id_room }}">
                                     <i class="fa fa-info mt-0"></i>
                                 </button>
                             </form>
