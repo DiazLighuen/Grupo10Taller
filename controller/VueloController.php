@@ -38,6 +38,8 @@ class VueloController extends BaseController{
         if ($this->is_method_post()){
 			$fecha_desde = $_POST['fecha_desde'];
 			$fecha_hasta = $_POST['fecha_hasta'];
+			$_SESSION['fecha_desde'] = $fecha_desde;
+			$_SESSION['fecha_hasta'] = $fecha_hasta;
 			$ciudad_origen = $_POST['ciudad_origen'];
 			$ciudad_destino = $_POST['ciudad_destino'];
 			$vuelos = VueloRepository::getInstance()->buscar_vuelo($fecha_desde,$fecha_hasta,$ciudad_origen,$ciudad_destino);
