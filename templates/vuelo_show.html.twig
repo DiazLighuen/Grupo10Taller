@@ -1,12 +1,12 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}
-    Listar Vuelos
+    Detalle del Asiento
 {% endblock %}
 
 {% block content %}
     <div class="card card-cascade narrower">
-        <h4 class="d-flex justify-content-center mt-3 mb-3"> Listado de Asientos </h4>
+        <h4 class="d-flex justify-content-center mt-3 mb-3"> Detalle del Asiento </h4>
     </div>
     <div class="table-wrapper table-responsive">
         <!--Table-->
@@ -15,42 +15,47 @@
             <!--Table head-->
             <thead>
             <tr>
-				<th class="th-lg">#<i class="ml-1"></i></th>
                 <th class="th-lg">Número <i class="ml-1"></i></th>
                 <th class="th-lg">Clase<i class="ml-1"></i></th>
                 <th class="th-lg">Precio<i class="ml-1"></i></th>
+				<th class="th-lg">Fecha Salida<i class="ml-1"></i></th>
+				<th class="th-lg">Fecha Llegada<i class="ml-1"></i></th>
                 <th class="th-lg">Aerolínea<i class="ml-1"></i></th>
-                <th class="text-center">Mas informacion<i class="ml-1"></i></th>
+				{% if usuario_es_consumidor %}
+                <th class="text-center">Agregar al Carrito<i class="ml-1"></i></th>
+				{% endif %}
             </tr>
             </thead>
             <!--Table head-->
 
             <!--Table body-->
             <tbody>
-            {% for vuelo in vuelos %}
                 <tr>
-                    <td id="id_seat">{{ vuelo.id_seat }}</td>
                     <td id="number">{{ vuelo.number }}</td>
                     <td id="class">{{ vuelo.class }}</td>
                     <td id="price">{{ vuelo.price }}</td>
+					<td id="origin_date">{{ vuelo.origin_date | date("d/m/Y") }}</td>
+					<td id="destiny_date">{{ vuelo.destiny_date | date("d/m/Y") }}</td>
                     <td id="nombre_aerolinea">{{ vuelo.nombre_aerolinea }}</td>
+					{% if usuario_es_consumidor %}
                     <td>
                         <div class="d-flex justify-content-center">
-                            <form method="POST" action="?action=vuelo_show" class="d-inline">
+                            <form method="POST" action="?action=agregar_a_carrito" class="d-inline">
                                 <input type="hidden" name="id_servicio" value="{{ vuelo.id_seat }}">
+								<input type="hidden" name="type" value="{{ 'flight' }}">
                                 <button type="submit"
                                         class="btn btn-primary btn-sm px-2 waves-effect waves-light btn-action"
-                                        title="Ver información del Pasaje"
+                                        title="Agregar al Carrito"
                                         id="toggleButton"
-                                        value="{{ vuelo.id_seat }}">
+                                        value="{{ automovil.id }}">
                                     <i class="fa fa-info mt-0"></i>
                                 </button>
                             </form>
 
                         </div>
                     </td>
+					{% endif %}
                 </tr>
-            {% endfor %}
             </tbody>
             <!--Table body-->
         </table>

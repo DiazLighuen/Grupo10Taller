@@ -36,10 +36,13 @@ require_once('view/Home.php');
 require_once('view/InicioView.php');
 require_once('view/HotelView.php');
 require_once('view/HotelListarView.php');
+require_once('view/HotelShowView.php');
 require_once('view/VueloView.php');
 require_once('view/VueloListarView.php');
+require_once('view/VueloShowView.php');
 require_once('view/AutomovilView.php');
 require_once('view/AutomovilListarView.php');
+require_once('view/AutomovilShowView.php');
 require_once('view/CarritoView.php');
 require_once('view/HistorialView.php');
 
@@ -68,6 +71,9 @@ if (!isset($_GET["action"])) {
             case 'listar_hoteles' :
                 HotelController::getInstance()->listar_hoteles($_POST);
                 break;
+			case 'hotel_show' :
+				HotelController::getInstance()->hotel_show($_POST);
+                break;
             case 'buscar_vuelo' :
                 VueloController::getInstance()->buscar_vuelo();
                 break;
@@ -79,6 +85,9 @@ if (!isset($_GET["action"])) {
                 break;
             case 'listar_automoviles' :
                 AutomovilController::getInstance()->listar_automoviles($_POST);
+                break;
+			case 'automovil_show' :
+				AutomovilController::getInstance()->automovil_show($_POST);
                 break;
             case 'agregar_a_carrito' :
                 CarritoController::getInstance()->agregar_a_carrito($_POST);

@@ -1,12 +1,12 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}
-    Listar Hoteles
+    Detalle de la Habitación
 {% endblock %}
 
 {% block content %}
     <div class="card card-cascade narrower">
-        <h4 class="d-flex justify-content-center mt-3 mb-3"> Listado de Habitaciones </h4>
+        <h4 class="d-flex justify-content-center mt-3 mb-3"> Detalle de la Habitación </h4>
     </div>
     <div class="table-wrapper table-responsive">
         <!--Table-->
@@ -16,31 +16,40 @@
             <thead>
             <tr>
 			    <th class="th-lg">Numero de Habitación<i class="ml-1"></i></th>
+                <th class="th-lg">Cantidad de Camas<i class="ml-1"></i></th>
                 <th class="th-lg">Dirección<i class="ml-1"></i></th>
 				<th class="th-lg">Ciudad <i class="ml-1"></i></th>
+                <th class="th-lg">Calidad<i class="ml-1"></i></th>
+                <th class="th-lg">Descripcion<i class="ml-1"></i></th>
                 <th class="th-lg">País<i class="ml-1"></i></th>
                 <th class="th-lg">Hotel<i class="ml-1"></i></th>
-                <th class="text-center">Mas informacion<i class="ml-1"></i></th>
+				{% if usuario_es_consumidor %}
+                <th class="text-center">Agregar al Carrito<i class="ml-1"></i></th>
+				{% endif %}
             </tr>
             </thead>
             <!--Table head-->
 
             <!--Table body-->
             <tbody>
-            {% for hotel in hoteles %}
                 <tr>
 				    <td id="number">{{ hotel.number }}</td>
+					<td id="beds">{{ hotel.beds }}</td>
                     <td id="address">{{ hotel.address }}</td>
                     <td id="nombre_ciudad">{{ hotel.nombre_ciudad }}</td>	
+                    <td id="quality">{{ hotel.quality }}</td>
+                    <td id="description">{{ hotel.description }}</td>
                     <td id="nombre_pais">{{ hotel.nombre_pais }}</td>
                     <td id="nombre_usuario">{{ hotel.nombre_usuario }}</td>
+					{% if usuario_es_consumidor %}
                     <td>
                         <div class="d-flex justify-content-center">
-                            <form method="POST" action="?action=hotel_show" class="d-inline">
+                            <form method="POST" action="?action=agregar_a_carrito" class="d-inline">
                                 <input type="hidden" name="id_servicio" value="{{ hotel.id_room }}">
+								<input type="hidden" name="type" value="{{ 'hotel' }}">
                                 <button type="submit"
                                         class="btn btn-primary btn-sm px-2 waves-effect waves-light btn-action"
-                                        title="Ver información del hotel"
+                                        title="Agregar al Carrito"
                                         id="toggleButton"
                                         value="{{ hotel.id_room }}">
                                     <i class="fa fa-info mt-0"></i>
@@ -49,8 +58,8 @@
 
                         </div>
                     </td>
+					{% endif %}
                 </tr>
-            {% endfor %}
             </tbody>
             <!--Table body-->
         </table>

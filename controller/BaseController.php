@@ -26,5 +26,12 @@ class BaseController
     public function is_method_post(){
       return $_SERVER['REQUEST_METHOD'] == 'POST';
     }
+	
+	public function redirect($action){
+		if($action !=''){
+			$action = '?action='.$action;
+		}
+		header('Location:index.php'.$action);
+	}
 
 }

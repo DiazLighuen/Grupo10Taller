@@ -19,21 +19,17 @@ class CarritoController extends BaseController{
     }
 
     public function agregar_a_carrito($data){
-			
-		// creo el carrito a mano ahora para probar, ya que no tengo en la sesion el id del usuario logueado
-		$carrito_id = CarritoRepository::getInstance()->crear_carrito();
-		
-		echo var_dump($carrito_id);
-		
-        // agregamos al carrito el servicio
-        if ($this->is_method_post()){
-            $service_id = $data['id'];
-            $type = $data['type'];
-            $service_id_nuevo = CarritoRepository::getInstance()->agregar_a_carrito($service_id,$type,$carrito_id);
-			echo var_dump($service_id_nuevo);
-        }
-		
-		die;
+		// busco el carrito del usuario logueado
+		$carrito_id = CarritoRepository::getInstance()->buscar_carrito($_SESSION['id']);	
+		$service_id = $data['id_servicio'];
+		$type = $data['type'];
+		$service_id_nuevo = CarritoRepository::getInstance()->agregar_a_carrito_y_reservar($service_id,$type,$carrito_id);
+		if ($service_id_nuevo){
+			$this->redirect('carrito');
+		}
+		else{
+			// arrojar mensaje de error
+		}
     }
 	
 	public function listar_carrito(){
@@ -56,8 +52,8 @@ class CarritoController extends BaseController{
 			$_SESSION['items'] += 1;
 			$_SESSION['imp_total'] += $servicio_detalle[0][4];
         }
-			//var_dump($_SESSION['items']);
-			//var_dump($_SESSION['imp_total']);
+		//var_dump($_SESSION['items']);
+		//var_dump($_SESSION['imp_total']);
 		//var_dump($carrito);
 		$params['carrito'] = $carrito;
 		//$hospitalName = 'TresVagos';
@@ -81,7 +77,10 @@ class CarritoController extends BaseController{
 	public function pagar_carrito(){
       if ($this->is_method_post()){
 		//var_dump($_SESSION['imp_total']);
-        //pagar_carrito()
+        //pagar_carrito();
+		
+		$servicios = CarritoRepository::getInstance()->pagar_carrito($_SESSION['cart_id']);
+		
 		InicioController::getInstance()->inicio();
       }
 	  else {
@@ -99,6 +98,7 @@ class CarritoController extends BaseController{
 			array_push($carrito, $servicio_detalle);
 			$_SESSION['items'] += 1;
 			$_SESSION['imp_total'] += $servicio_detalle[0][4];
+			$_SESSION['cart_id'] = $servicio_detalle[0][0];
         }
 			//var_dump($_SESSION['items']);
 			//var_dump($_SESSION['imp_total']);

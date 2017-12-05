@@ -42,6 +42,8 @@ class HotelController extends BaseController{
         if ($this->is_method_post()){
             $fecha_desde = $data['fecha_desde'];
             $fecha_hasta = $data['fecha_hasta'];
+			$_SESSION ['fecha_desde'] = $fecha_desde;
+			$_SESSION ['fecha_hasta'] = $fecha_hasta;
             $ciudad = $data['ciudad'];
             $hoteles = HotelRepository::getInstance()->buscar_hotel($fecha_desde,$fecha_hasta,$ciudad);
             $params['hoteles'] = $hoteles;
@@ -56,4 +58,20 @@ class HotelController extends BaseController{
         $view->listar_hotel($params);
     }
 
+	public function hotel_show($data){
+		$usuario_es_consumidor = false;
+		if (isset($_SESSION['id'])){
+			$esta_logueado = $_SESSION['logged'] == true;
+			$es_consumidor = $_SESSION['permisions'] == 'user';
+			$usuario_es_consumidor = $esta_logueado && $es_consumidor;
+		}
+		$hotel = HotelRepository::getInstance()->hotel_show($data['id_servicio']);
+		$hospitalName = 'TresVagos';
+		$params['hospitalName'] = $hospitalName;
+		$params['hotel'] = $hotel;
+		$params['usuario_es_consumidor'] = $usuario_es_consumidor;
+		$view = new HotelShowView();
+		$view->hotel_show($params);
+	}
+	
 }
