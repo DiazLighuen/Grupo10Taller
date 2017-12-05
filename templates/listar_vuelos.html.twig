@@ -15,6 +15,7 @@
             <!--Table head-->
             <thead>
             <tr>
+				<th class="th-lg">#<i class="ml-1"></i></th>
                 <th class="th-lg">Número <i class="ml-1"></i></th>
                 <th class="th-lg">Clase<i class="ml-1"></i></th>
                 <th class="th-lg">Precio<i class="ml-1"></i></th>
@@ -28,6 +29,7 @@
             <tbody>
             {% for vuelo in vuelos %}
                 <tr>
+                    <td id="id_seat">{{ vuelo.id_seat }}</td>
                     <td id="number">{{ vuelo.number }}</td>
                     <td id="class">{{ vuelo.class }}</td>
                     <td id="price">{{ vuelo.price }}</td>
