@@ -80,6 +80,9 @@ if (!isset($_GET["action"])) {
             case 'listar_vuelos' :
                 VueloController::getInstance()->listar_vuelos($_POST);
                 break;
+			case 'vuelo_show' :
+				VueloController::getInstance()->vuelo_show($_POST);
+                break;	
             case 'buscar_automovil' :
                 AutomovilController::getInstance()->buscar_automovil();
                 break;
