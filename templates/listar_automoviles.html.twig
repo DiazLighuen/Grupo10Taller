@@ -15,6 +15,7 @@
             <!--Table head-->
             <thead>
             <tr>
+			    <th class="th-lg">#<i class="ml-1"></i></th>
                 <th class="th-lg">Precio<i class="ml-1"></i></th>
                 <th class="th-lg">Ciudad<i class="ml-1"></i></th>
                 <th class="th-lg">Concesionaria<i class="ml-1"></i></th>
@@ -27,6 +28,7 @@
             <tbody>
             {% for automovil in automoviles %}
                 <tr>
+				    <td id="price">{{ automovil.id }}</td>
                     <td id="price">{{ automovil.price }}</td>
                     <td id="ciudad_name">{{ automovil.ciudad_name }}</td>
                     <td id="concessionaire_name">{{ automovil.concessionaire_name }}</td>
