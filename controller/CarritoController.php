@@ -37,13 +37,15 @@ class CarritoController extends BaseController{
     }
 	
 	public function listar_carrito(){
-      if ($this->is_method_post()){
-        //pagar_carrito()
-      }
-	  else {
+      //if ($this->is_method_post()){
+      //  $this->pagar_carrito();
+      //}
+	  //else {
 		$servicios = CarritoRepository::getInstance()->obtener_servicios_carrito();
 		//var_dump($servicios);
 		$carrito = array();
+		$_SESSION['items'] = 0;
+		$_SESSION['imp_total'] = 0;
         foreach ($servicios as $servicio) {
 			//var_dump($servicio);
 			//var_dump($servicio[0]);
@@ -51,21 +53,65 @@ class CarritoController extends BaseController{
 			$servicio_detalle = CarritoRepository::getInstance()->obtener_servicio_detalle($servicio[0], $servicio[1], $servicio[2]);
 			//var_dump($servicio_detalle);
 			array_push($carrito, $servicio_detalle);
+			$_SESSION['items'] += 1;
+			$_SESSION['imp_total'] += $servicio_detalle[0][4];
         }
+			//var_dump($_SESSION['items']);
+			//var_dump($_SESSION['imp_total']);
+		//var_dump($carrito);
 		$params['carrito'] = $carrito;
 		//$hospitalName = 'TresVagos';
 		//$params['hospitalName'] = $hospitalName;
+		$params['items'] = $_SESSION['items'];
+		$params['imp_total'] = $_SESSION['imp_total'];
 		$view = new CarritoView();
 		//var_dump($carrito);
 		$view->listar_carrito($params);
-		}	
+		//}	
     }
 	
     public function eliminar_servicio_carrito(){
-		$tipo = $_GET['tipo'];
-		$id = $_GET['id'];
-		//$borrar = CarritoRepository::getInstance()->eliminar_servicio_carrito($tipo, $id);
+		$cart_id = $_GET['cart_id'];
+		$type = $_GET['type'];
+		$service_id = $_GET['id'];
+		$borrar = CarritoRepository::getInstance()->eliminar_servicio_carrito($cart_id, $type, $service_id);
 		$this->listar_carrito();
 		}	
+
+	public function pagar_carrito(){
+      if ($this->is_method_post()){
+		//var_dump($_SESSION['imp_total']);
+        //pagar_carrito()
+		InicioController::getInstance()->inicio();
+      }
+	  else {
+		$servicios = CarritoRepository::getInstance()->obtener_servicios_carrito();
+		//var_dump($servicios);
+		$carrito = array();
+		$_SESSION['items'] = 0;
+		$_SESSION['imp_total'] = 0;
+        foreach ($servicios as $servicio) {
+			//var_dump($servicio);
+			//var_dump($servicio[0]);
+			//$servicio_detalle = CarritoRepository::getInstance()->obtener_servicio_detalle($servicio->cart_id, $servicio->type, $servicio->service_id);
+			$servicio_detalle = CarritoRepository::getInstance()->obtener_servicio_detalle($servicio[0], $servicio[1], $servicio[2]);
+			//var_dump($servicio_detalle);
+			array_push($carrito, $servicio_detalle);
+			$_SESSION['items'] += 1;
+			$_SESSION['imp_total'] += $servicio_detalle[0][4];
+        }
+			//var_dump($_SESSION['items']);
+			//var_dump($_SESSION['imp_total']);
+		//var_dump($carrito);
+		$params['carrito'] = $carrito;
+		//$hospitalName = 'TresVagos';
+		//$params['hospitalName'] = $hospitalName;
+		$params['items'] = $_SESSION['items'];
+		$params['imp_total'] = $_SESSION['imp_total'];
+		$view = new CarritoView();
+		//var_dump($carrito);
+		$view->pagar_carrito($params);
+		}	
+    }
 
 }
