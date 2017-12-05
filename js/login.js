@@ -18,7 +18,7 @@ $("#loginForm").submit(function (e) {
     $.post("index.php?action=login_check", $(e.target).serialize())
         /* The user is valid, log in and redirect to home */
         .done(function (data) {
-            document.location = "?action=login";
+            document.location = "?action=home";
         })
         /* The user is invalid, show an alert */
         .fail(function (data) {
