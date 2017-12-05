@@ -10,9 +10,11 @@ require_once('utils/FlashMessages.php');
 /*Model Files*/
 require_once('model/PDORepository.php');
 require_once('model/BaseRepository.php');
+require_once('model/LoginRepository.php');
 require_once('model/HotelRepository.php');
 require_once('model/VueloRepository.php');
 require_once('model/AutomovilRepository.php');
+require_once('model/UserModel.php');
 require_once('model/CarritoRepository.php');
 
 /*Controller Files*/
@@ -48,6 +50,12 @@ if (!isset($_GET["action"])) {
             case 'login' :
                 LoginController::getInstance()->show();
                 break;
+            case 'login_check' :
+                LoginController::getInstance()->loginCheck($_POST);
+                break;
+            case 'logout' :
+                LoginController::getInstance()->logout();
+                break;
             case 'home' :
                 InicioController::getInstance()->inicio();
                 break;
@@ -60,15 +68,15 @@ if (!isset($_GET["action"])) {
             case 'buscar_vuelo' :
                 VueloController::getInstance()->buscar_vuelo();
                 break;
-			case 'listar_vuelos' :
+            case 'listar_vuelos' :
                 VueloController::getInstance()->listar_vuelos($_POST);
-                break;	
+                break;
             case 'buscar_automovil' :
                 AutomovilController::getInstance()->buscar_automovil();
                 break;
-			case 'listar_automoviles' :
+            case 'listar_automoviles' :
                 AutomovilController::getInstance()->listar_automoviles($_POST);
-                break;	
+                break;
             case 'carrito' :
                 CarritoController::getInstance()->listar_carrito();
                 break;
@@ -77,6 +85,7 @@ if (!isset($_GET["action"])) {
                 break;
             default:
                 InicioController::getInstance()->inicio();
+
                 break;
         }
     }
