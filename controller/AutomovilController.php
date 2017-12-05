@@ -59,9 +59,15 @@ class AutomovilController extends BaseController{
     }
 
 	public function automovil_show($data){
-		
+		$usuario_es_consumidor = false;
+		if (isset($_SESSION['id'])){
+			$esta_logueado = $_SESSION['logged'] == true;
+			$es_consumidor = $_SESSION['permisions'] == 'user';
+			$usuario_es_consumidor = $esta_logueado && $es_consumidor;
+		}	
 		$automovil = AutomovilRepository::getInstance()->automovil_show($data['id_servicio']);
 		$hospitalName = 'TresVagos';
+		$params['usuario_es_consumidor'] = $usuario_es_consumidor;
 		$params['hospitalName'] = $hospitalName;
 		$params['automovil'] = $automovil;
 		$view = new AutomovilShowView();

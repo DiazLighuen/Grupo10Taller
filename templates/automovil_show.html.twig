@@ -21,7 +21,9 @@
                 <th class="th-lg">Slots<i class="ml-1"></i></th>
                 <th class="th-lg">Ciudad<i class="ml-1"></i></th>
                 <th class="th-lg">Concesionaria<i class="ml-1"></i></th>
+				{% if usuario_es_consumidor %}
                 <th class="text-center">Agregar al Carrito<i class="ml-1"></i></th>
+				{% endif %}
             </tr>
             </thead>
             <!--Table head-->
@@ -35,6 +37,7 @@
                     <td id="slots">{{ automovil.slots }}</td>
                     <td id="ciudad_name">{{ automovil.ciudad_name }}</td>
                     <td id="concessionaire_name">{{ automovil.concessionaire_name }}</td>
+					{% if usuario_es_consumidor %}
                     <td>
                         <div class="d-flex justify-content-center">
                             <form method="POST" action="?action=agregar_a_carrito" class="d-inline">
@@ -51,6 +54,7 @@
 
                         </div>
                     </td>
+					{% endif %}
                 </tr>
             </tbody>
             <!--Table body-->

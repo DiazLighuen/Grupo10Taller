@@ -56,10 +56,16 @@ class VueloController extends BaseController{
     }	
 
 	public function vuelo_show($data){
-		
+		$usuario_es_consumidor = false;
+		if (isset($_SESSION['id'])){
+			$esta_logueado = $_SESSION['logged'] == true;
+			$es_consumidor = $_SESSION['permisions'] == 'user';
+			$usuario_es_consumidor = $esta_logueado && $es_consumidor;
+		}	
 		$vuelo = VueloRepository::getInstance()->vuelo_show($data['id_servicio']);
 		$hospitalName = 'TresVagos';
 		$params['hospitalName'] = $hospitalName;
+		$params['usuario_es_consumidor'] = $usuario_es_consumidor;
 		$params['vuelo'] = $vuelo;
 		$view = new VueloShowView();
 		$view->vuelo_show($params);

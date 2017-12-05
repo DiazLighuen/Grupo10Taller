@@ -23,7 +23,9 @@
                 <th class="th-lg">Descripcion<i class="ml-1"></i></th>
                 <th class="th-lg">País<i class="ml-1"></i></th>
                 <th class="th-lg">Hotel<i class="ml-1"></i></th>
+				{% if usuario_es_consumidor %}
                 <th class="text-center">Agregar al Carrito<i class="ml-1"></i></th>
+				{% endif %}
             </tr>
             </thead>
             <!--Table head-->
@@ -39,6 +41,7 @@
                     <td id="description">{{ hotel.description }}</td>
                     <td id="nombre_pais">{{ hotel.nombre_pais }}</td>
                     <td id="nombre_usuario">{{ hotel.nombre_usuario }}</td>
+					{% if usuario_es_consumidor %}
                     <td>
                         <div class="d-flex justify-content-center">
                             <form method="POST" action="?action=agregar_a_carrito" class="d-inline">
@@ -55,6 +58,7 @@
 
                         </div>
                     </td>
+					{% endif %}
                 </tr>
             </tbody>
             <!--Table body-->

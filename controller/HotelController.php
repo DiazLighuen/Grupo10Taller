@@ -59,10 +59,17 @@ class HotelController extends BaseController{
     }
 
 	public function hotel_show($data){
+		$usuario_es_consumidor = false;
+		if (isset($_SESSION['id'])){
+			$esta_logueado = $_SESSION['logged'] == true;
+			$es_consumidor = $_SESSION['permisions'] == 'user';
+			$usuario_es_consumidor = $esta_logueado && $es_consumidor;
+		}
 		$hotel = HotelRepository::getInstance()->hotel_show($data['id_servicio']);
 		$hospitalName = 'TresVagos';
 		$params['hospitalName'] = $hospitalName;
 		$params['hotel'] = $hotel;
+		$params['usuario_es_consumidor'] = $usuario_es_consumidor;
 		$view = new HotelShowView();
 		$view->hotel_show($params);
 	}

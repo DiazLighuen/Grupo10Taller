@@ -21,7 +21,9 @@
 				<th class="th-lg">Fecha Salida<i class="ml-1"></i></th>
 				<th class="th-lg">Fecha Llegada<i class="ml-1"></i></th>
                 <th class="th-lg">Aerolínea<i class="ml-1"></i></th>
+				{% if usuario_es_consumidor %}
                 <th class="text-center">Agregar al Carrito<i class="ml-1"></i></th>
+				{% endif %}
             </tr>
             </thead>
             <!--Table head-->
@@ -35,6 +37,7 @@
 					<td id="origin_date">{{ vuelo.origin_date | date("d/m/Y") }}</td>
 					<td id="destiny_date">{{ vuelo.destiny_date | date("d/m/Y") }}</td>
                     <td id="nombre_aerolinea">{{ vuelo.nombre_aerolinea }}</td>
+					{% if usuario_es_consumidor %}
                     <td>
                         <div class="d-flex justify-content-center">
                             <form method="POST" action="?action=agregar_a_carrito" class="d-inline">
@@ -51,6 +54,7 @@
 
                         </div>
                     </td>
+					{% endif %}
                 </tr>
             </tbody>
             <!--Table body-->
