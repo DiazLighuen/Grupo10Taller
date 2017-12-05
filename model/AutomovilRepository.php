@@ -51,5 +51,17 @@ class AutomovilRepository extends PDORepository{
       $precios = $stmt->fetchAll ();
       return $precios;
     }
+	
+	public function automovil_show($id_vehicle){
+		
+		$con = $this->getConnection ();
+		$sql= 'SELECT v.id, slots, fuel, description, price, c.name AS ciudad_name, u.name AS concessionaire_name FROM vehicle v, city c, user u WHERE city_id = c.id and u.id = v.concessionaire_id and v.id = :id_vehicle';
+		$stmt = $con->prepare ( $sql );
+		$stmt->bindParam (':id_vehicle', $id_vehicle, PDO::PARAM_INT );
+		$id_vehicle = (int) $id_vehicle;
+		$stmt->execute ();
+		$vehiculo = $stmt->fetch ();
+		return $vehiculo;	
+	}
 
 }

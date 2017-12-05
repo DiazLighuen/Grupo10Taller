@@ -1,12 +1,12 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}
-    Listar Automóviles
+    Detalle del Automóvil
 {% endblock %}
 
 {% block content %}
     <div class="card card-cascade narrower">
-        <h4 class="d-flex justify-content-center mt-3 mb-3"> Listado de Automóviles </h4>
+        <h4 class="d-flex justify-content-center mt-3 mb-3"> Detalle del Automóvil </h4>
     </div>
     <div class="table-wrapper table-responsive">
         <!--Table-->
@@ -15,28 +15,34 @@
             <!--Table head-->
             <thead>
             <tr>
+                <th class="th-lg">Fuel<i class="ml-1"></i></th>
+                <th class="th-lg">Descipción<i class="ml-1"></i></th>
                 <th class="th-lg">Precio<i class="ml-1"></i></th>
+                <th class="th-lg">Slots<i class="ml-1"></i></th>
                 <th class="th-lg">Ciudad<i class="ml-1"></i></th>
                 <th class="th-lg">Concesionaria<i class="ml-1"></i></th>
-                <th class="text-center">Mas informacion<i class="ml-1"></i></th>
+                <th class="text-center">Agregar al Carrito<i class="ml-1"></i></th>
             </tr>
             </thead>
             <!--Table head-->
 
             <!--Table body-->
             <tbody>
-            {% for automovil in automoviles %}
                 <tr>
+                    <td id="fuel">{{ automovil.fuel }}</td>
+                    <td id="description">{{ automovil.description }}</td>
                     <td id="price">{{ automovil.price }}</td>
+                    <td id="slots">{{ automovil.slots }}</td>
                     <td id="ciudad_name">{{ automovil.ciudad_name }}</td>
                     <td id="concessionaire_name">{{ automovil.concessionaire_name }}</td>
                     <td>
                         <div class="d-flex justify-content-center">
-                            <form method="POST" action="?action=automovil_show" class="d-inline">
+                            <form method="POST" action="?action=agregar_a_carrito" class="d-inline">
                                 <input type="hidden" name="id_vehicle" value="{{ automovil.id }}">
+								<input type="hidden" name="type" value="{{ 'vehicle' }}">
                                 <button type="submit"
                                         class="btn btn-primary btn-sm px-2 waves-effect waves-light btn-action"
-                                        title="Ver información del automóvil"
+                                        title="Agregar al Carrito"
                                         id="toggleButton"
                                         value="{{ automovil.id }}">
                                     <i class="fa fa-info mt-0"></i>
@@ -46,7 +52,6 @@
                         </div>
                     </td>
                 </tr>
-            {% endfor %}
             </tbody>
             <!--Table body-->
         </table>

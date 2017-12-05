@@ -27,6 +27,8 @@ class AutomovilController extends BaseController{
         if ($this->is_method_post()){
 			$fecha_desde = $_POST['fecha_desde'];
 			$fecha_hasta = $_POST['fecha_hasta'];
+			$_SESSION['fecha_desde'] = $fecha_desde;
+			$_SESSION['fecha_hasta'] = $fecha_hasta;
 			$ciudad = $_POST['ciudad'];
 			$precio = $_POST['precio'];
 			$automoviles = AutomovilRepository::getInstance()->buscar_automovil($fecha_desde,$fecha_hasta,$ciudad,$precio);
@@ -56,4 +58,13 @@ class AutomovilController extends BaseController{
 		$view->buscar_automovil($params);
     }
 
+	public function automovil_show($data){
+		
+		$automovil = AutomovilRepository::getInstance()->automovil_show($data['id_vehicle']);
+		$hospitalName = 'TresVagos';
+		$params['hospitalName'] = $hospitalName;
+		$params['automovil'] = $automovil;
+		$view = new AutomovilShowView();
+		$view->automovil_show($params);
+	}
 }

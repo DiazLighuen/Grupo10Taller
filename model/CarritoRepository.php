@@ -25,21 +25,74 @@ class CarritoRepository extends PDORepository{
       return $con->lastInsertId();
     }
 	
-	public function agregar_a_carrito($service_id, $type, $cart_id){
-	  $con = $this->getConnection ();
-      $sql = 'INSERT INTO services (cart_id, service_id, type) VALUES (:cart_id, :service_id, :type)';
-      $stmt = $con->prepare ( $sql );
-	  $stmt->bindParam (':cart_id', $cart_id, PDO::PARAM_INT );
-	  $stmt->bindParam (':service_id', $service_id, PDO::PARAM_INT );
-	  $stmt->bindParam (':type', $type, PDO::PARAM_STR );
-	  $service_id = (int) $service_id;
-	  $cart_id = (int) $cart_id;
+    public function buscar_carrito($usuario_id){
+      $con = $this->getConnection ();
+      $sql = 'SELECT cart_id FROM user_consumer where user_id = :usuario_id';
+	  $stmt = $con->prepare ( $sql ); 
+	  $stmt->bindParam (':usuario_id', $usuario_id, PDO::PARAM_INT );
       $stmt->execute ();
-	  echo var_dump($service_id);
-	  echo var_dump($type);
-	  echo var_dump($cart_id);
-	  
-      return $con->lastInsertId();
+      return $stmt->fetchColumn();
+    }	
+	
+	public function agregar_a_carrito_y_reservar($service_id, $type, $cart_id){
+		
+		try{
+			// agrego el servicio para el carrito del usuario logueado
+			$con = $this->getConnection ();
+			$sql = 'INSERT INTO services (cart_id, service_id, type) VALUES (:cart_id, :service_id, :type)';
+			$stmt = $con->prepare ( $sql );
+			$stmt->bindParam (':cart_id', $cart_id, PDO::PARAM_INT );
+			$stmt->bindParam (':service_id', $service_id, PDO::PARAM_INT );
+			$stmt->bindParam (':type', $type, PDO::PARAM_STR );
+			$service_id = (int) $service_id;
+			$cart_id = (int) $cart_id;
+			$stmt->execute ();
+			// genero la reserva para el servicio segun el tipo
+			$id_reserva = $this->generar_reserva($service_id, $type);
+
+			return $id_reserva;
+		}
+		catch(Execption $e){
+			$con->rollBack();
+			return false;
+		}
+	}
+	
+	public function generar_reserva($service_id, $type){
+
+		$usuario_id = $_SESSION['id'];
+		$fecha_desde = $_SESSION['fecha_desde'];
+		$fecha_hasta = $_SESSION['fecha_hasta'];
+		$resultado;
+		switch ($type){
+			case 'vehicle' :
+				$con = $this->getConnection ();
+				$sql = 'INSERT INTO vehicle_reserve (id_vehicle, id_user, date_in, date_out) VALUES (:id_vehicle, :id_user, :date_in, :date_out)';
+				$stmt = $con->prepare ( $sql );
+				$stmt->bindParam (':id_vehicle', $service_id, PDO::PARAM_INT );
+				$stmt->bindParam (':id_user', $usuario_id, PDO::PARAM_INT );
+				$stmt->bindParam (':date_in', $fecha_desde, PDO::PARAM_STR );
+				$stmt->bindParam (':date_out', $fecha_hasta, PDO::PARAM_STR );
+				$stmt->execute ();
+				$resultado = $con->lastInsertId();
+			break;
+			case 'flight' :
+				$con = $this->getConnection ();
+				$sql = 'UPDATE seat SET sell = 1 where id = :id_seat ';
+				$stmt = $con->prepare ( $sql );
+				$stmt->bindParam (':id_seat', $service_id, PDO::PARAM_INT );
+				$stmt->execute ();
+				$resultado = true;
+			break;
+			case 'hotel' :
+			
+			break;
+			default:
+			//
+			break;
+		}
+		
+		return $resultado;
 	}
 	
     public function obtener_servicios_carrito(){
