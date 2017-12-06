@@ -6,44 +6,46 @@
     <div class="container pt-5">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 center-horizontal">
-                <form method="post" action="">
                     <h3>Carrito de Compras</h3>
                     <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Servicio</th>
-                                <th>Descipción</th>
-                                <th>Precio Total</th>
-                                <th>Eliminar</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for  detalle in carrito %}
-                                <tr>
-                                    <td id="servicio">{{ detalle.type }}</td>
-                                    <td id="description">{{ detalle.descripcion }}</td>
-                                    <td id="price">{{ detalle.total }}</td>
-                                    <td>
-                                        <form action="?action=eliminar_servicio_carrito&cart_id={{detalle.cart_id}}&type={{ detalle.type }}&id_servicio={{detalle.id_servicio}}"
-                                              class="d-inline">
-                                            <button type="submit"
-                                                    class="btn btn-primary btn-sm px-2 waves-effect waves-light btn-action"
-                                                    title="Eliminar elemento del carrito"
-                                                    id="toggleButton">
-                                                <i class="fa fa-trash mt-0"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+					<table class="table table-bordered">
+						<thead>
+						<tr>
+							<th>Servicio</th>
+							<th>Descipción</th>
+							<th>Precio Total</th>
+							<th>Eliminar</th>
+						</tr>
+						</thead>
+						<tbody>
+						{% for  detalle in carrito %}
+							<tr>
+								<td id="servicio">{{ detalle.type }}</td>
+								<td id="description">{{ detalle.descripcion }}</td>
+								<td id="price">{{ detalle.total }}</td>
+								<td>
+									<form method="POST" action="?action=eliminar_servicio_carrito"
+										  class="d-inline">
+										<input type="hidden" name="id_servicio" value="{{ detalle.id_servicio }}">
+										<input type="hidden" name="id_serv" value="{{ detalle.id_serv }}">
+										<input type="hidden" name="type" value="{{ detalle.type }}">  
+										<input type="hidden" name="cart_id" value="{{ detalle.cart_id }}">  
+										<button type="submit"
+												class="btn btn-primary btn-sm px-2 waves-effect waves-light btn-action"
+												title="Eliminar elemento del carrito"
+												id="toggleButton">
+											<i class="fa fa-trash mt-0"></i>
+										</button>
+									</form>
+								</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
                     </div>
                     <td><a href="?action=pagar_carrito&cart_id={{ cart_id }}">CHECK OUT ***</a></td>
                     <td> Items : {{ items }}</td>
                     <td> Importe Total a Pagar $ : {{ imp_total }}</td>
-                </form>
             </div>
         </div>
     </div>
