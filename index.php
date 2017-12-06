@@ -102,7 +102,10 @@ if (!isset($_GET["action"])) {
                 CarritoController::getInstance()->eliminar_servicio_carrito($_POST);
                 break;
 			case 'pagar_carrito' :
-                CarritoController::getInstance()->pagar_carrito();
+                CarritoController::getInstance()->pagar_carrito($_POST);
+                break;
+            case 'pago' :
+                CarritoController::getInstance()->pago($_POST);
                 break;
 		    case 'historial' :
                 HistorialController::getInstance()->listar_historial();

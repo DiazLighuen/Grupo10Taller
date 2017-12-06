@@ -35,4 +35,13 @@ class InicioController
         $view->inicio($hospitalName);
     }
 
+    public function home()
+    {
+        $view = new InicioView();
+
+        $hospitalName = 'TresVagos';
+
+        $view->home($hospitalName);
+    }
+
 }

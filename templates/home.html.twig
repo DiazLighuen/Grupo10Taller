@@ -1,18 +1,47 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}
+    Inicio
+{% endblock %}
+
 {% block content %}
-    <div class="row">
-        <div class="container">
-            <div class="col-sm-12 pt-5">
-                <div class="jumbotron">
-                    <h1 class="h1-responsive">Bienvenido al sitio del {{ hospitalData.name }}</h1>
-                    <p class="lead">{{ hospitalData.description }}</p>
-                    <hr class="my-2">
-                    <p>Contacto: {{ hospitalData.contactEmail }}
-                    </p>
-                    <a class="btn btn-primary btn-lg" role="button" aria-label="Obtener mas informacion">M&aacute;s informaci&oacute;n</a>
+
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 center-horizontal">
+                <!--Form with header-->
+                <div>
+
+                    <section class="h5 text-center mb-4 "><h1>Servicios</h1>
+                        <article class="card card-body " id="articulo1">
+                            <h2 class="fa fa-search prefix grey-text"> Buscar Hoteles</h2>
+                            <p>TresVagos te permite buscar el hotel para tus próximas vacaciones</p>
+                            <a class="btn btn-primary btn-lg waves-effect waves-light green" role="button"
+                               href="index.php?action=buscar_hotel" aria-label="Buscar Hotel">Buscar Hotel</a>
+                        </article>
+                        <article class="card card-body " id="articulo2">
+                            <h2 class="fa fa-search prefix grey-text"> Buscar Vuelos</h2>
+                            <p>TresVagos te permite buscar los vuelos disponibles para tus próximas vacaciones.</p>
+                            <a class="btn btn-primary btn-lg waves-effect waves-light green" role="button"
+                               href="index.php?action=buscar_vuelo" aria-label="Buscar Vuelo">Buscar Vuelo</a>
+                        </article>
+                        <article class="card card-body " id="articulo3">
+                            <h2 class="fa fa-search prefix grey-text"> Buscar Automóviles</h2>
+                            <p>TresVagos te permite buscar el automóvil para tus próximas vacaciones.</p>
+                            <a class="btn btn-primary btn-lg waves-effect waves-light green" role="button"
+                               href="index.php?action=buscar_automovil" aria-label="Buscar Automovil">Buscar
+                                Automóvil</a>
+                        </article>
+                    </section>
+
                 </div>
+                <!--/Form with header-->
             </div>
         </div>
     </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>toastr.success('El pago fue procesado correctamente');</script>
 {% endblock %}

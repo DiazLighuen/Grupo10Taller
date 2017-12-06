@@ -69,44 +69,25 @@ class CarritoController extends BaseController{
 		$this->redirect('carrito');
 	}	
 
-	public function pagar_carrito(){
-      if ($this->is_method_post()){
-		//var_dump($_SESSION['imp_total']);
-        //pagar_carrito();
-		
-		$servicios = CarritoRepository::getInstance()->pagar_carrito($_SESSION['cart_id']);
-		
-		InicioController::getInstance()->inicio();
-      }
-	  else {
-		$servicios = CarritoRepository::getInstance()->obtener_servicios_carrito();
-		//var_dump($servicios);
-		$carrito = array();
-		$_SESSION['items'] = 0;
-		$_SESSION['imp_total'] = 0;
-        foreach ($servicios as $servicio) {
-			//var_dump($servicio);
-			//var_dump($servicio[0]);
-			//$servicio_detalle = CarritoRepository::getInstance()->obtener_servicio_detalle($servicio->cart_id, $servicio->type, $servicio->service_id);
-			$servicio_detalle = CarritoRepository::getInstance()->obtener_servicio_detalle($servicio[0], $servicio[1], $servicio[2]);
-			//var_dump($servicio_detalle);
-			array_push($carrito, $servicio_detalle);
-			$_SESSION['items'] += 1;
-			$_SESSION['imp_total'] += $servicio_detalle[0][4];
-			$_SESSION['cart_id'] = $servicio_detalle[0][0];
-        }
-			//var_dump($_SESSION['items']);
-			//var_dump($_SESSION['imp_total']);
-		//var_dump($carrito);
-		$params['carrito'] = $carrito;
-		//$hospitalName = 'TresVagos';
-		//$params['hospitalName'] = $hospitalName;
-		$params['items'] = $_SESSION['items'];
-		$params['imp_total'] = $_SESSION['imp_total'];
+	public function pagar_carrito($data){
+
+        $params['cart_id']=$data['cart_id'];
+        $params['items']=$data['items'];
+        $params['imp_total']=$data['imp_total'];
 		$view = new CarritoView();
-		//var_dump($carrito);
 		$view->pagar_carrito($params);
-		}	
+
+    }
+
+    public function pago($data){
+
+        $params['cart_id']=$data['cart_id'];
+        $params['user_id']=$_SESSION['id'];
+
+        //CarritoRepository::getInstance()->pago($params);
+
+        InicioController::getInstance()->home();
+
     }
 
 }

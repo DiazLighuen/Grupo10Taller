@@ -6,61 +6,37 @@
     <div class="container pt-5">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 center-horizontal">
-                <form method="post" action="">
-                  <h3>Check out Carrito de Compras</h3>
-                  <div class="table-responsive">
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Servicio</th>
-                          <th>Descipción</th>
-                          <th>Precio Total</th>
-                          <th>Eliminar</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                      {% for  detalle in carrito %}
-                        <tr>
-                          <td id="servicio">{{ detalle[0].type }}</td>
-                          <td id="description">{{ detalle[0].descripcion }}</td>
-                          <td id="price">{{ detalle[0].total }}</td>
-						  <td><a href="index.php?action=eliminar_servicio_carrito&cart_id={{detalle[0].cart_id}}&type={{ detalle[0].type }}&id={{detalle[0].id}}">Eliminar</a></td>
-					    </tr>
-                      {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-				  <td> Items : {{ items }}</td>
-                  <td> Importe Total a Pagar $ : {{ imp_total }}</td>
-				  </p>
-				  
-					<p>
-				    <div class="card-body mx-4 mt-4">
-                        <!--Body-->
-                        <form id="pagar">
-                            <div class="md-form">
-                                <input type="text" id="titular" name="titular" class="form-control" autofocus required>
-                                <label for="Form-email4">Titular</label>
-                            </div>
-                            <div class="md-form pb-3">
-                                <input type="text" id="tarjeta" name="tarjeta" class="form-control" required>
-                                <label for="Form-email4">Tarjeta</label>
-                            </div>
-                            <div class="md-form pb-3">
-                                <input type="text" id="vencimiento" name="vencimiento" class="form-control" required>
-                                <label for="Form-email4">Vencimiento</label>
-                            </div>
-                            <div class="md-form pb-3">
-                                <input type="text" id="seguridad" name="seguridad" class="form-control" required>
-                                <label for="Form-email4">Seguridad</label>
-                            </div>
-                            <div class="text-center mb-4">
-								<input class="btn btn-primary btn-block z-depth-2 green" type="submit" value="Pagar">
-                           </div>
-                        </form>
-                    </div>
-					</p>
-                </form>
+
+                <td> Items : {{ items }}</td>
+                <td> Importe Total a Pagar $ : {{ imp_total }}</td>
+
+                <p>
+                <div class="card-body mx-4 mt-4">
+                    <!--Body-->
+                    <form id="pagar" method="POST" action="?action=pago">
+                        <input type="hidden" name="cart_id" value="{{ cart_id }}">
+                        <div class="md-form">
+                            <input type="text" id="titular" name="titular" class="form-control" autofocus required>
+                            <label for="Form-email4">Titular</label>
+                        </div>
+                        <div class="md-form pb-3">
+                            <input type="text" id="tarjeta" name="tarjeta" class="form-control" required>
+                            <label for="Form-email4">Tarjeta</label>
+                        </div>
+                        <div class="md-form pb-3">
+                            <input type="text" id="vencimiento" name="vencimiento" class="form-control" required>
+                            <label for="Form-email4">Vencimiento</label>
+                        </div>
+                        <div class="md-form pb-3">
+                            <input type="text" id="seguridad" name="seguridad" class="form-control" required>
+                            <label for="Form-email4">Seguridad</label>
+                        </div>
+                        <div class="text-center mb-4">
+                            <input class="btn btn-primary btn-block z-depth-2 green" type="submit" id='boton'value="Pagar">
+                        </div>
+                    </form>
+                </div>
+                </p>
             </div>
         </div>
     </div>
