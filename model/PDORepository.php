@@ -14,7 +14,7 @@ abstract class PDORepository extends PDO{
         $p=self::PASSWORD;
         $db=self::DB;
         $host=self::HOST;
-        $connection = new PDO ("mysql:dbname=$db;host=$host;names='utf8'", $u, $p);
+        $connection = new PDO ("mysql:dbname=$db;host=$host;charset=utf8", $u, $p);
 
         return $connection;
     }
