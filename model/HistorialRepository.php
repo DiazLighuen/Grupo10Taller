@@ -57,7 +57,7 @@ class HistorialRepository extends PDORepository{
 				INNER JOIN user AS u ON r.hotel_id = u.id
 				INNER JOIN city AS c ON h.city_id = c.id
 				INNER JOIN room_reserve AS rr ON rr.id_room = r.id
-				WHERE serv.cart_id = :cart_id AND serv.type = 'room'";
+				WHERE serv.cart_id = :cart_id AND serv.type = 'hotel'";
         $stmt = $con->prepare ( $sql );
         $stmt->bindParam (':cart_id', $id, PDO::PARAM_INT );
         $stmt->execute ();

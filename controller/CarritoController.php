@@ -84,7 +84,7 @@ class CarritoController extends BaseController{
         $params['cart_id']=$data['cart_id'];
         $params['user_id']=$_SESSION['id'];
 
-        //CarritoRepository::getInstance()->pago($params);
+        CarritoRepository::getInstance()->pago($params);
 
         InicioController::getInstance()->home();
 

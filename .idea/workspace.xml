@@ -4,13 +4,8 @@
     <list default="true" id="e3472e88-0a6f-4e05-9098-57686f289b13" name="Default" comment="agregado de history">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/CarritoController.php" afterPath="$PROJECT_DIR$/controller/CarritoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/InicioController.php" afterPath="$PROJECT_DIR$/controller/InicioController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/HistorialRepository.php" afterPath="$PROJECT_DIR$/model/HistorialRepository.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/PDORepository.php" afterPath="$PROJECT_DIR$/model/PDORepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/home.html.twig" afterPath="$PROJECT_DIR$/templates/home.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/listar_carrito.html.twig" afterPath="$PROJECT_DIR$/templates/listar_carrito.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/pagar_carrito.html.twig" afterPath="$PROJECT_DIR$/templates/pagar_carrito.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/InicioView.php" afterPath="$PROJECT_DIR$/view/InicioView.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,8 +20,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="104" column="59" lean-forward="false" selection-start-line="104" selection-start-column="59" selection-end-line="104" selection-end-column="59" />
+            <state relative-caret-position="345">
+              <caret line="110" column="63" lean-forward="true" selection-start-line="110" selection-start-column="63" selection-end-line="110" selection-end-column="63" />
               <folding>
                 <marker date="1512529177272" expanded="true" signature="4310:4333" ph="..." />
               </folding>
@@ -34,12 +29,85 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CarritoController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HistorialController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controller/HistorialController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="36" column="72" lean-forward="true" selection-start-line="36" selection-start-column="72" selection-end-line="36" selection-end-column="72" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HistorialRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/HistorialRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="347">
+              <caret line="59" column="68" lean-forward="false" selection-start-line="59" selection-start-column="68" selection-end-line="59" selection-end-column="68" />
+              <folding>
+                <marker date="1512532428031" expanded="true" signature="405:578" ph="SELECT c.dat... cart" />
+                <marker date="1512532428031" expanded="true" signature="871:1297" ph="SELECT :cart... seat" />
+                <marker date="1512532428031" expanded="true" signature="871:1322" ph="SELECT u.nam... services" />
+                <marker date="1512532428031" expanded="true" signature="1621:2065" ph="SELECT u.nam... services" />
+                <marker date="1512532428031" expanded="true" signature="2361:2743" ph="SELECT u.nam... services" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HistorialView.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/view/HistorialView.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="historial.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/historial.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="22" column="63" lean-forward="false" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CarritoController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controller/CarritoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="88" column="44" lean-forward="false" selection-start-line="88" selection-start-column="44" selection-end-line="88" selection-end-column="44" />
+            <state relative-caret-position="362">
+              <caret line="86" column="8" lean-forward="false" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="8" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CarritoRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/CarritoRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="211" column="24" lean-forward="false" selection-start-line="211" selection-start-column="20" selection-end-line="211" selection-end-column="24" />
+              <folding>
+                <marker date="1512531364816" expanded="true" signature="392:440" ph="INSERT INTO cart... " />
+                <marker date="1512531364816" expanded="true" signature="650:711" ph="SELECT cart_... user_consumer" />
+                <marker date="1512531364816" expanded="true" signature="1115:1201" ph="INSERT INTO services... " />
+                <marker date="1512531364816" expanded="true" signature="1953:2073" ph="INSERT INTO vehicle_reserve... " />
+                <marker date="1512531364816" expanded="true" signature="2517:2561" ph="UPDATE seat " />
+                <marker date="1512531364816" expanded="true" signature="2788:2899" ph="INSERT INTO room_reserve... " />
+                <marker date="1512531364816" expanded="true" signature="3458:3616" ph="SELECT s.* F... user_consumer" />
+                <marker date="1512531364816" expanded="true" signature="3973:4509" ph="SELECT :cart... seat" />
+                <marker date="1512531364816" expanded="true" signature="4565:4946" ph="SELECT :cart... room_reserve" />
+                <marker date="1512531364816" expanded="true" signature="5001:5632" ph="SELECT :cart... vehicle_reserve" />
+                <marker date="1512531364816" expanded="true" signature="6269:6360" ph="delete from " />
+                <marker date="1512531364816" expanded="true" signature="6945:6992" ph="DELETE FROM " />
+                <marker date="1512531364816" expanded="true" signature="7247:7291" ph="UPDATE seat " />
+                <marker date="1512531364816" expanded="true" signature="7518:7562" ph="DELETE FROM " />
+                <marker date="1512531364816" expanded="true" signature="7887:7962" ph="insert into history... " />
+                <marker date="1512531364816" expanded="true" signature="8396:8467" ph="update user_... " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -64,51 +132,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pagar_carrito.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/pagar_carrito.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="43" column="19" lean-forward="false" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/home.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="447">
               <caret line="45" column="65" lean-forward="true" selection-start-line="45" selection-start-column="65" selection-end-line="45" selection-end-column="65" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inicio.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/inicio.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="listar_carrito.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/listar_carrito.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="48" column="78" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/LoginController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="67" column="16" lean-forward="true" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -131,6 +159,7 @@
       <find>?action=login</find>
       <find>?action=home</find>
       <find>var_dump</find>
+      <find>pago</find>
     </findStrings>
     <dirStrings>
       <dir>D:\Programas\XAMPP\htdocs\Taller\Grupo10Taller</dir>
@@ -167,7 +196,6 @@
         <option value="$PROJECT_DIR$/view/CarritoView.php" />
         <option value="$PROJECT_DIR$/templates/listar_carrito_sin_eliminar.html.twig" />
         <option value="$PROJECT_DIR$/view/HistorialView.php" />
-        <option value="$PROJECT_DIR$/model/HistorialRepository.php" />
         <option value="$PROJECT_DIR$/controller/HistorialController.php" />
         <option value="$PROJECT_DIR$/templates/historial.html.twig" />
         <option value="$PROJECT_DIR$/model/CarritoRepository.php" />
@@ -184,8 +212,9 @@
         <option value="$PROJECT_DIR$/templates/pagar_carrito.html.twig" />
         <option value="$PROJECT_DIR$/controller/InicioController.php" />
         <option value="$PROJECT_DIR$/view/InicioView.php" />
-        <option value="$PROJECT_DIR$/controller/CarritoController.php" />
         <option value="$PROJECT_DIR$/templates/home.html.twig" />
+        <option value="$PROJECT_DIR$/controller/CarritoController.php" />
+        <option value="$PROJECT_DIR$/model/HistorialRepository.php" />
       </list>
     </option>
   </component>
@@ -244,11 +273,6 @@
               <item name="Grupo10Taller" type="b2602c69:ProjectViewProjectNode" />
               <item name="Grupo10Taller" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Grupo10Taller" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Grupo10Taller" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Grupo10Taller" type="b2602c69:ProjectViewProjectNode" />
@@ -403,7 +427,7 @@
       <workItem from="1511315999373" duration="241000" />
       <workItem from="1512321301116" duration="28313000" />
       <workItem from="1512432238508" duration="7256000" />
-      <workItem from="1512482594008" duration="37353000" />
+      <workItem from="1512482594008" duration="38453000" />
     </task>
     <task id="LOCAL-00001" summary="Actualizacion de la base de datos">
       <created>1512329789872</created>
@@ -496,11 +520,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512520977222</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="solucion de pagos completa">
+      <created>1512531392104</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1512531392104</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75072000" />
+    <option name="totallyTimeSpent" value="76172000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -581,7 +612,8 @@
     <MESSAGE value="front para agregar al carrito" />
     <MESSAGE value="front para compra de auto y vuelo" />
     <MESSAGE value="arreglo minimo de front en detalle de carrito" />
-    <option name="LAST_COMMIT_MESSAGE" value="arreglo minimo de front en detalle de carrito" />
+    <MESSAGE value="solucion de pagos completa" />
+    <option name="LAST_COMMIT_MESSAGE" value="solucion de pagos completa" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -755,22 +787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/HistorialController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="47" column="9" lean-forward="false" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/historial.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="34" column="47" lean-forward="true" selection-start-line="25" selection-start-column="40" selection-end-line="34" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/hotel_show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -791,14 +807,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="50" column="90" lean-forward="false" selection-start-line="50" selection-start-column="90" selection-end-line="50" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/HistorialView.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -835,44 +843,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/HistorialRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="45" column="13" lean-forward="false" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="13" />
-          <folding>
-            <marker date="1512507157638" expanded="true" signature="405:578" ph="SELECT c.dat... cart" />
-            <marker date="1512507157638" expanded="true" signature="871:1297" ph="SELECT :cart... seat" />
-            <marker date="1512507157638" expanded="true" signature="871:1322" ph="SELECT u.nam... services" />
-            <marker date="1512507157638" expanded="true" signature="1621:2064" ph="SELECT u.nam... services" />
-            <marker date="1512507157638" expanded="true" signature="2360:2742" ph="SELECT u.nam... services" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/HotelRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="453">
           <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/CarritoRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-36">
-          <caret line="122" column="58" lean-forward="true" selection-start-line="122" selection-start-column="58" selection-end-line="122" selection-end-column="58" />
-          <folding>
-            <marker date="1512531364816" expanded="true" signature="392:440" ph="INSERT INTO cart... " />
-            <marker date="1512531364816" expanded="true" signature="650:711" ph="SELECT cart_... user_consumer" />
-            <marker date="1512531364816" expanded="true" signature="1115:1201" ph="INSERT INTO services... " />
-            <marker date="1512531364816" expanded="true" signature="2517:2561" ph="UPDATE seat " />
-            <marker date="1512531364816" expanded="true" signature="2788:2899" ph="INSERT INTO room_reserve... " />
-            <marker date="1512531364816" expanded="true" signature="3458:3616" ph="SELECT s.* F... user_consumer" />
-            <marker date="1512531364816" expanded="true" signature="3973:4509" ph="SELECT :cart... seat" />
-            <marker date="1512531364816" expanded="true" signature="4565:4946" ph="SELECT :cart... room_reserve" />
-            <marker date="1512531364816" expanded="true" signature="7897:7971" ph="insert into history... " />
-            <marker date="1512531364816" expanded="true" signature="8226:8297" ph="update user_... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -916,16 +891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="104" column="59" lean-forward="false" selection-start-line="104" selection-start-column="59" selection-end-line="104" selection-end-column="59" />
-          <folding>
-            <marker date="1512529177272" expanded="true" signature="4310:4333" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/inicio.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -938,14 +903,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
           <caret line="43" column="19" lean-forward="false" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/CarritoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="88" column="44" lean-forward="false" selection-start-line="88" selection-start-column="44" selection-end-line="88" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -978,6 +935,87 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
           <caret line="45" column="65" lean-forward="true" selection-start-line="45" selection-start-column="65" selection-end-line="45" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/CarritoRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="211" column="24" lean-forward="false" selection-start-line="211" selection-start-column="20" selection-end-line="211" selection-end-column="24" />
+          <folding>
+            <marker date="1512531364816" expanded="true" signature="392:440" ph="INSERT INTO cart... " />
+            <marker date="1512531364816" expanded="true" signature="650:711" ph="SELECT cart_... user_consumer" />
+            <marker date="1512531364816" expanded="true" signature="1115:1201" ph="INSERT INTO services... " />
+            <marker date="1512531364816" expanded="true" signature="1953:2073" ph="INSERT INTO vehicle_reserve... " />
+            <marker date="1512531364816" expanded="true" signature="2517:2561" ph="UPDATE seat " />
+            <marker date="1512531364816" expanded="true" signature="2788:2899" ph="INSERT INTO room_reserve... " />
+            <marker date="1512531364816" expanded="true" signature="3458:3616" ph="SELECT s.* F... user_consumer" />
+            <marker date="1512531364816" expanded="true" signature="3973:4509" ph="SELECT :cart... seat" />
+            <marker date="1512531364816" expanded="true" signature="4565:4946" ph="SELECT :cart... room_reserve" />
+            <marker date="1512531364816" expanded="true" signature="5001:5632" ph="SELECT :cart... vehicle_reserve" />
+            <marker date="1512531364816" expanded="true" signature="6269:6360" ph="delete from " />
+            <marker date="1512531364816" expanded="true" signature="6945:6992" ph="DELETE FROM " />
+            <marker date="1512531364816" expanded="true" signature="7247:7291" ph="UPDATE seat " />
+            <marker date="1512531364816" expanded="true" signature="7518:7562" ph="DELETE FROM " />
+            <marker date="1512531364816" expanded="true" signature="7887:7962" ph="insert into history... " />
+            <marker date="1512531364816" expanded="true" signature="8396:8467" ph="update user_... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="110" column="63" lean-forward="true" selection-start-line="110" selection-start-column="63" selection-end-line="110" selection-end-column="63" />
+          <folding>
+            <marker date="1512529177272" expanded="true" signature="4310:4333" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/historial.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="22" column="63" lean-forward="false" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/HistorialView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/HistorialController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="36" column="72" lean-forward="true" selection-start-line="36" selection-start-column="72" selection-end-line="36" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/HistorialRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="59" column="68" lean-forward="false" selection-start-line="59" selection-start-column="68" selection-end-line="59" selection-end-column="68" />
+          <folding>
+            <marker date="1512532428031" expanded="true" signature="405:578" ph="SELECT c.dat... cart" />
+            <marker date="1512532428031" expanded="true" signature="871:1297" ph="SELECT :cart... seat" />
+            <marker date="1512532428031" expanded="true" signature="871:1322" ph="SELECT u.nam... services" />
+            <marker date="1512532428031" expanded="true" signature="1621:2065" ph="SELECT u.nam... services" />
+            <marker date="1512532428031" expanded="true" signature="2361:2743" ph="SELECT u.nam... services" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/CarritoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="86" column="8" lean-forward="false" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="8" />
           <folding />
         </state>
       </provider>
