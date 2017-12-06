@@ -4,8 +4,7 @@
     <list default="true" id="e3472e88-0a6f-4e05-9098-57686f289b13" name="Default" comment="agregado de history">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/PDORepository.php" afterPath="$PROJECT_DIR$/model/PDORepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/automovil_show.html.twig" afterPath="$PROJECT_DIR$/templates/automovil_show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vuelo_show.html.twig" afterPath="$PROJECT_DIR$/templates/vuelo_show.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/detalle_carrito.html.twig" afterPath="$PROJECT_DIR$/templates/detalle_carrito.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,11 +16,43 @@
   <component name="ComposerSettings" doNotAsk="true" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="historial.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/historial.html.twig">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="34" column="47" lean-forward="true" selection-start-line="25" selection-start-column="40" selection-end-line="34" selection-end-column="47" />
+            <state relative-caret-position="194">
+              <caret line="101" column="76" lean-forward="false" selection-start-line="101" selection-start-column="76" selection-end-line="101" selection-end-column="76" />
+              <folding>
+                <marker date="1512518219593" expanded="true" signature="4251:4274" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/layout.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="38" lean-forward="true" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PDORepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/PDORepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CarritoController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controller/CarritoController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="67" column="21" lean-forward="false" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -30,102 +61,18 @@
       <file leaf-file-name="listar_carrito.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/listar_carrito.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="39" column="36" lean-forward="true" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
+            <state relative-caret-position="-221">
+              <caret line="8" column="46" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CarritoRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/CarritoRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="114" column="20" lean-forward="false" selection-start-line="114" selection-start-column="20" selection-end-line="114" selection-end-column="20" />
-              <folding>
-                <marker date="1512516118795" expanded="true" signature="392:440" ph="INSERT INTO cart... " />
-                <marker date="1512516118795" expanded="true" signature="650:711" ph="SELECT cart_... user_consumer" />
-                <marker date="1512516118795" expanded="true" signature="1118:1204" ph="INSERT INTO services... " />
-                <marker date="1512516118795" expanded="true" signature="1956:2076" ph="INSERT INTO vehicle_reserve... " />
-                <marker date="1512516118795" expanded="true" signature="2520:2564" ph="UPDATE seat " />
-                <marker date="1512516118795" expanded="true" signature="2791:2902" ph="INSERT INTO room_reserve... " />
-                <marker date="1512516118795" expanded="true" signature="3464:3622" ph="SELECT s.* F... user_consumer" />
-                <marker date="1512516118795" expanded="true" signature="3979:4497" ph="SELECT :cart... seat" />
-                <marker date="1512516118795" expanded="true" signature="4553:4923" ph="SELECT :cart... room_reserve" />
-                <marker date="1512516118795" expanded="true" signature="4978:5601" ph="SELECT :cart... vehicle_reserve" />
-                <marker date="1512516118795" expanded="true" signature="6302:6393" ph="delete from " />
-                <marker date="1512516118795" expanded="true" signature="6819:6893" ph="insert into history... " />
-                <marker date="1512516118795" expanded="true" signature="7148:7219" ph="update user_... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CarritoController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/CarritoController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="detalle_carrito.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="detalle_carrito.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/detalle_carrito.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="89" lean-forward="false" selection-start-line="8" selection-start-column="89" selection-end-line="8" selection-end-column="89" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hotel_show.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/hotel_show.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="54" column="90" lean-forward="true" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="90" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vuelo_show.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/vuelo_show.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="50" column="90" lean-forward="false" selection-start-line="50" selection-start-column="90" selection-end-line="50" selection-end-column="90" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="automovil_show.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/automovil_show.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="50" column="90" lean-forward="false" selection-start-line="50" selection-start-column="90" selection-end-line="50" selection-end-column="90" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HistorialView.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/view/HistorialView.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HistorialController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/HistorialController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="47" column="9" lean-forward="false" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+            <state relative-caret-position="119">
+              <caret line="7" column="51" lean-forward="false" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -173,23 +120,24 @@
         <option value="$PROJECT_DIR$/model/LoginRepository.php" />
         <option value="$PROJECT_DIR$/model/UserModel.php" />
         <option value="$PROJECT_DIR$/controller/LoginController.php" />
-        <option value="$PROJECT_DIR$/model/PDORepository.php" />
         <option value="$PROJECT_DIR$/js/login.js" />
         <option value="$PROJECT_DIR$/templates/navigation.html.twig" />
         <option value="$PROJECT_DIR$/view/CarritoView.php" />
         <option value="$PROJECT_DIR$/templates/listar_carrito_sin_eliminar.html.twig" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/view/HistorialView.php" />
         <option value="$PROJECT_DIR$/model/HistorialRepository.php" />
         <option value="$PROJECT_DIR$/controller/HistorialController.php" />
         <option value="$PROJECT_DIR$/templates/historial.html.twig" />
-        <option value="$PROJECT_DIR$/controller/CarritoController.php" />
         <option value="$PROJECT_DIR$/templates/listar_carrito.html.twig" />
         <option value="$PROJECT_DIR$/model/CarritoRepository.php" />
-        <option value="$PROJECT_DIR$/templates/detalle_carrito.html.twig" />
         <option value="$PROJECT_DIR$/templates/hotel_show.html.twig" />
         <option value="$PROJECT_DIR$/templates/vuelo_show.html.twig" />
         <option value="$PROJECT_DIR$/templates/automovil_show.html.twig" />
+        <option value="$PROJECT_DIR$/controller/CarritoController.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/model/PDORepository.php" />
+        <option value="$PROJECT_DIR$/templates/layout.html.twig" />
+        <option value="$PROJECT_DIR$/templates/detalle_carrito.html.twig" />
       </list>
     </option>
   </component>
@@ -418,7 +366,7 @@
       <workItem from="1511315999373" duration="241000" />
       <workItem from="1512321301116" duration="28313000" />
       <workItem from="1512432238508" duration="7256000" />
-      <workItem from="1512482594008" duration="26626000" />
+      <workItem from="1512482594008" duration="29657000" />
     </task>
     <task id="LOCAL-00001" summary="Actualizacion de la base de datos">
       <created>1512329789872</created>
@@ -497,11 +445,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512517607134</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="front para compra de auto y vuelo">
+      <created>1512517690545</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1512517690545</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64345000" />
+    <option name="totallyTimeSpent" value="67376000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -570,23 +525,14 @@
     <MESSAGE value="arreglos en front" />
     <MESSAGE value="arreglos de front" />
     <MESSAGE value="front para agregar al carrito" />
-    <option name="LAST_COMMIT_MESSAGE" value="front para agregar al carrito" />
+    <MESSAGE value="front para compra de auto y vuelo" />
+    <option name="LAST_COMMIT_MESSAGE" value="front para compra de auto y vuelo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/model/LoginRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="27" lean-forward="false" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="32" />
-          <folding>
-            <marker date="1512358109111" expanded="true" signature="489:577" ph="SELECT id, u... user" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/PDORepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -600,8 +546,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1512514813996" expanded="true" signature="4192:4274" ph="..." />
-            <marker date="1512514813996" expanded="true" signature="4251:4274" ph="..." />
+            <marker date="1512518219593" expanded="true" signature="4251:4274" ph="..." />
           </folding>
         </state>
       </provider>
@@ -745,14 +690,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/PDORepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/json/json.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
@@ -853,17 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="112" column="20" lean-forward="false" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="20" />
-          <folding>
-            <marker date="1512514813996" expanded="true" signature="4192:4274" ph="..." />
-            <marker date="1512514813996" expanded="true" signature="4251:4274" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/view/CarritoView.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -894,30 +820,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/HistorialView.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/historial.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="34" column="47" lean-forward="true" selection-start-line="25" selection-start-column="40" selection-end-line="34" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/listar_carrito.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="39" column="36" lean-forward="true" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/CarritoRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
@@ -940,18 +842,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/CarritoController.php">
+    <entry file="file://$PROJECT_DIR$/templates/historial.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/detalle_carrito.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="89" lean-forward="false" selection-start-line="8" selection-start-column="89" selection-end-line="8" selection-end-column="89" />
+        <state relative-caret-position="374">
+          <caret line="34" column="47" lean-forward="true" selection-start-line="25" selection-start-column="40" selection-end-line="34" selection-end-column="47" />
           <folding />
         </state>
       </provider>
@@ -976,6 +870,64 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="50" column="90" lean-forward="false" selection-start-line="50" selection-start-column="90" selection-end-line="50" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/HistorialView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/CarritoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="67" column="21" lean-forward="false" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="101" column="76" lean-forward="false" selection-start-line="101" selection-start-column="76" selection-end-line="101" selection-end-column="76" />
+          <folding>
+            <marker date="1512518219593" expanded="true" signature="4251:4274" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/PDORepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="38" lean-forward="true" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/listar_carrito.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-221">
+          <caret line="8" column="46" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/detalle_carrito.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="51" lean-forward="false" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
           <folding />
         </state>
       </provider>
