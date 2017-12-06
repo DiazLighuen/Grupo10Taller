@@ -26,7 +26,8 @@ class CarritoController extends BaseController{
 		$carrito_id = CarritoRepository::getInstance()->buscar_carrito($usuario_id);	
 		$service_id = $data['id_servicio'];
 		$type = $data['type'];
-		$service_id_nuevo = CarritoRepository::getInstance()->agregar_a_carrito_y_reservar($service_id,$type,$carrito_id,$usuario_id,$fecha_desde,$fecha_hasta);
+		$price = $data['price'];
+		$service_id_nuevo = CarritoRepository::getInstance()->agregar_a_carrito_y_reservar($service_id,$type,$carrito_id,$usuario_id,$fecha_desde,$fecha_hasta,$price);
 		if ($service_id_nuevo){
 			$this->redirect('carrito');
 		}
@@ -63,9 +64,10 @@ class CarritoController extends BaseController{
 		$cart_id = $data['cart_id'];
 		$type = $data['type'];
 		$service_id = $data['id_servicio'];
+		$price = $data['price'];
 		// para el caso de room_reserve o vehicle_reserve
 		$serv_id = $data['id_serv'];
-		$borrar = CarritoRepository::getInstance()->eliminar_servicio_carrito($cart_id, $type, $service_id,$serv_id);
+		$borrar = CarritoRepository::getInstance()->eliminar_servicio_carrito($cart_id, $type, $service_id,$serv_id,$price);
 		$this->redirect('carrito');
 	}	
 

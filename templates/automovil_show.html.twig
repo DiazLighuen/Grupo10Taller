@@ -43,6 +43,7 @@
                             <form method="POST" action="?action=agregar_a_carrito" class="d-inline">
                                 <input type="hidden" name="id_servicio" value="{{ automovil.id }}">
 								<input type="hidden" name="type" value="{{ 'vehicle' }}">
+								<input type="hidden" name="price" value="{{ automovil.price }}">
                                 <button type="submit"
                                         class="btn btn-primary btn-sm px-2 waves-effect waves-light btn-action"
                                         title="Agregar al Carrito"

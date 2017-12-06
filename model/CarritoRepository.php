@@ -34,7 +34,7 @@ class CarritoRepository extends PDORepository{
       return $stmt->fetchColumn();
     }	
 	
-	public function agregar_a_carrito_y_reservar($service_id, $type,$cart_id,$usuario_id,$fecha_desde,$fecha_hasta){
+	public function agregar_a_carrito_y_reservar($service_id, $type,$cart_id,$usuario_id,$fecha_desde,$fecha_hasta,$price){
 		try{
 			// agrego el servicio para el carrito del usuario logueado
 			$con = $this->getConnection ();
@@ -48,12 +48,23 @@ class CarritoRepository extends PDORepository{
 			$stmt->execute ();
 			// genero la reserva para el servicio segun el tipo
 			$id_reserva = $this->generar_reserva($service_id, $type,$usuario_id,$fecha_desde,$fecha_hasta);
+			// recalculo en precio del carrito
+			$this->sumar_precio_carrito($price,$cart_id);
 			return $id_reserva;
 		}
 		catch(Execption $e){
 			$con->rollBack();
 			return false;
 		}
+	}
+	
+	private function sumar_precio_carrito($price,$cart_id){
+		$con = $this->getConnection ();
+		$sql = 'UPDATE cart SET price = (price + :price) where id = :cart_id ';
+		$stmt = $con->prepare ( $sql );
+		$stmt->bindParam (':price', $price, PDO::PARAM_INT );
+		$stmt->bindParam (':cart_id', $cart_id, PDO::PARAM_INT );
+		$stmt->execute ();	
 	}
 	
 	public function generar_reserva($service_id, $type,$usuario_id,$fecha_desde,$fecha_hasta){
@@ -138,8 +149,8 @@ class CarritoRepository extends PDORepository{
 			if ($type == 'vehicle') {
 				$sql = "SELECT :cart_id as cart_id, 'vehicle' as type, vr.id id_serv, vi.id as id_servicio,
 				concat(u.name , ' ' , vi.slots , ' ' , vi.fuel ,' ' , vi.description, ' $', vi.price, ' ', ci.name, ' ', vr.date_in,' ',
-				vr.date_out, ' ', DATEDIFF( vr.date_out, vr.date_in )) as descripcion, 
-				vi.price * DATEDIFF( vr.date_out, vr.date_in ) as total
+				vr.date_out) as descripcion, 
+				vi.price as total
 				FROM vehicle_reserve vr
 				inner join vehicle vi on vr.id_vehicle = vi.id
 				inner join concessionaire co on vi.concessionaire_id = co.concessionaire_id
@@ -157,7 +168,7 @@ class CarritoRepository extends PDORepository{
       return $servicio_detalle;
     }
 	
-    public function eliminar_servicio_carrito($cart_id, $type, $service_id,$serv_id){
+    public function eliminar_servicio_carrito($cart_id, $type, $service_id,$serv_id,$price){
 	  $con = $this->getConnection ();
       $sql = 'delete from services where cart_id = :cart_id and type = :type and service_id = :service_id';
       $stmt = $con->prepare ( $sql );
@@ -169,7 +180,8 @@ class CarritoRepository extends PDORepository{
       $stmt->execute();
 	  
 	  $elimino = $this->eliminar_reserva($type,$serv_id,$service_id);
-	  
+		// recalculo en precio del carrito
+		$this->restar_precio_carrito($price,$cart_id);
       return $elimino;
     }	
 	
@@ -230,6 +242,15 @@ class CarritoRepository extends PDORepository{
 		$stmt->bindParam (':user_id', $user_id, PDO::PARAM_INT );
 		$stmt->bindParam (':carrito_id', $carrito_id, PDO::PARAM_INT );
 		$stmt->execute();
+	}
+	
+	private function restar_precio_carrito($price,$cart_id){
+		$con = $this->getConnection ();
+		$sql = 'UPDATE cart SET price = (price - :price) where id = :cart_id ';
+		$stmt = $con->prepare ( $sql );
+		$stmt->bindParam (':price', $price, PDO::PARAM_INT );
+		$stmt->bindParam (':cart_id', $cart_id, PDO::PARAM_INT );
+		$stmt->execute ();	
 	}	
 
 }
