@@ -56,12 +56,12 @@ if (!isset($_GET["action"])) {
             case 'login' :
                 LoginController::getInstance()->show();
                 break;
-            case 'login_check' :
+			case 'login_check' :
                 LoginController::getInstance()->loginCheck($_POST);
                 break;
-            case 'logout' :
+			case 'logout' :
                 LoginController::getInstance()->logout();
-                break;
+                break;	
             case 'home' :
                 InicioController::getInstance()->inicio();
                 break;
@@ -73,43 +73,43 @@ if (!isset($_GET["action"])) {
                 break;
 			case 'hotel_show' :
 				HotelController::getInstance()->hotel_show($_POST);
-                break;
+                break;		
             case 'buscar_vuelo' :
                 VueloController::getInstance()->buscar_vuelo();
                 break;
-            case 'listar_vuelos' :
+			case 'listar_vuelos' :
                 VueloController::getInstance()->listar_vuelos($_POST);
-                break;
+                break;	
 			case 'vuelo_show' :
 				VueloController::getInstance()->vuelo_show($_POST);
                 break;	
             case 'buscar_automovil' :
                 AutomovilController::getInstance()->buscar_automovil();
                 break;
-            case 'listar_automoviles' :
+			case 'listar_automoviles' :
                 AutomovilController::getInstance()->listar_automoviles($_POST);
                 break;
 			case 'automovil_show' :
 				AutomovilController::getInstance()->automovil_show($_POST);
                 break;
-            case 'agregar_a_carrito' :
-                CarritoController::getInstance()->agregar_a_carrito($_POST);
+			case 'agregar_a_carrito' :
+				CarritoController::getInstance()->agregar_a_carrito($_POST);
                 break;
             case 'carrito' :
                 CarritoController::getInstance()->listar_carrito();
                 break;
             case 'eliminar_servicio_carrito' :
-                CarritoController::getInstance()->eliminar_servicio_carrito();
+                CarritoController::getInstance()->eliminar_servicio_carrito($_POST);
                 break;
-            case 'pagar_carrito' :
+			case 'pagar_carrito' :
                 CarritoController::getInstance()->pagar_carrito();
                 break;
-            case 'historial' :
+		    case 'historial' :
                 HistorialController::getInstance()->listar_historial();
                 break;
             case 'detalle_carrito' :
                 HistorialController::getInstance()->detalle_carrito($_POST);
-                break;
+                break;		
             default:
                 InicioController::getInstance()->inicio();
                 break;
