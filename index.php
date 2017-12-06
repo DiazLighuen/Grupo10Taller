@@ -16,6 +16,7 @@ require_once('model/VueloRepository.php');
 require_once('model/AutomovilRepository.php');
 require_once('model/UserModel.php');
 require_once('model/CarritoRepository.php');
+require_once('model/HistorialRepository.php');
 
 /*Controller Files*/
 require_once('controller/BaseController.php');
@@ -26,6 +27,7 @@ require_once('controller/HotelController.php');
 require_once('controller/VueloController.php');
 require_once('controller/AutomovilController.php');
 require_once('controller/CarritoController.php');
+require_once('controller/HistorialController.php');
 
 /*View Files*/
 require_once('view/TwigView.php');
@@ -42,6 +44,7 @@ require_once('view/AutomovilView.php');
 require_once('view/AutomovilListarView.php');
 require_once('view/AutomovilShowView.php');
 require_once('view/CarritoView.php');
+require_once('view/HistorialView.php');
 
 session_start();
 
@@ -96,11 +99,17 @@ if (!isset($_GET["action"])) {
                 CarritoController::getInstance()->listar_carrito();
                 break;
             case 'eliminar_servicio_carrito' :
-                CarritoController::getInstance()->eliminar_servicio_carrito();
+                CarritoController::getInstance()->eliminar_servicio_carrito($_POST);
                 break;
 			case 'pagar_carrito' :
                 CarritoController::getInstance()->pagar_carrito();
-                break;	
+                break;
+		    case 'historial' :
+                HistorialController::getInstance()->listar_historial();
+                break;
+            case 'detalle_carrito' :
+                HistorialController::getInstance()->detalle_carrito($_POST);
+                break;		
             default:
                 InicioController::getInstance()->inicio();
                 break;

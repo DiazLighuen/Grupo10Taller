@@ -1,0 +1,125 @@
+{% extends 'layout.html.twig' %}
+{% block title %}
+    Listar Carrito
+{% endblock %}
+{% block content %}
+    <div class="container mt-3 mb-5">
+
+        <div class="card card-cascade narrower mb-2">
+            <h1 class="d-flex justify-content-center mt-2 mb-2 font-weight-bold"> Compras </h1>
+        </div>
+        {% if vuelos is not null %}
+            <div class="card card-cascade narrower">
+                <h4 class="d-flex justify-content-start mt-3 mb-3 "> Vuelos </h4>
+            </div>
+            <div class="table-wrapper table-responsive">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Empresa</th>
+                            <th>Origen</th>
+                            <th>Destino</th>
+                            <th>Fecha de salida</th>
+                            <th>Fecha de llegada</th>
+                            <th>Numero de asiento</th>
+                            <th>Clase</th>
+                            <th>Precio</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for  vuelo in vuelos %}
+                            <tr>
+                                <td id="name">{{ vuelo.name }}</td>
+                                <td id="origin">{{ vuelo.origin }}</td>
+                                <td id="destiny">{{ vuelo.destiny }}</td>
+                                <td id="origin_date">{{ vuelo.origin_date }}</td>
+                                <td id="destiny_date">{{ vuelo.destiny_date }}</td>
+                                <td id="number">{{ vuelo.number }}</td>
+                                <td id="class">{{ vuelo.class }}</td>
+                                <td id="price">{{ vuelo.price }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if vehiculos is not null %}
+            <div class="card card-cascade narrower">
+                <h4 class="d-flex justify-content-start mt-3 mb-3"> Vehiculos </h4>
+            </div>
+            <div class="table-wrapper table-responsive">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Empresa</th>
+                            <th>Ciudad</th>
+                            <th>Fecha desde</th>
+                            <th>Fecha hasta</th>
+                            <th>Numero de asientos</th>
+                            <th>Combustible</th>
+                            <th>Precio por dia</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for  vehiculo in vehiculos %}
+                            <tr>
+                                <td id="name">{{ vehiculo.name }}</td>
+                                <td id="city">{{ vehiculo.city }}</td>
+                                <td id="date_in">{{ vehiculo.date_in }}</td>
+                                <td id="date_out">{{ vehiculo.date_out }}</td>
+                                <td id="slots">{{ vehiculo.slots }}</td>
+                                <td id="fuel">{{ vehiculo.fuel }}</td>
+                                <td id="price">{{ vehiculo.price }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if habitaciones is not null %}
+            <div class="card card-cascade narrower">
+                <h4 class="d-flex justify-content-start mt-3 mb-3"> Habitaciones </h4>
+            </div>
+            <div class="table-wrapper table-responsive">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Empresa</th>
+                            <th>Ciudad</th>
+                            <th>Fecha desde</th>
+                            <th>Fecha hasta</th>
+                            <th>Numero de camas</th>
+                            <th>Numero de habitacion</th>
+                            <th title="Calidad del hotel">Estrellas</th>
+                            <th title="Precio por dia">Precio por dia</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for  habitacion in habitaciones %}
+                            <tr>
+                                <td id="name">{{ habitacion.name }}</td>
+                                <td id="city" title={{ habitacion.address }}>{{ habitacion.city }}</td>
+                                <td id="date_in">{{ habitacion.date_in }}</td>
+                                <td id="date_out">{{ habitacion.date_out }}</td>
+                                <td id="beds">{{ habitacion.beds }}</td>
+                                <td id="number">{{ habitacion.number }}</td>
+                                <td id="quality">{{ habitacion.quality }}</td>
+                                <td id="price">{{ habitacion.price }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block scripts %}
+{% endblock %}

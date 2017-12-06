@@ -1,0 +1,49 @@
+{% extends 'layout.html.twig' %}
+{% block title %}
+    Listar Carrito
+{% endblock %}
+{% block content %}
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 center-horizontal">
+                <h3>Historial de Compras</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Precio Total</th>
+                            <th>Detalles</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for  carrito in carritos %}
+                            <tr>
+                                <td id="fecha">{{ carrito.date }}</td>
+                                <td id="price">{{ carrito.price }}</td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <form method="POST" action="?action=detalle_carrito" class="d-inline">
+                                            <input type="hidden" name="id" value="{{ carrito.id }}">
+                                            <button type="submit"
+                                                    class="btn btn-primary btn-sm px-2 waves-effect waves-light btn-action"
+                                                    title="Ver información del compra"
+                                                    id="toggleButton"
+                                                    value="{{ carrito.id }}">
+                                                <i class="fa fa-info mt-0"></i>
+                                            </button>
+                                        </form>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+{% endblock %}
