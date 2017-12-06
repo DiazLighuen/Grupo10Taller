@@ -209,23 +209,27 @@ class CarritoRepository extends PDORepository{
 		return $resultado;	
 	}
 
-    public function pagar_carrito($cart_id){
+    public function pago($params){
 		$con = $this->getConnection ();
-		$sql = 'insert into history (user_consumer_id, cart_id) values (:user_id, :cart_i)';
-		$stmti = $con->prepare ( $sql );
-		$stmti->bindParam (':cart_id', $cart_id,        PDO::PARAM_INT );
-		$stmti->bindParam (':user_id', $_SESSION['id'], PDO::PARAM_INT );
-		$stmti->execute();
-	   	
-		$carrito_id = $this->crear_carrito();
-	  
-		$sql = 'update user_consumer set cart_id = :carrito_id where user_id = :user_id';
-		$stmtu = $con->prepare ( $sql );
-		$stmtu->bindParam (':user_id',    $_SESSION['id'], PDO::PARAM_INT );
-		$stmtu->bindParam (':carrito_id', $carrito_id,     PDO::PARAM_INT );
-		$stmtu->execute();
+		$sql = 'insert into history (user_consumer_id, cart_id) values (:user_id, :cart_id)';
+		$stmt = $con->prepare ( $sql );
+		$stmt->bindParam (':cart_id', $cart_id, PDO::PARAM_INT );
+		$stmt->bindParam (':user_id', $user_id, PDO::PARAM_INT );
+		$cart_id = $params['cart_id'];
+		$user_id = $params['user_id'];
+		$stmt->execute();
+		$this->crear_y_asociar_carrito($user_id);
+    }
 
-		return ;
-    }	
+	private function crear_y_asociar_carrito($user_id){
+		$carrito_id = $this->crear_carrito();
+		
+		$con = $this->getConnection ();
+		$sql = 'update user_consumer set cart_id = :carrito_id where user_id = :user_id';
+		$stmt = $con->prepare ( $sql );
+		$stmt->bindParam (':user_id', $user_id, PDO::PARAM_INT );
+		$stmt->bindParam (':carrito_id', $carrito_id, PDO::PARAM_INT );
+		$stmt->execute();
+	}	
 
 }
