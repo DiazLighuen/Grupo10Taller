@@ -37,17 +37,13 @@ class VueloController extends BaseController{
         // Presiona Buscar, ejecutamos la busqueda en base a los filtros del usuario
         if ($this->is_method_post()){
 			$fecha_desde = $_POST['fecha_desde'];
-			$fecha_hasta = $_POST['fecha_hasta'];
 			$_SESSION['fecha_desde'] = $fecha_desde;
-			$_SESSION['fecha_hasta'] = $fecha_hasta;
 			$ciudad_origen = $_POST['ciudad_origen'];
 			$ciudad_destino = $_POST['ciudad_destino'];
-			$vuelos = VueloRepository::getInstance()->buscar_vuelo($fecha_desde,$fecha_hasta,$ciudad_origen,$ciudad_destino);
-
+			$vuelos = VueloRepository::getInstance()->buscar_vuelo($fecha_desde,$ciudad_origen,$ciudad_destino);
 			$params['vuelos'] = $vuelos;
 			// hay que cargar los datos de la busqueda
 			$params['fecha_desde'] = $_POST['fecha_desde'];
-			$params['fecha_hasta'] = $_POST['fecha_hasta'];
 			$params['ciudad_origen_seleccionada'] = $_POST['ciudad_origen'];
 			$params['ciudad_destino_seleccionada'] = $_POST['ciudad_destino'];
         }
@@ -66,6 +62,7 @@ class VueloController extends BaseController{
 		}	
 		$vuelo = VueloRepository::getInstance()->vuelo_show($data['id_servicio']);
 		$hospitalName = 'TresVagos';
+		$_SESSION['fecha_desde'] = $vuelo['destiny_date'];
 		$params['hospitalName'] = $hospitalName;
 		$params['usuario_es_consumidor'] = $usuario_es_consumidor;
 		$params['vuelo'] = $vuelo;
