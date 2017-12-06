@@ -50,9 +50,11 @@
                     <input type="hidden" name="cart_id" value="{{ cart_id }}">
                     <input type="hidden" name="items" value="{{ items }}">
                     <input type="hidden" name="imp_total" value="{{ imp_total }}">
+					{% if carrito|length > 0 %}
                     <button type="submit" title="Proceder al pago" class="btn btn-primary btn-block z-depth-2">Pagar
                         <i class="fa fa-credit-card mt-0"></i>
                     </button>
+					{% endif %}
                 </form>
             </div>
         </div>
