@@ -1,23 +1,18 @@
 <?php
-
 class CarritoController extends BaseController{
-
+	
     private static $instance;
-
-    public static function getInstance()
-    {
-
+	
+    public static function getInstance(){
         if (!isset(self::$instance)) {
             self::$instance = new self();
         }
         return self::$instance;
     }
-
-    private function __construct()
-    {
-
+	
+    private function __construct(){
     }
-
+	
     public function agregar_a_carrito($data){
 		$usuario_id = $_SESSION['id'];
 		$fecha_desde = $_SESSION['fecha_desde'];
@@ -31,22 +26,19 @@ class CarritoController extends BaseController{
 		if ($service_id_nuevo){
 			$this->redirect('carrito');
 		}
-		else{
-			// arrojar mensaje de error
-		}
     }
 	
 	public function listar_carrito(){
 		$servicios = CarritoRepository::getInstance()->obtener_servicios_carrito();
-		$_SESSION['items'] = 0;
-		$_SESSION['imp_total'] = 0;
+		$cantidad_items = 0;
+		$importe_total = 0;
         foreach ($servicios as $servicio) {
 			$servicio_detalle = CarritoRepository::getInstance()->obtener_servicio_detalle($servicio[0], $servicio[1], $servicio[2]);
 			$carrito[] = $servicio_detalle;
 			// cart_id es el mismo para todos pero lo guardo en una variable para poder accederlo mas facil
 			$cart_id = $servicio_detalle['cart_id'];
-			$_SESSION['items'] += 1;
-			$_SESSION['imp_total'] += $servicio_detalle['total'];
+			$cantidad_items += 1;		
+			$importe_total += $servicio_detalle['total'];
         }
 		if (count($servicios) != 0) {
 			$params['carrito'] = $carrito;
@@ -54,8 +46,8 @@ class CarritoController extends BaseController{
         }
 		$hospitalName = 'TresVagos';
 		$params['hospitalName'] = $hospitalName;
-		$params['items'] = $_SESSION['items'];
-		$params['imp_total'] = $_SESSION['imp_total'];
+		$params['items'] = $cantidad_items;
+		$params['imp_total'] = $importe_total;
 		$view = new CarritoView();
 		$view->listar_carrito($params);
     }
@@ -65,31 +57,24 @@ class CarritoController extends BaseController{
 		$type = $data['type'];
 		$service_id = $data['id_servicio'];
 		$price = $data['price'];
+		$fecha_desde = $_SESSION['fecha_desde'];
+		$fecha_hasta = $_SESSION['fecha_hasta'];
 		// para el caso de room_reserve o vehicle_reserve
 		$serv_id = $data['id_serv'];
-		$borrar = CarritoRepository::getInstance()->eliminar_servicio_carrito($cart_id, $type, $service_id,$serv_id,$price);
+		$borrar = CarritoRepository::getInstance()->eliminar_servicio_carrito($cart_id, $type, $service_id,$serv_id,$price,$fecha_desde,$fecha_hasta);
 		$this->redirect('carrito');
 	}	
-
 	public function pagar_carrito($data){
-
         $params['cart_id']=$data['cart_id'];
         $params['items']=$data['items'];
         $params['imp_total']=$data['imp_total'];
 		$view = new CarritoView();
 		$view->pagar_carrito($params);
-
     }
-
     public function pago($data){
-
         $params['cart_id']=$data['cart_id'];
         $params['user_id']=$_SESSION['id'];
-
         CarritoRepository::getInstance()->pago($params);
-
         InicioController::getInstance()->home();
-
     }
-
 }

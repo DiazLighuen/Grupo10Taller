@@ -1,22 +1,18 @@
 <?php
-
 class CarritoRepository extends PDORepository{
-
+	
     private static $instance;
-
+	
     public static function getInstance(){
-
         if (!isset(self::$instance)) {
             self::$instance = new self();
         }
-
         return self::$instance;
     }
-
+	
     public function __construct(){
-
     }
-
+	
     public function crear_carrito(){
       $con = $this->getConnection ();
       $sql = 'INSERT INTO cart (date, price) VALUES (NOW(), 0)';
@@ -47,9 +43,7 @@ class CarritoRepository extends PDORepository{
 			$cart_id = (int) $cart_id;
 			$stmt->execute ();
 			// genero la reserva para el servicio segun el tipo
-			$id_reserva = $this->generar_reserva($service_id, $type,$usuario_id,$fecha_desde,$fecha_hasta);
-			// recalculo en precio del carrito
-			$this->sumar_precio_carrito($price,$cart_id);
+			$id_reserva = $this->generar_reserva($service_id, $type,$usuario_id,$fecha_desde,$fecha_hasta,$price,$cart_id);
 			return $id_reserva;
 		}
 		catch(Execption $e){
@@ -58,16 +52,29 @@ class CarritoRepository extends PDORepository{
 		}
 	}
 	
-	private function sumar_precio_carrito($price,$cart_id){
+	private function ajustar_precio_carrito($price,$cart_id,$fecha_desde,$fecha_hasta,$operacion,$type){
 		$con = $this->getConnection ();
-		$sql = 'UPDATE cart SET price = (price + :price) where id = :cart_id ';
+		if($operacion == 'suma'){
+			$sql = 'UPDATE cart SET price = (price + :price) where id = :cart_id ';
+		}
+		else{
+			$sql = 'UPDATE cart SET price = (price - :price) where id = :cart_id ';
+		}
 		$stmt = $con->prepare ( $sql );
 		$stmt->bindParam (':price', $price, PDO::PARAM_INT );
 		$stmt->bindParam (':cart_id', $cart_id, PDO::PARAM_INT );
+		if(($type == 'vehicle' || $type == 'hotel') && $operacion == 'suma'){
+			// para calcular el total 
+			$datetime1 = date_create($fecha_desde);
+			$datetime2 = date_create($fecha_hasta);
+			$date_dif = date_diff($datetime1, $datetime2);
+			$dias = $date_dif->d;
+			$price = $price*$dias;
+		}
 		$stmt->execute ();	
 	}
 	
-	public function generar_reserva($service_id, $type,$usuario_id,$fecha_desde,$fecha_hasta){
+	public function generar_reserva($service_id, $type,$usuario_id,$fecha_desde,$fecha_hasta,$price,$cart_id){
 		$resultado;
 		switch ($type){
 			case 'vehicle' :
@@ -79,6 +86,8 @@ class CarritoRepository extends PDORepository{
 				$stmt->bindParam (':date_in', $fecha_desde, PDO::PARAM_STR );
 				$stmt->bindParam (':date_out', $fecha_hasta, PDO::PARAM_STR );
 				$stmt->execute ();
+				// recalculo en precio del carrito
+				$this->ajustar_precio_carrito($price,$cart_id,$fecha_desde,$fecha_hasta,'suma',$type);
 				$resultado = $con->lastInsertId();
 			break;
 			case 'flight' :
@@ -87,6 +96,8 @@ class CarritoRepository extends PDORepository{
 				$stmt = $con->prepare ( $sql );
 				$stmt->bindParam (':id_seat', $service_id, PDO::PARAM_INT );
 				$stmt->execute ();
+				// recalculo en precio del carrito
+				$this->ajustar_precio_carrito($price,$cart_id,$fecha_desde,$fecha_hasta,'suma',$type);
 				$resultado = true;
 			break;
 			case 'hotel' :
@@ -98,6 +109,8 @@ class CarritoRepository extends PDORepository{
 				$stmt->bindParam (':date_in', $fecha_desde);
 				$stmt->bindParam (':date_out', $fecha_hasta);
 				$stmt->execute ();
+				// recalculo en precio del carrito
+				$this->ajustar_precio_carrito($price,$cart_id,$fecha_desde,$fecha_hasta,'suma',$type);
 				$resultado = $con->lastInsertId();
 			break;
 			default:
@@ -108,7 +121,6 @@ class CarritoRepository extends PDORepository{
 	}
 	
      public function obtener_servicios_carrito(){
-      // para probar, tengo que hacer la consulta adecuada
       $con = $this->getConnection ();
       $sql = 'SELECT s.* FROM user_consumer uc
 				inner join cart ca on uc.cart_id = ca.id
@@ -120,13 +132,13 @@ class CarritoRepository extends PDORepository{
       $servicios = $stmt->fetchAll ();
       return $servicios;
     }
-
+	
     public function obtener_servicio_detalle($cart_id, $type, $service_id){
 	  $con = $this->getConnection ();
 	  if ($type == 'flight') {
 		$sql = "SELECT :cart_id as cart_id, 'flight' as type, se.id as id_servicio, 
 				concat(us.name, ' ', se.flight_id, ' ', se.number, ' ', co.name, ' ', cd.name, ' ', fl.origin_date, ' ', 
-				se.class  ) as descripcion, price as total, null as id_serv 
+				se.class  ) as descripcion, price as total, null as id_serv
 				FROM seat se
 				inner join flight fl on se.flight_id = fl.id 
 				inner join airline ai on fl.airline_id = ai.user_id
@@ -137,7 +149,7 @@ class CarritoRepository extends PDORepository{
 	  }
   	  else
 		if ($type == 'hotel') {
-				$sql = "SELECT :cart_id as cart_id, r.id as id_servicio, 'hotel' as type, rr.id as id_serv, concat(u.name) as descripcion, price as total 
+				$sql = "SELECT :cart_id as cart_id,'hotel' as type, r.id as id_servicio, concat(u.name) as descripcion, r.price * DATEDIFF( rr.date_out, rr.date_in ) as total, rr.id as id_serv
 				FROM room_reserve rr
 				inner join room r on rr.id_room = r.id
 				inner join hotel h on r.hotel_id = h.id
@@ -147,10 +159,10 @@ class CarritoRepository extends PDORepository{
 		}
 		else
 			if ($type == 'vehicle') {
-				$sql = "SELECT :cart_id as cart_id, 'vehicle' as type, vr.id id_serv, vi.id as id_servicio,
+				$sql = "SELECT :cart_id as cart_id, 'vehicle' as type, vi.id as id_servicio,
 				concat(u.name , ' ' , vi.slots , ' ' , vi.fuel ,' ' , vi.description, ' $', vi.price, ' ', ci.name, ' ', vr.date_in,' ',
 				vr.date_out) as descripcion, 
-				vi.price as total
+				vi.price * DATEDIFF( vr.date_out, vr.date_in )  as total,  vr.id id_serv
 				FROM vehicle_reserve vr
 				inner join vehicle vi on vr.id_vehicle = vi.id
 				inner join concessionaire co on vi.concessionaire_id = co.concessionaire_id
@@ -168,7 +180,7 @@ class CarritoRepository extends PDORepository{
       return $servicio_detalle;
     }
 	
-    public function eliminar_servicio_carrito($cart_id, $type, $service_id,$serv_id,$price){
+    public function eliminar_servicio_carrito($cart_id, $type, $service_id,$serv_id,$price,$fecha_desde,$fecha_hasta){
 	  $con = $this->getConnection ();
       $sql = 'delete from services where cart_id = :cart_id and type = :type and service_id = :service_id';
       $stmt = $con->prepare ( $sql );
@@ -179,13 +191,11 @@ class CarritoRepository extends PDORepository{
 	  $cart_id = (int) $cart_id;
       $stmt->execute();
 	  
-	  $elimino = $this->eliminar_reserva($type,$serv_id,$service_id);
-		// recalculo en precio del carrito
-		$this->restar_precio_carrito($price,$cart_id);
+	  $elimino = $this->eliminar_reserva($type,$serv_id,$service_id,$cart_id,$price,$fecha_desde,$fecha_hasta);
       return $elimino;
     }	
 	
-	private function eliminar_reserva($type,$serv_id,$service_id){
+	private function eliminar_reserva($type,$serv_id,$service_id,$cart_id,$price,$fecha_desde,$fecha_hasta){
 		$resultado;
 		switch ($type){
 			case 'vehicle' :
@@ -196,6 +206,8 @@ class CarritoRepository extends PDORepository{
 				$serv_id = (int) $serv_id;
 				$stmt->execute ();
 				$resultado = true;
+				// recalculo en precio del carrito
+				$this->ajustar_precio_carrito($price,$cart_id,$fecha_desde,$fecha_hasta,'resta',$type);
 			break;
 			case 'flight' :
 				$con = $this->getConnection ();
@@ -204,6 +216,8 @@ class CarritoRepository extends PDORepository{
 				$stmt->bindParam (':id_seat', $service_id, PDO::PARAM_INT );
 				$stmt->execute ();
 				$resultado = true;
+				// recalculo en precio del carrito
+				$this->ajustar_precio_carrito($price,$cart_id,$fecha_desde,$fecha_hasta,'resta',$type);
 			break;
 			case 'hotel' :
 				$con = $this->getConnection ();
@@ -213,6 +227,8 @@ class CarritoRepository extends PDORepository{
 				$serv_id = (int) $serv_id;
 				$stmt->execute ();
 				$resultado = true;
+				// recalculo en precio del carrito
+				$this->ajustar_precio_carrito($price,$cart_id,$fecha_desde,$fecha_hasta,'resta',$type);
 			break;
 			default:
 			//
@@ -220,7 +236,6 @@ class CarritoRepository extends PDORepository{
 		}
 		return $resultado;	
 	}
-
     public function pago($params){
 		$con = $this->getConnection ();
 		$sql = 'insert into history (user_consumer_id, cart_id) values (:user_id, :cart_id)';
@@ -232,7 +247,6 @@ class CarritoRepository extends PDORepository{
 		$stmt->execute();
 		$this->crear_y_asociar_carrito($user_id);
     }
-
 	private function crear_y_asociar_carrito($user_id){
 		$carrito_id = $this->crear_carrito();
 		
@@ -242,15 +256,5 @@ class CarritoRepository extends PDORepository{
 		$stmt->bindParam (':user_id', $user_id, PDO::PARAM_INT );
 		$stmt->bindParam (':carrito_id', $carrito_id, PDO::PARAM_INT );
 		$stmt->execute();
-	}
-	
-	private function restar_precio_carrito($price,$cart_id){
-		$con = $this->getConnection ();
-		$sql = 'UPDATE cart SET price = (price - :price) where id = :cart_id ';
-		$stmt = $con->prepare ( $sql );
-		$stmt->bindParam (':price', $price, PDO::PARAM_INT );
-		$stmt->bindParam (':cart_id', $cart_id, PDO::PARAM_INT );
-		$stmt->execute ();	
 	}	
-
 }
