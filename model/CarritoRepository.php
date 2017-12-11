@@ -68,7 +68,11 @@ class CarritoRepository extends PDORepository{
 			$datetime1 = date_create($fecha_desde);
 			$datetime2 = date_create($fecha_hasta);
 			$date_dif = date_diff($datetime1, $datetime2);
-			$dias = $date_dif->d;
+			$dias = 1;
+			// si la diferencia son 0 dias se toma como un dia de reserva -> entra y sale el mismo dia
+			if (($date_dif->d) > 0){
+				$dias = $date_dif->d;
+			}
 			$price = $price*$dias;
 		}
 		$stmt->execute ();	
@@ -149,7 +153,7 @@ class CarritoRepository extends PDORepository{
 	  }
   	  else
 		if ($type == 'hotel') {
-				$sql = "SELECT :cart_id as cart_id,'hotel' as type, r.id as id_servicio, concat(u.name) as descripcion, r.price * DATEDIFF( rr.date_out, rr.date_in ) as total, rr.id as id_serv
+				$sql = "SELECT :cart_id as cart_id,'hotel' as type, r.id as id_servicio, concat(u.name) as descripcion, CASE WHEN (DATEDIFF(rr.date_out, rr.date_in) > 0) THEN (r.price * DATEDIFF( rr.date_out, rr.date_in )) ELSE r.price END as total, rr.id as id_serv
 				FROM room_reserve rr
 				inner join room r on rr.id_room = r.id
 				inner join hotel h on r.hotel_id = h.id
@@ -161,8 +165,8 @@ class CarritoRepository extends PDORepository{
 			if ($type == 'vehicle') {
 				$sql = "SELECT :cart_id as cart_id, 'vehicle' as type, vi.id as id_servicio,
 				concat(u.name , ' ' , vi.slots , ' ' , vi.fuel ,' ' , vi.description, ' $', vi.price, ' ', ci.name, ' ', vr.date_in,' ',
-				vr.date_out) as descripcion, 
-				vi.price * DATEDIFF( vr.date_out, vr.date_in )  as total,  vr.id id_serv
+				vr.date_out) as descripcion, CASE WHEN (DATEDIFF( vr.date_out, vr.date_in ) >0 ) THEN
+				(vi.price * DATEDIFF( vr.date_out, vr.date_in )) ELSE vi.price END as total,  vr.id id_serv
 				FROM vehicle_reserve vr
 				inner join vehicle vi on vr.id_vehicle = vi.id
 				inner join concessionaire co on vi.concessionaire_id = co.concessionaire_id
