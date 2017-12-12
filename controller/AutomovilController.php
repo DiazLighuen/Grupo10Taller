@@ -43,8 +43,8 @@ class AutomovilController extends BaseController{
         $params['hospitalName'] = $hospitalName;
         $view = new AutomovilListarView();
         $view->listar_automovil($params);
-    }	
-	
+    }
+
 	public function buscar_automovil(){
 		// para que quede seleccionada la ciudad que eligio el usuario
 		$params['ciudad_seleccionada'] = '';
@@ -64,7 +64,7 @@ class AutomovilController extends BaseController{
 			$esta_logueado = $_SESSION['logged'] == true;
 			$es_consumidor = $_SESSION['permisions'] == 'user';
 			$usuario_es_consumidor = $esta_logueado && $es_consumidor;
-		}	
+		}
 		$automovil = AutomovilRepository::getInstance()->automovil_show($data['id_servicio']);
 		$hospitalName = 'TresVagos';
 		$params['usuario_es_consumidor'] = $usuario_es_consumidor;
